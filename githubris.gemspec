@@ -6,12 +6,10 @@ Gem::Specification.new do |s|
   s.name        = "githubris"
   s.version     = Githubris::VERSION
   s.authors     = ["Isaac Sanders"]
-  s.email       = ["isaacbfsanders@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "githubris"
+  s.email       = ["isaac@isaacbfsanders.com"]
+  s.homepage    = "isaacbfsanders.com/githubris"
+  s.summary     = %q{Githubris is meant to make Github API interaction a breeze.}
+  s.description = %q{Githubris is meant to make Github API interaction a breeze.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
