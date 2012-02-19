@@ -1,6 +1,7 @@
 require_relative "githubris/version"
 
 module Githubris
+  autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
@@ -14,4 +15,18 @@ module Githubris
   autoload :Tag, 'githubris/tag'
   autoload :Tree, 'githubris/tree'
   autoload :User, 'githubris/user'
+
+  class << self
+    def login(user_name, api_key)
+      @@user = Githubris::User.new
+    end
+
+    def logout
+      @@user = nil
+    end
+
+    def authenticated_user
+      @@user
+    end
+  end
 end

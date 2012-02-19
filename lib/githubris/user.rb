@@ -1,0 +1,2 @@
+class Githubris::User
+end
