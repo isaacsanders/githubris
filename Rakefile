@@ -7,5 +7,7 @@ RSpec::Core::RakeTask.new :spec do |t|
 end
 
 Cucumber::Rake::Task.new :features do |t|
-  t.opt
+  t.cucumber_opts = "--color"
 end
+
+task :default => [:spec, :features]
