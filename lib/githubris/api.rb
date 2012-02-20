@@ -1,2 +1,4 @@
-class Githubris::API
+module Githubris
+  class API
+  end
 end

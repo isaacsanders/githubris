@@ -1,3 +1,5 @@
-class Githubris::Organization
-  autoload :Team, 'githubris/organization/team'
+module Githubris
+  class Organization
+    autoload :Team, 'githubris/organization/team'
+  end
 end

@@ -1,2 +1,4 @@
-class Githubris::User
+module Githubris
+  class User
+  end
 end
