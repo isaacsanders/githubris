@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Githubris::Gist do
   context 'class methods' do
     subject { Githubris::Gist }
-    it_behaves_like 'a collection API'
     describe ".public_gists" do
       context "when there are no gists" do
         it "is an empty collection" do
@@ -16,7 +15,6 @@ describe Githubris::Gist do
   context 'instance methods' do
     let(:gist) { Githubris::Gist.new }
 
-    it_behaves_like 'a commentable API'
     its(:user) { should be_instance_of Githubris::User }
 
     it "new gists belong to the authenticated user" do
