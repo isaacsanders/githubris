@@ -5,6 +5,7 @@ module Githubris
   autoload :Blob, 'githubris/blob'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
+  autoload :Config, 'githubris/config'
   autoload :Event, 'githubris/event'
   autoload :Gist, 'githubris/gist'
   autoload :Issue, 'githubris/issue'
