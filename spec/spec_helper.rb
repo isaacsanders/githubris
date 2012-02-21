@@ -1,5 +1,7 @@
 require 'rspec-spies'
+require 'pry'
+require 'fakeweb'
 require 'githubris'
 
 require 'support/fakeweb_responses'
-require 'support/attribute_helpers'
+require 'support/custom_matchers'

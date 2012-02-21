@@ -1,3 +1,13 @@
+RSpec::Matchers.define :be_greater_than do |first|
+  match do |actual|
+    (actual > first) && (actual < @second)
+  end
+
+  chain :but_less_than do |second|
+    @second = second
+  end
+end
+
 RSpec::Matchers.define :all do |expected|
 
   match do |actual|
