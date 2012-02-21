@@ -1,3 +1,4 @@
+$:.push File.expand_path("../../config", __FILE__)
 require_relative "githubris/version"
 
 module Githubris

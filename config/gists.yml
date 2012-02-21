@@ -1,0 +1,13 @@
+gists:
+  list_public_user:
+    method: 'get'
+    path: '/users/:user/gists'
+  list_public:
+    method: 'get'
+    path: '/gists'
+  list_authentic_user:
+    method: 'get'
+    path: '/gists'
+  list_authentic_user_starred:
+    method: 'get'
+    path: '/gists/starred'
