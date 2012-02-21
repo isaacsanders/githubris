@@ -14,21 +14,20 @@ describe Githubris::API do
     end
 
     it 'uses the config' do
-      Githubris::Config.stub(:[])
+      Githubris::Config.stub(:[] => stub("2nd level",:[] => {}))
       subject.call(:foo)
       Githubris::Config.should have_received(:[]).with(:foo)
+      subject.call(:foo, :bar)
+      Githubris::Config.[].should have_received(:[]).with(:bar)
     end
 
-    it 'creates a new api call instance' do
-      Githubris::Config.stub(:[] => {})
-      subject.call(:foo).should be_instance_of Hash
-    end
-  end
-
-  describe 'resolving calls' do
-    it 'calls github' do
-      Githubris::API.new({method: 'post', uri: '/foo/bar'}).resolve
+    it 'hits only github' do
+      FakeWeb.allow_net_connect = 'api.github.com'
+      subject.call :foo
       FakeWeb.last_request.should_not be_nil
+      lambda { Net::HTTP.get('example.com', '/') }.should raise_error
     end
+
+
   end
 end
