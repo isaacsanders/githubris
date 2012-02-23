@@ -3,6 +3,8 @@ require 'spec_helper'
 
 describe Githubris::GistBuilder do
   describe 'build' do
+    let(:gist_data) { Githubris::SpecHelper.gist_data }
+
     context 'when passed a collection of gist data' do
       subject do
         Githubris::GistBuilder.build Githubris::SpecHelper.gist_collection_data
@@ -15,39 +17,27 @@ describe Githubris::GistBuilder do
           gist.should be_instance_of Githubris::Gist
         end
       end
-
-      it 'each gist has a user defined' do
-        subject.each do |gist|
-          gist.user.should be_instance_of Githubris::User
-        end
-      end
     end
 
     context 'when passed the data for a single gist' do
-      subject do
-        Githubris::GistBuilder.build Githubris::SpecHelper.gist_data
-      end
+      subject { Githubris::GistBuilder.build gist_data }
 
-      it { should be_instance_of Githubris::Gist }
-      its(:user) { should be_instance_of Githubris::User }
-
+      it                { should be_instance_of Githubris::Gist }
+      it                { should be_public }
+      its(:user)        { should be_instance_of Githubris::User }
+      its(:description) { should be_instance_of String }
+      its(:created_at)  { should be_instance_of DateTime }
+      its(:updated_at)  { should be_instance_of DateTime }
+      its(:comments)    { should be_instance_of Array }
+      its(:files)       { should be_instance_of Array }
+      its(:url)         { should be_kind_of URI }
     end
 
     context 'when passed a specific gist' do
-      let(:gist) do
-        Githubris::SpecHelper.gist_data
-      end
-
-      subject do
-        Githubris::GistBuilder.build gist
-      end
+      subject { Githubris::GistBuilder.build gist_data }
 
       it 'is public' do
         subject.should be_public
-      end
-
-      it 'has 5 comments' do
-        subject.comments.length.should eql 5
       end
 
       its(:description) { should eql 'the meaning of gist' }

@@ -34,7 +34,7 @@ describe Githubris::Gist do
     end
 
     context 'Gist owned by Isaac' do
-      subject { Githubris::Gist.new 'user' => user }
+      subject { Githubris::Gist.new user: user }
       let(:user) { Githubris::User.new }
       its(:user) { should eql user }
     end
@@ -46,14 +46,10 @@ describe Githubris::Gist do
 
     describe 'a gist created with a file' do
       subject do
-        Githubris::Gist.new('files'=> [Githubris::Gist::File.new])
+        Githubris::Gist.new(files: [stub])
       end
 
-      it 'has one file' do
-        subject.files.count.should eql 1
-      end
-
-      its(:files) { should all.be_instance_of Githubris::Gist::File }
+      its(:files) { should have(1).items }
 
       describe 'saving' do
         it 'gets sent to github' do

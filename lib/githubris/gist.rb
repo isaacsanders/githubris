@@ -3,20 +3,16 @@ module Githubris
     autoload :File, 'githubris/gist/file'
 
     class << self
-      def list_uri
-        ""
-      end
-
       def public_gists
         Githubris::API.call(:gists, :list_public)
       end
 
       def default_options
         {
-          'user'       => Githubris.authenticated_user,
-          'files'      => [],
-          'created_at' => DateTime.now.to_s,
-          'updated_at' => DateTime.now.to_s
+          user: Githubris.authenticated_user,
+          files: [],
+          created_at: DateTime.now,
+          updated_at: DateTime.now
         }
       end
     end
@@ -32,23 +28,27 @@ module Githubris
     end
 
     def user
-      @options['user']
+      @options[:user]
     end
 
     def created_at
-      DateTime.parse @options['created_at']
+      @options[:created_at]
     end
 
     def updated_at
-      DateTime.parse @options['updated_at']
+      @options[:updated_at]
     end
 
     def description
-      @options['description']
+      @options[:description]
     end
 
     def files
-      @options['files']
+      @options[:files]
+    end
+
+    def url
+      @options[:url]
     end
 
     def save
@@ -56,11 +56,11 @@ module Githubris
     end
 
     def public?
-      true
+      @options[:public]
     end
 
     def comments
-      Array.new 5
+      @options[:comments]
     end
   end
 end
