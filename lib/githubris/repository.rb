@@ -1,4 +1,4 @@
-module Githubris
+class Githubris
   class Repository
     autoload :Download, 'githubris/repository/download'
     autoload :Fork, 'githubris/repository/fork'

@@ -1,6 +1,6 @@
 require 'yaml'
 
-module Githubris
+class Githubris
   module Config
     @@config = {}
     @@config.merge! YAML.load_file('config/base.yml')

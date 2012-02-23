@@ -1,4 +1,4 @@
-module Githubris
+class Githubris
   class Gist
     autoload :File, 'githubris/gist/file'
 

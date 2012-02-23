@@ -1,4 +1,4 @@
-module Githubris
+class Githubris
   module SpecHelper
     def self.gist_collection_data
       [

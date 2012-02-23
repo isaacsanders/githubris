@@ -1,6 +1,6 @@
 require 'httparty'
 
-module Githubris
+class Githubris
   class API
     include HTTParty
     base_uri(Githubris::Config[:base_uri])

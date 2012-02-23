@@ -1,4 +1,4 @@
-module Githubris
+class Githubris
   class GistBuilder
     class << self
       def build data

@@ -1,7 +1,7 @@
 $:.push File.expand_path("../../config", __FILE__)
 require_relative "githubris/version"
 
-module Githubris
+class Githubris
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
   autoload :Comment, 'githubris/comment'
