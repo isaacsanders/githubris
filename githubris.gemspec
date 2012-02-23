@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = Githubris::VERSION
   s.authors     = ["Isaac Sanders"]
   s.email       = ["isaac@isaacbfsanders.com"]
-  s.homepage    = "isaacbfsanders.com/githubris"
+  s.homepage    = "http://isaacbfsanders.com/githubris"
   s.summary     = %q{Githubris is meant to make Github API interaction a breeze.}
   s.description = %q{Githubris is meant to make Github API interaction a breeze.}
 
