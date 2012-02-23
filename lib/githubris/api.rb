@@ -5,8 +5,14 @@ module Githubris
     include HTTParty
     base_uri(Githubris::Config[:base_uri])
 
-    def self.call(*args)
-      options = args.inject(Githubris::Config) {|config, key| config[key]}
+    def self.call(data, *args)
+
+      options = {data: data}
+      unless args.empty?
+        options.merge! args.inject(Githubris::Config) {|config, key|
+          config[key]
+        }
+      end
       Githubris::API.resolve options
     end
 
