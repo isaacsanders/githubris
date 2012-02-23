@@ -8,7 +8,7 @@ module Githubris
       end
 
       def public_gists
-        self.build(Githubris::API.call(:gists, :list_public))
+        Githubris::API.call(:gists, :list_public)
       end
 
       def default_options
@@ -18,17 +18,6 @@ module Githubris
           'created_at' => DateTime.now.to_s,
           'updated_at' => DateTime.now.to_s
         }
-      end
-
-      def build data
-        return data if data.instance_of? Githubris::Gist
-        if data.instance_of? Array
-          data.map do |gist_data|
-            self.build gist_data
-          end
-        else
-          Githubris::Gist.new data
-        end
       end
     end
 
@@ -43,7 +32,7 @@ module Githubris
     end
 
     def user
-      Githubris::User.build @options['user']
+      @options['user']
     end
 
     def created_at
@@ -59,7 +48,7 @@ module Githubris
     end
 
     def files
-      Githubris::Gist::File.build @options['files']
+      @options['files']
     end
 
     def save

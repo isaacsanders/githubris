@@ -24,14 +24,5 @@ describe Githubris::API do
       subject.call(:foo, :bar)
       Githubris::Config.[].should have_received(:[]).with(:bar)
     end
-
-    it 'hits only github' do
-      FakeWeb.allow_net_connect = 'api.github.com'
-      subject.call :foo
-      FakeWeb.last_request.should_not be_nil
-      lambda { Net::HTTP.get('example.com', '/') }.should raise_error
-    end
-
-
   end
 end
