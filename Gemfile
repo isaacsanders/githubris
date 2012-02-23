@@ -5,5 +5,6 @@ group :development, :test do
   gem 'rspec-spies'
   gem 'fakeweb'
   gem 'pry'
+  gem 'pry-doc'
 end
 gemspec

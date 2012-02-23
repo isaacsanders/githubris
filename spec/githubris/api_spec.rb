@@ -4,6 +4,10 @@ describe Githubris::API do
   describe 'making calls' do
     subject { Githubris::API }
 
+    before do
+      Githubris::API.stub(:resolve)
+    end
+
     it 'takes multiple arguments' do
       Githubris::Config.stub(:[] => {:bar => {:baz => nil}})
       lambda {

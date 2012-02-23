@@ -20,15 +20,19 @@ module Githubris
 
   class << self
     def login(user_name, api_key)
-      @@user = Githubris::User.new
+      @@authenticated_user = Githubris::User.new
     end
 
     def logout
-      @@user = nil
+      @@authenticated_user = nil
     end
 
     def authenticated_user
-      @@user
+      begin
+        @@authenticated_user
+      rescue
+        nil
+      end
     end
   end
 end

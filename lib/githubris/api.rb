@@ -11,7 +11,10 @@ module Githubris
     end
 
     def self.resolve options
-      Githubris::API.get('/')
+      method = options[:method].intern
+      path = URI.parse(options[:path])
+      puts "#{method} #{path}"
+      Githubris::API.send(method, path)
     end
   end
 end
