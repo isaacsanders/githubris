@@ -6,4 +6,6 @@ group :development, :test do
   gem 'rspec-spies'
   gem 'fakeweb'
 end
+
+gem 'rake'
 gemspec
