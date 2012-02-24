@@ -1,5 +1,4 @@
 require 'rspec-spies'
-require 'pry'
 require 'fakeweb'
 require 'githubris'
 
