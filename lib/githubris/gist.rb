@@ -15,6 +15,10 @@ class Githubris
           updated_at: DateTime.now
         }
       end
+
+      def build data
+        Githubris::Builder.build data
+      end
     end
 
     def initialize options={}

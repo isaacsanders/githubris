@@ -7,5 +7,12 @@ class Githubris
         self.new
       end
     end
+
+    def initialize data={}
+
+    end
+
+    def public_gists
+    end
   end
 end

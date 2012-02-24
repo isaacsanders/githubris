@@ -1,13 +1,12 @@
-require 'githubris/builder'
 require 'spec_helper'
 
-describe Githubris::GistBuilder do
+describe Githubris::Builder do
   describe 'build' do
     let(:gist_data) { Githubris::SpecHelper.gist_data }
 
     context 'when passed a collection of gist data' do
       subject do
-        Githubris::GistBuilder.build Githubris::SpecHelper.gist_collection_data
+        Githubris::Builder.build Githubris::SpecHelper.gist_collection_data
       end
 
       it { should be_instance_of Array }
@@ -20,7 +19,7 @@ describe Githubris::GistBuilder do
     end
 
     context 'when passed the data for a single gist' do
-      subject { Githubris::GistBuilder.build gist_data }
+      subject { Githubris::Builder.build gist_data }
 
       it                { should be_instance_of Githubris::Gist }
       it                { should be_public }
@@ -34,7 +33,7 @@ describe Githubris::GistBuilder do
     end
 
     context 'when passed a specific gist' do
-      subject { Githubris::GistBuilder.build gist_data }
+      subject { Githubris::Builder.build gist_data }
 
       it 'is public' do
         subject.should be_public

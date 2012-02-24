@@ -1,5 +1,5 @@
 class Githubris
-  class GistBuilder
+  class Builder
     class << self
       def build data
         return data if data.instance_of? Githubris::Gist
