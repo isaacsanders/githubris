@@ -8,4 +8,4 @@ end
 
 Cucumber::Rake::Task.new :features
 
-task :default => :spec
+task :default => [:spec, :features]
