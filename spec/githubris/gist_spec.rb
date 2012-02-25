@@ -29,6 +29,7 @@ describe Githubris::Gist do
 
     context 'with no authenticated user' do
       it 'is nil' do
+        Githubris.logout
         gist.user.should be_nil
       end
     end

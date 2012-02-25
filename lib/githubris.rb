@@ -21,7 +21,8 @@ class Githubris
   autoload :Tree, 'githubris/tree'
   autoload :User, 'githubris/user'
 
-  def self.login(user_name, api_key)
+  def self.login(username, password)
+    Githubris::API.basic_auth username, password
     @@authenticated_user = Githubris::User.new
   end
 
