@@ -9,7 +9,6 @@ class Githubris
 
       def default_options
         {
-          user: Githubris.authenticated_user,
           files: [],
           created_at: DateTime.now,
           updated_at: DateTime.now

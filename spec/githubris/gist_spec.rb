@@ -20,19 +20,6 @@ describe Githubris::Gist do
       DateTime.stub(:now => DateTime.new(2012, 12, 21, 12, 0, 0))
       gist.created_at.should eql DateTime.now
     end
-    context "with a user is authenticated" do
-      it 'new gists belong to the authenticated user' do
-        Githubris.stub(:authenticated_user => Githubris::User.new )
-        gist.user.should eql Githubris.authenticated_user
-      end
-    end
-
-    context 'with no authenticated user' do
-      it 'is nil' do
-        Githubris.logout
-        gist.user.should be_nil
-      end
-    end
 
     context 'Gist owned by Isaac' do
       subject { Githubris::Gist.new user: user }

@@ -7,7 +7,7 @@ RSpec::Core::RakeTask.new :spec do |t|
 end
 
 Cucumber::Rake::Task.new :features do |t|
-  t.cucumber_opts = '--tags ~@wip'
+  t.cucumber_opts = '--tags ~@wip --tags ~@backlog'
 end
 
-task :default => [:spec, :features]
+task :default => :spec

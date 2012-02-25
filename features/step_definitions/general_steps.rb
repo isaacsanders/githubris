@@ -1,13 +1,11 @@
-Given /^I have an instance of Githubris$/ do
-  @githubris ||= lambda { Githubris.new }.call
-end
-
-Given /^I have an instance of Githubris::User$/ do
-  @user ||= lambda do
-    Githubris::User.new('GithubrisTestUser')
-  end.call
+Given /^@user is GithubrisTestUser$/ do
+  @user = @githubris.find_user('GithubrisTestUser')
 end
 
 When /^I access "([^"]*)"$/ do |api_code|
   @actual = binding.eval api_code
+end
+
+Then /^I have GithubrisTestUser's public gists$/ do
+  @actual.should eql test_public_gists
 end

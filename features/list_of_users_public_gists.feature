@@ -3,37 +3,11 @@ Feature: List of user's public gists
   As a user of the Githubris GitHub API,
   I want to be able to access the gists via the API.
 
-  Scenario Outline: Accessing a user's public gists via the githubris API
-    Given I have an instance of Githubris
-    When I access "@githubris.public_gists(<key>: 'GithubrisTestUser')"
-    Then I should have a list of the user's public gists
+  Scenario: via Githubris
+    When I access "@githubris.public_gists(user: 'GithubrisTestUser')"
+    Then I have GithubrisTestUser's public gists
 
-  Scenario Outline: Accessing a user's public gists via the githubris API
-    Given I have an instance of Githubris
-    And I have an instance of Githubris::User
-    When I access "@githubris.public_gists(<key>: @user)"
-    Then I should have a list of the user's public gists
-
-  Scenario Outline: Accessing a user's public gists via the githubris API
-    Given I have an instance of Githubris
-    When I access "@githubris.gists(<key>: 'GithubrisTestUser')"
-    Then I should have a list of the user's public gists
-
-  Scenario Outline: Accessing a user's public gists via the githubris API
-    Given I have an instance of Githubris
-    And I have an instance of Githubris::User
-    When I access "@githubris.gists(<key>: @user)"
-    Then I should have a list of the user's public gists
-
-  Examples:
-    | key     |
-    | for     |
-    | user    |
-    | owner   |
-    | author  |
-    | creator |
-
-  Scenario: Accessing a user's public gists via the user
-    Given I have an instance of Githubris::User
+  Scenario: via the User
+    Given @user is GithubrisTestUser
     When I access "@user.public_gists"
-    Then I should have a list of the user's public gists
+    Then I have GithubrisTestUser's public gists

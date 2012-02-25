@@ -2,8 +2,6 @@ $:.push File.expand_path("../../config", __FILE__)
 require_relative "githubris/version"
 
 class Githubris
-  @@authenticated_user = nil
-
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
   autoload :Builder, 'githubris/builder'
@@ -21,21 +19,18 @@ class Githubris
   autoload :Tree, 'githubris/tree'
   autoload :User, 'githubris/user'
 
-  def self.login(username, password)
+  attr_reader :authenticated_user
+
+  def authenticate(username, password)
     Githubris::API.basic_auth username, password
-    @@authenticated_user = Githubris::User.new
+    @authenticated_user = Githubris::User.new
   end
 
-  def self.logout
-    @@authenticated_user = nil
-  end
-
-  def self.authenticated_user
-    @@authenticated_user
+  def find_user(login)
+    Githubris::API.get_user(login: login)
   end
 
   def public_gists options={}
-
   end
 
   def gists options={}

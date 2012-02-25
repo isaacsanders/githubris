@@ -1,35 +1,24 @@
 require 'spec_helper'
 
 describe Githubris do
-  context 'class methods' do
-    describe '.logout' do
-      it 'drops any authenticated user' do
-        Githubris.logout
-        Githubris.authenticated_user.should be_nil
-      end
+  describe '#authenticate' do
+    it 'authenticates via Basic Auth' do
+      Githubris::API.stub(:basic_auth)
+      subject.authenticate('username', 'password')
+      Githubris::API.should have_received(:basic_auth).with('username', 'password')
     end
 
-    describe '.login' do
-      before do
-        Githubris.logout
-      end
+    it 'sets the authenticated user' do
+      subject.authenticate('username', 'password')
+      subject.authenticated_user.should_not be_nil
+    end
+  end
 
-      it 'takes a username and password' do
-        lambda do
-          Githubris.login('username', 'password')
-        end.should_not raise_error
-      end
-
-      it 'authenticates via Basic Auth' do
-        Githubris::API.stub(:basic_auth)
-        Githubris.login('username', 'password')
-        Githubris::API.should have_received(:basic_auth).with('username', 'password')
-      end
-
-      it 'sets the authenticated user' do
-        Githubris.login('username', 'password')
-        Githubris.authenticated_user.should_not be_nil
-      end
+  describe '#find_user' do
+    it 'requests gets user from githubris api' do
+      user = Githubris::User.new(login: "frank")
+      Githubris::API.stub(:get_user).and_return(user)
+      subject.find_user("frank").should == user
     end
   end
 end
