@@ -3,20 +3,12 @@ class Githubris
     autoload :File, 'githubris/gist/file'
 
     class << self
-      def public_gists
-        Githubris::API.call(:gists, :list_public)
-      end
-
       def default_options
         {
           files: [],
           created_at: DateTime.now,
           updated_at: DateTime.now
         }
-      end
-
-      def build data
-        Githubris::Builder.build data
       end
     end
 
@@ -52,10 +44,6 @@ class Githubris
 
     def url
       @options[:url]
-    end
-
-    def save
-      Githubris::API.save_gist(self)
     end
 
     def public?

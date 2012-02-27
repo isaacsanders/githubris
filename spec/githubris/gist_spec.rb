@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe Githubris::Gist do
-  describe '.public_gists' do
-    context 'when there are a few gists' do
-      it 'is an array of gists' do
-        Githubris::API.stub(:call => [Githubris::Gist.new, Githubris::Gist.new])
-        Githubris::Gist.public_gists.each do |gist|
-          gist.should be_instance_of Githubris::Gist
-        end
-      end
-    end
-  end
 
   context 'instance methods' do
     subject { gist }
@@ -38,14 +28,6 @@ describe Githubris::Gist do
       end
 
       its(:files) { should have(1).items }
-
-      describe 'saving' do
-        it 'gets sent to github' do
-          Githubris::API.stub(:save_gist)
-          subject.save
-          Githubris::API.should have_received(:save_gist).with(subject)
-        end
-      end
     end
   end
 end

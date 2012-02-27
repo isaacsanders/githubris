@@ -1,30 +1,11 @@
 require 'spec_helper'
 
 describe Githubris::API do
-  describe 'making calls' do
-    subject { Githubris::API }
-
-    before do
-      Githubris::API.stub(:resolve)
-    end
-
-    it 'takes a single required data requirement' do
-      lambda { subject.call({}) }.should_not raise_error
-    end
-
-    it 'takes multiple arguments' do
-      Githubris::Config.stub(:[] => {:bar => {:baz => {}}})
-      lambda {
-        subject.call({}, :foo)
-        subject.call({}, :foo, :bar)
-        subject.call({}, :foo, :bar, :baz)
-      }.should_not raise_error
-    end
-
-    it 'uses the config' do
-      Githubris::Config.stub(:[] => {})
-      subject.call({}, :foo)
-      Githubris::Config.should have_received(:[]).with(:foo)
+  describe '#get_public_gists' do
+    it 'uses the builder' do
+      Githubris::Builder.any_instance.stub(:build_gists)
+      subject.get_public_gists
+      subject.instance_variable_get(:@builder).should have_received(:build_gists)
     end
   end
 end

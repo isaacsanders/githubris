@@ -6,7 +6,7 @@ describe Githubris::Builder do
 
     context 'when passed a collection of gist data' do
       subject do
-        Githubris::Builder.build Githubris::SpecHelper.gist_collection_data
+        Githubris::Builder.new.build Githubris::SpecHelper.gist_collection_data
       end
 
       it { should be_instance_of Array }
@@ -19,7 +19,7 @@ describe Githubris::Builder do
     end
 
     context 'when passed the data for a single gist' do
-      subject { Githubris::Builder.build gist_data }
+      subject { Githubris::Builder.new.build gist_data }
 
       it                { should be_instance_of Githubris::Gist }
       it                { should be_public }
@@ -33,7 +33,7 @@ describe Githubris::Builder do
     end
 
     context 'when passed a specific gist' do
-      subject { Githubris::Builder.build gist_data }
+      subject { Githubris::Builder.new.build gist_data }
 
       it 'is public' do
         subject.should be_public

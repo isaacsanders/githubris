@@ -17,8 +17,25 @@ describe Githubris do
   describe '#find_user' do
     it 'requests gets user from githubris api' do
       user = Githubris::User.new(login: "frank")
-      Githubris::API.stub(:get_user).and_return(user)
+      Githubris::API.any_instance.stub(:get_user).and_return(user)
       subject.find_user("frank").should == user
+    end
+  end
+
+  describe '#public_gists' do
+
+    it 'uses the API' do
+      Githubris::API.any_instance.stub(:get_public_gists)
+      subject.public_gists
+      subject.instance_variable_get(:@api).should have_received(:get_public_gists).with({})
+    end
+
+    context 'with no arguments' do
+      it 'should contain only gists' do
+        subject.public_gists.each do |gist|
+          gist.should be_instance_of Githubris::Gist
+        end
+      end
     end
   end
 end

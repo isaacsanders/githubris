@@ -1,26 +1,22 @@
 require 'httparty'
 
-class Githubris
-  class API
-    include HTTParty
-    base_uri(Githubris::Config[:base_uri])
+class Githubris::API
+  include HTTParty
+  base_uri(Githubris::Config[:base_uri])
 
-    def self.call(data, *args)
+  def initialize
+    @builder = Githubris::Builder.new
+  end
 
-      options = {data: data}
-      unless args.empty?
-        options.merge! args.inject(Githubris::Config) {|config, key|
-          config[key]
-        }
-      end
-      Githubris::API.resolve options
-    end
+  def authenticate!(options={})
+    Githubris::API.basic_auth options[:login], options[:password]
+  end
 
-    def self.resolve options
-      method = options[:method].intern
-      path = URI.parse(options[:path])
-      puts "#{method} #{path}"
-      Githubris::API.send(method, path)
-    end
+  def get_public_gists(options={})
+    @builder.build_gists(options)
+  end
+
+  def get_user(options={})
+    Githubris::User.new
   end
 end

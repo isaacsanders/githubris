@@ -21,18 +21,20 @@ class Githubris
 
   attr_reader :authenticated_user
 
+  def initialize
+    @api = Githubris::API.new
+  end
+
   def authenticate(username, password)
-    Githubris::API.basic_auth username, password
+    @api.authenticate! login: username, password: password
     @authenticated_user = Githubris::User.new
   end
 
   def find_user(login)
-    Githubris::API.get_user(login: login)
+    @api.get_user(login: login)
   end
 
   def public_gists options={}
-  end
-
-  def gists options={}
+    @api.get_public_gists options
   end
 end
