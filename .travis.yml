@@ -6,5 +6,3 @@ rvm:
   - rbx-19mode # currently in active development, may or may not work for your project
   - ruby-head
   - jruby-head
-env:
-  - TRAVIS_CI='true'

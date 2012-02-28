@@ -2,26 +2,12 @@ require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 require 'cucumber/rake/task'
 
-RSpec::Core::RakeTask.new :spec
-
-RSpec::Core::RakeTask.new :spec_with_cov do |t|
+RSpec::Core::RakeTask.new :spec do |t|
   t.rspec_opts = '--color --format=documentation'
-  require 'simplecov'
-  SimpleCov.start do
-    add_filter '/spec/'
-    add_filter '/features/'
-    add_filter '/pkg/'
-    add_filter '/coverage/'
-  end
 end
 
 Cucumber::Rake::Task.new :features do |t|
   t.cucumber_opts = '--tags ~@wip --tags ~@backlog'
 end
 
-unless ENV['TRAVIS_CI']
-  task :default => :spec
-else
-  task :default => :spec_with_cov
-end
-
+task :default => :spec
