@@ -2,7 +2,7 @@ require 'httparty'
 
 class Githubris::API
   include HTTParty
-  base_uri(Githubris::Config[:base_uri])
+  base_uri 'https://api.github.com'
 
   def initialize
     @builder = Githubris::Builder.new
