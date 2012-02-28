@@ -1,6 +1,6 @@
 module Fixtures
   def test_public_gists
-    Githubris::Gist.build gist_data
+    Githubris::Builder.new.build gist_data
   end
 
   def gist_data
