@@ -1,25 +1,41 @@
 require 'spec_helper'
 
 describe Githubris::Builder do
-  describe 'build' do
-    let(:gist_collection_data) { Githubris::SpecHelper.gist_collection_data }
-    let(:gist_data) { Githubris::SpecHelper.gist_data }
+  let(:gist_collection_data) { Githubris::SpecHelper.gist_collection_data }
+  let(:gist_data) { Githubris::SpecHelper.gist_data }
+
+  describe '#build' do
 
     context 'when passed a collection of gist data' do
-      subject do
-        Githubris::Builder.new.build gist_collection_data
-      end
-
-      it { should be_instance_of Array }
-
-      it 'is an array of gists' do
-        subject.each do |gist|
-          gist.should be_instance_of Githubris::Gist
-        end
+      it 'delegates to #build_gists' do
+        Githubris::Builder.any_instance.stub(:build_gists)
+        subject.build gist_collection_data
+        subject.should have_received(:build_gists).with gist_collection_data
       end
     end
 
     context 'when passed the data for a single gist' do
+      it 'delegates to #build_gist' do
+        Githubris::Builder.any_instance.stub(:build_gist)
+        subject.build gist_data
+        subject.should have_received(:build_gist).with gist_data
+      end
+    end
+  end
+
+  describe '#build_gists' do
+    it 'is an array of gists' do
+      gists = subject.build_gists(gist_collection_data)
+      gists.should be_instance_of Array
+      gists.each do |gist|
+        gist.should be_instance_of Githubris::Gist
+      end
+    end
+  end
+
+
+  describe '#build_gist' do
+    context 'schema' do
       subject { Githubris::Builder.new.build gist_data }
 
       it                { should be_instance_of Githubris::Gist }

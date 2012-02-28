@@ -27,18 +27,9 @@ describe Githubris do
   end
 
   describe '#public_gists' do
-
-    it 'uses the API' do
-      Githubris::API.any_instance.stub(:get_public_gists)
-      subject.public_gists
-      subject.instance_variable_get(:@api).should have_received(:get_public_gists).with({})
-    end
-
-    context 'with no arguments' do
-      it 'should contain only gists' do
-        subject.public_gists.each do |gist|
-          gist.should be_instance_of Githubris::Gist
-        end
+    it 'should contain only gists' do
+      subject.public_gists.each do |gist|
+        gist.should be_instance_of Githubris::Gist
       end
     end
   end
