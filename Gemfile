@@ -8,5 +8,7 @@ group :development, :test do
   gem 'simplecov'
 end
 
+gem 'jruby-openssl', platform: 'jruby'
+
 gem 'rake'
 gemspec
