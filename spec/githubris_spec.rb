@@ -20,6 +20,10 @@ describe Githubris do
       Githubris::API.any_instance.stub(:get_user).and_return(user)
       subject.find_user("frank").should == user
     end
+
+    it 'returns a user' do
+      subject.find_user('frank').should be_instance_of Githubris::User
+    end
   end
 
   describe '#public_gists' do

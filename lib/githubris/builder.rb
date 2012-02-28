@@ -3,9 +3,7 @@ class Githubris
     def build data
       return data if data.instance_of? Githubris::Gist
       if data.instance_of? Array
-        data.map do |gist_data|
-          self.build gist_data
-        end
+        build_gists data
       else
         build_gist data
       end
@@ -18,7 +16,7 @@ class Githubris
     end
 
     def build_gist(data)
-      data[:user] = Githubris::User.build data.delete('user')
+      data[:user] = build_user(data.delete 'user' )
       data[:public] = data.delete('public')
       data[:description] = data.delete('description')
       data[:files] = data.delete('files').values
@@ -29,6 +27,10 @@ class Githubris
       data.delete('comments').times { tmp_arr << Githubris::Comment.new }
       data[:comments] = tmp_arr
       Githubris::Gist.new data
+    end
+
+    def build_user data
+      Githubris::User.new
     end
   end
 end
