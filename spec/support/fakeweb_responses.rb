@@ -2,8 +2,8 @@ require 'fakeweb'
 
 FakeWeb.allow_net_connect = false
 FakeWeb.register_uri(:get, 'https://api.github.com/', :body => '{}')
-FakeWeb.register_uri(:get, 'https://api.github.com/gists', :body => <<-BODY
-{
+FakeWeb.register_uri(:get, /gists\/public/, :body => <<BODY
+[{
   "files": {
     "automobili.cpp": {
       "type": "text/plain",
@@ -72,6 +72,6 @@ FakeWeb.register_uri(:get, 'https://api.github.com/gists', :body => <<-BODY
   "id": "1",
   "description": "the meaning of gist",
   "git_pull_url": "git://gist.github.com/1.git"
-}
+}]
 BODY
 )

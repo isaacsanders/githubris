@@ -1,7 +1,6 @@
 class Githubris
   class Builder
     def build data
-      return data if data.instance_of? Githubris::Gist
       if data.instance_of? Array
         build_gists data
       else

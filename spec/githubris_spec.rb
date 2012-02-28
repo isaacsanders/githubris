@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe Githubris do
   describe '#authenticate' do
-    it 'authenticates via Basic Auth' do
-      Githubris::API.stub(:basic_auth)
+    before do
+      Githubris::API.stub(:basic_auth => Githubris::User.new)
       subject.authenticate('username', 'password')
+    end
+
+    it 'authenticates via Basic Auth' do
       Githubris::API.should have_received(:basic_auth).with('username', 'password')
     end
 
     it 'sets the authenticated user' do
-      subject.authenticate('username', 'password')
       subject.authenticated_user.should_not be_nil
     end
   end
