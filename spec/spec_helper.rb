@@ -3,9 +3,10 @@ require 'fakeweb'
 require 'simplecov'
 require 'githubris'
 
-require 'support/fixtures'
-require 'support/fakeweb_responses'
-require 'support/custom_matchers'
+$:.push 'support'
+require 'fixtures'
+require 'fakeweb_responses'
+require 'custom_matchers'
 
 SimpleCov.start do
   add_filter '/spec/'
