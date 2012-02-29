@@ -34,5 +34,9 @@ describe Githubris do
         gist.should be_instance_of Githubris::Gist
       end
     end
+
+    it 'can take an options hash' do
+      lambda { subject.public_gists(foo: 'bar') }.should_not raise_error
+    end
   end
 end

@@ -33,7 +33,7 @@ class Githubris
     @api.get_user(login: login)
   end
 
-  def public_gists
+  def public_gists(options={})
     @api.get_public_gists
   end
 end
