@@ -34,6 +34,6 @@ class Githubris
   end
 
   def public_gists(options={})
-    @api.get_public_gists
+    @api.get_public_gists options
   end
 end

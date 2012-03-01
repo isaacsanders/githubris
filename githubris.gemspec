@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-$:.push File.expand_path("../config", __FILE__)
 require "githubris/version"
 
 Gem::Specification.new do |s|
