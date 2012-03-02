@@ -1,3 +1,4 @@
+@backlog
 Feature: List of user's public gists
   In order to view all of the public gists another user has made,
   As a user of the Githubris GitHub API,
