@@ -7,7 +7,7 @@ When /^I access "([^"]*)"$/ do |api_code|
 end
 
 Then /^I have GithubrisTestUser's public gists$/ do
-  @actual.should eql test_public_gists
+  @actual.should eql test_user_public_gists
 end
 
 Then /^I should have a default number of gists$/ do
