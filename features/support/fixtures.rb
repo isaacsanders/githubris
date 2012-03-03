@@ -4,6 +4,11 @@ module Fixtures
   end
 
   def test_user_public_gists
+    Githubris::Builder.new.build get_user_public_gists_data
+  end
+
+  def get_user_public_gists_data
+    MultiJson.decode(File.open("features/support/user_public_gists.json") {|f| f.read})
   end
 
   def get_public_gists_data(page=1)
