@@ -6,8 +6,6 @@ RSpec::Core::RakeTask.new :spec do |t|
   t.rspec_opts = '--color --format=documentation'
 end
 
-task :default => :spec
-
 namespace :features do
   Cucumber::Rake::Task.new :wip do |t|
     t.cucumber_opts = '--tags @wip --tags ~@backlog'
@@ -18,3 +16,5 @@ Cucumber::Rake::Task.new :features do |t|
   t.cucumber_opts = '--tags ~@wip --tags ~@backlog'
 end
 
+task :all => [:spec, :features]
+task :default => :spec
