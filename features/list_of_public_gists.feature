@@ -7,6 +7,6 @@ Feature: List of Public Gists
     When I access "@githubris.public_gists"
     Then I should have a default number of gists
 
-  Scenario: Asking for a certain quantity of public gists
-    When I access "@githubris.public_gists(quantity: 47)"
-    Then I should have 47 gists
+  Scenario: Asking for a certain page of public gists
+    When I access "@githubris.public_gists(page: 60)"
+    Then I should have a default number of gists

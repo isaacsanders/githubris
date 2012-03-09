@@ -15,13 +15,32 @@ describe Githubris::API do
       end.should_not raise_error
     end
 
-    context 'given a quantity option' do
-      it 'returns an array of gists with that quantity' do
-        subject.get_public_gists(quantity: 10).should have(10).items
-        subject.get_public_gists(quantity: 30).should have(30).items
-        subject.get_public_gists(quantity: 31).should have(31).items
-        subject.get_public_gists(quantity: 45).should have(45).items
-        subject.get_public_gists(quantity: 61).should have(61).items
+    context 'given a page option' do
+      it 'returns an array of 30 gists from that page' do
+        page_one_gists = subject.get_public_gists(page: 1)
+        page_two_gists = subject.get_public_gists(page: 2)
+        page_one_gists.should have(30).items
+        page_two_gists.should have(30).items
+        (page_two_gists == page_one_gists).should be_false
+      end
+    end
+
+    context 'given a user option' do
+      it 'hits /users/:username/gists' do
+        username = 'GithubrisTestUser'
+        user_public_gists = subject.get_public_gists(user: username)
+        FakeWeb.last_request.path.should match /users\/#{username}\/gists/
+      end
+
+      context 'given a user with 2 gists' do
+        it 'returns 2 gists by the given user' do
+          username = 'GithubrisTestUser'
+          user_public_gists = subject.get_public_gists(user: username)
+          user_public_gists.should have(2).items
+          user_public_gists.each do |gist|
+            gist.should be_instance_of Githubris::Gist
+          end
+        end
       end
     end
   end

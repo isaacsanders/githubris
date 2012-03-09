@@ -19,7 +19,7 @@ class Githubris
       data[:public] = data.delete('public')
       data[:description] = data.delete('description')
       data[:files] = data.delete('files').values
-      data[:url] = URI.parse data.delete('url')
+      data[:url] = Githubris::URI.parse data.delete('url')
       data[:created_at] = DateTime.parse data.delete('created_at')
       data[:updated_at] = DateTime.parse data.delete('updated_at')
       tmp_arr = []

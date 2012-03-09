@@ -1,10 +1,7 @@
-class Githubris
-  class User
-    def initialize data={}
-    end
+class Githubris::User
+  def initialize data={}
+  end
 
-    def public_gists
-    end
-
+  def public_gists
   end
 end
