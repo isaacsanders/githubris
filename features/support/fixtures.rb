@@ -1,10 +1,14 @@
 module Fixtures
   def test_public_gists
-    Githubris::Builder.new.build get_public_gists_data
+    build_gists get_public_gists_data
   end
 
   def test_user_public_gists
-    Githubris::Builder.new.build get_user_public_gists_data
+    build_gists get_user_public_gists_data
+  end
+
+  def build_gists data
+    Githubris::Builder.new.build_gists data
   end
 
   def get_user_public_gists_data
