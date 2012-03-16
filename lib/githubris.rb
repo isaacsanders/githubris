@@ -17,7 +17,6 @@ class Githubris
   autoload :Tag, 'githubris/tag'
   autoload :Tree, 'githubris/tree'
   autoload :User, 'githubris/user'
-  autoload :URI, 'githubris/uri'
 
   attr_reader :authenticated_user
 

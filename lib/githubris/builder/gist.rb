@@ -1,11 +1,7 @@
-require 'githubris/uri'
-require 'githubris/comment'
-require 'githubris/gist'
-
 class Githubris::Builder::Gist
   def build gist_data
     gist_data[:id] = Integer(gist_data.delete 'id' )
-    gist_data[:user] = Githubris::Builder::User.build gist_data.delete('user')
+    gist_data[:user] = Githubris::Builder::User.new.build gist_data.delete('user')
     gist_data[:public] = gist_data.delete('public')
     gist_data[:description] = gist_data.delete('description')
     gist_data[:files] = gist_data.delete('files').values

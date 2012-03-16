@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Githubris::Builder do
   let(:gist_collection_data) { Githubris::SpecHelper.gist_collection_data }
-  let(:user_data) { Githubris::SpecHelper.user_data }
 
   describe '#build_gists' do
     it 'is an array of gists' do
@@ -14,15 +13,14 @@ describe Githubris::Builder do
     end
   end
 
+  describe '#build_users' do
+    let(:user_data) { Githubris::SpecHelper.user_data }
+    context 'schema' do
+      subject { Githubris::Builder.new.build_users user_data }
 
-
-  # describe '#build_user' do
-  #   context 'schema' do
-  #     subject { Githubris::Builder.new.build user_data }
-
-  #     its(:login)      { should be_instance_of String }
-  #     its(:id)         { should be_instance_of Fixnum }
-  #     its(:avatar_url) { should be_instance_of Githubris::URI }
-  #   end
-  # end
+      its(:login)      { should be_instance_of String }
+      its(:id)         { should be_instance_of Fixnum }
+      its(:avatar_url) { should be_kind_of URI }
+    end
+  end
 end
