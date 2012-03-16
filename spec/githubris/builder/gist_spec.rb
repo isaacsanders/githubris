@@ -7,7 +7,7 @@ describe Githubris::Builder::Gist do
   context 'schema' do
 
     it                { should be_instance_of Githubris::Gist }
-    its(:url)         { should be_instance_of Githubris::URI }
+    its(:url)         { should be_kind_of URI }
     its(:id)          { should be_instance_of Fixnum }
     its(:description) { should be_instance_of String }
     it                { should be_public }
