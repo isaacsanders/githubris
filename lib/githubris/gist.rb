@@ -1,7 +1,7 @@
 class Githubris::Gist
   autoload :File, 'githubris/gist/file'
 
-  def self.default_options
+  def self.default_attributes
     {
       files: [],
       created_at: DateTime.now,
@@ -9,46 +9,50 @@ class Githubris::Gist
     }
   end
 
-  def initialize options={}
-    options.merge! Githubris::Gist.default_options do |given_key, given_value|
-      if Githubris::Gist.default_options.has_key? given_key
+  def initialize attributes={}
+    attributes.merge! Githubris::Gist.default_attributes do |given_key, given_value|
+      if Githubris::Gist.default_attributes.has_key? given_key
         given_value
       end
     end
 
-    @options = options
+    @attributes = attributes
+  end
+
+  def id
+    @attributes[:id]
   end
 
   def user
-    @options[:user]
+    @attributes[:user]
   end
 
   def created_at
-    @options[:created_at]
+    @attributes[:created_at]
   end
 
   def updated_at
-    @options[:updated_at]
+    @attributes[:updated_at]
   end
 
   def description
-    @options[:description]
+    @attributes[:description]
   end
 
   def files
-    @options[:files]
+    @attributes[:files]
   end
 
   def url
-    @options[:url]
+    @attributes[:url]
   end
 
   def public?
-    @options[:public]
+    @attributes[:public]
   end
 
   def comments
-    @options[:comments]
+    @attributes[:comments]
   end
 
   def ==(other)

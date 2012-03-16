@@ -1,5 +1,6 @@
 class Githubris::User
-  def initialize data={}
+  def initialize attributes={}
+    @attributes = attributes
   end
 
   def public_gists
