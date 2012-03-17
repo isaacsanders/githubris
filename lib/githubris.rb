@@ -30,7 +30,7 @@ class Githubris
   end
 
   def find_user(login)
-    @api.get_user(login: login)
+    @api.get_user(login)
   end
 
   def public_gists(options={})

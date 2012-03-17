@@ -6,6 +6,9 @@ class Githubris::API
   require_relative 'api/gist'
   include Githubris::API::Gist
 
+  require_relative 'api/user'
+  include Githubris::API::User
+
   base_uri 'https://api.github.com'
   format :json
 
@@ -15,9 +18,5 @@ class Githubris::API
 
   def authenticate!(options={})
     Githubris::API.basic_auth options[:login], options[:password]
-  end
-
-  def get_user(options={})
-    Githubris::User.new
   end
 end

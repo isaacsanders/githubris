@@ -8,7 +8,7 @@ describe Githubris::User do
 
   describe '#public_gists' do
     it 'hits the API' do
-      Githubris::API.any_instance.stub(:get_user_public_gists)
+      Githubris::API.any_instance.should_receive(:get_user_public_gists)
       user = Githubris::User.new
       user.public_gists
     end

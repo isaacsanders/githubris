@@ -3,14 +3,21 @@ require 'githubris/builder/gist'
 module Githubris::API::Gist
   PUBLIC_GISTS_PATH = '/gists/public'
 
-  def get_public_gists(options={})
-    if options[:user]
-      data = self.class.get "/users/#{options[:user]}/gists"
-      return build(data)
+  def get_user_public_gists(login)
+    data = self.class.get user_gists_path(login)
+    gists = @builder.build_gists(data)
+    gists.map do |gist|
+      gist.set_attribute(:user, get_user(login))
+      gist
     end
+  end
+
+  def get_public_gists(options={})
+    login = options.delete(:user)
+    return get_user_public_gists(login) if login
 
     data = self.class.get public_gists_path_for_page(options[:page])
-    build data
+    @builder.build_gists data
   end
 
   private
@@ -18,7 +25,7 @@ module Githubris::API::Gist
     "#{PUBLIC_GISTS_PATH}?page=#{page_number}"
   end
 
-  def build(data)
-    @builder.build_gists(data)
+  def user_gists_path(login)
+    "/users/#{login}/gists"
   end
 end

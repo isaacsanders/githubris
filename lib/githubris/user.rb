@@ -4,6 +4,7 @@ class Githubris::User
   end
 
   def public_gists
+    Githubris::API.new.get_user_public_gists(@attributes[:login])
   end
 
   def login

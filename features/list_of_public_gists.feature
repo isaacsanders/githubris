@@ -5,8 +5,8 @@ Feature: List of Public Gists
 
   Scenario: Asking for public gists
     When I access "@githubris.public_gists"
-    Then I should have a default number of gists
+    Then I have the default number of gists
 
   Scenario: Asking for a certain page of public gists
     When I access "@githubris.public_gists(page: 60)"
-    Then I should have a default number of gists
+    Then I have the default number of gists

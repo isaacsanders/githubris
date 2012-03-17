@@ -11,7 +11,6 @@ describe Githubris::Builder::Gist do
     its(:id)          { should be_instance_of Fixnum }
     its(:description) { should be_instance_of String }
     it                { should be_public }
-    its(:user)        { should be_instance_of Githubris::User }
     its(:created_at)  { should be_instance_of DateTime }
     its(:updated_at)  { should be_instance_of DateTime }
     its(:comments)    { should be_instance_of Array }

@@ -16,7 +16,7 @@ describe Githubris::Builder do
   describe '#build_users' do
     let(:user_data) { Githubris::SpecHelper.user_data }
     context 'schema' do
-      subject { Githubris::Builder.new.build_users user_data }
+      subject { Githubris::Builder.new.build_user user_data }
 
       its(:login)      { should be_instance_of String }
       its(:id)         { should be_instance_of Fixnum }

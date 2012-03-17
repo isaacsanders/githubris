@@ -61,4 +61,8 @@ class Githubris::Gist
       self.files == other.files &&
       self.user == other.user
   end
+
+  def set_attribute(attribute, value)
+    @attributes[attribute] = value
+  end
 end
