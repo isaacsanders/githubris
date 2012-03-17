@@ -13,4 +13,12 @@ describe Githubris::User do
       user.public_gists
     end
   end
+
+  describe '#==' do
+    it 'matches based on attributes' do
+      user1 = Githubris::User.new({foo: 'bar'})
+      user2 = Githubris::User.new({foo: 'bar'})
+      user1.should == user2
+    end
+  end
 end

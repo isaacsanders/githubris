@@ -26,4 +26,11 @@ class Githubris::User
   def gravatar_id
     @attributes[:gravatar_id]
   end
+
+  def == other
+    other_attrs = other.instance_variable_get(:@attributes)
+    if other_attrs
+      @attributes == other_attrs
+    end
+  end
 end

@@ -14,3 +14,6 @@ Then /^I have (\d+) gists$/ do |count|
   @actual.count.should eql Integer(count)
 end
 
+Then /^I have that user$/ do
+  @actual.should == test_user
+end
