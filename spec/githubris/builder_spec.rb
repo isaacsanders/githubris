@@ -21,6 +21,8 @@ describe Githubris::Builder do
       its(:login)      { should be_instance_of String }
       its(:id)         { should be_instance_of Fixnum }
       its(:avatar_url) { should be_kind_of URI }
+      its(:url)        { should be_kind_of URI }
+      its(:gravatar_id) { should be_instance_of String }
     end
   end
 end

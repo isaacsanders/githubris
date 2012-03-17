@@ -17,4 +17,12 @@ class Githubris::User
   def avatar_url
     @attributes[:avatar_url]
   end
+
+  def url
+    @attributes[:url]
+  end
+
+  def gravatar_id
+    @attributes[:gravatar_id]
+  end
 end
