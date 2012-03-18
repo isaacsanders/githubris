@@ -6,6 +6,8 @@ group :development, :test do
   gem 'rspec-spies'
   gem 'fakeweb'
   gem 'simplecov'
+  gem 'flog'
+  gem 'flay'
 end
 
 gem 'jruby-openssl', platform: 'jruby'
