@@ -18,7 +18,7 @@ describe Githubris do
 
   describe '#find_user' do
     it 'requests gets user from githubris api' do
-      user = Githubris::User.new(login: "frank")
+      user = Githubris::User.new(:login => "frank")
       Githubris::API.any_instance.stub(:get_user).and_return(user)
       subject.find_user("frank").should == user
     end
@@ -36,12 +36,12 @@ describe Githubris do
     end
 
     it 'can take an options hash' do
-      lambda { subject.public_gists(foo: 'bar') }.should_not raise_error
+      lambda { subject.public_gists(:foo => 'bar') }.should_not raise_error
     end
 
     it 'delegates and passes the options hash to the API' do
       Githubris::API.any_instance.stub(:get_public_gists)
-      subject.public_gists({foo: 'bar'})
+      subject.public_gists({:foo => 'bar'})
       subject.instance_variable_get(:@api).should have_received(:get_public_gists).with({foo: 'bar'})
     end
   end

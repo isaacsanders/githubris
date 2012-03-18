@@ -3,9 +3,9 @@ class Githubris::Gist
 
   def self.default_attributes
     {
-      files: {},
-      created_at: DateTime.now.to_s,
-      updated_at: DateTime.now.to_s,
+      :files => {},
+      :created_at => DateTime.now.to_s,
+      :updated_at => DateTime.now.to_s,
     }
   end
 

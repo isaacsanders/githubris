@@ -25,7 +25,7 @@ class Githubris
   end
 
   def authenticate(login, password)
-    @api.authenticate! login: login, password: password
+    @api.authenticate! :login => login, :password => password
     @authenticated_user = Githubris::User.new
   end
 

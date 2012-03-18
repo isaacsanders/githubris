@@ -16,13 +16,13 @@ describe Githubris::API::Gist do
 
     it 'retrieves the full user' do
       subject.stub(:get_user)
-      subject.get_public_gists(user: login)
+      subject.get_public_gists(:user => login)
       subject.should have_received(:get_user).with(login)
     end
 
     context 'given a user with 2 gists' do
       it 'returns 2 gists by the given user' do
-        user_public_gists = subject.get_public_gists(user: login)
+        user_public_gists = subject.get_public_gists(:user => login)
         user_public_gists.should have(2).items
         user_public_gists.each do |gist|
           gist.should be_instance_of Githubris::Gist
@@ -42,14 +42,14 @@ describe Githubris::API::Gist do
 
     it 'accepts an options hash' do
       lambda do
-        subject.get_public_gists({foo: 'bar'})
+        subject.get_public_gists({:foo => 'bar'})
       end.should_not raise_error
     end
 
     context 'given a page option' do
       it 'returns an array of 30 gists from that page' do
-        page_one_gists = subject.get_public_gists(page: 1)
-        page_two_gists = subject.get_public_gists(page: 2)
+        page_one_gists = subject.get_public_gists(:page => 1)
+        page_two_gists = subject.get_public_gists(:page => 2)
         page_one_gists.should have(30).items
         page_two_gists.should have(30).items
       end
@@ -59,7 +59,7 @@ describe Githubris::API::Gist do
       it 'delegates to #get_user_public_gists' do
         login = 'GithubrisTestUser'
         subject.should_receive(:get_user_public_gists).with(login)
-        subject.get_public_gists(user: login)
+        subject.get_public_gists(:user => login)
       end
     end
   end
