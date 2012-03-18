@@ -58,10 +58,7 @@ class Githubris::Gist
   end
 
   def ==(other)
-    self.class == other.class &&
-      self.created_at == other.created_at &&
-      self.files == other.files &&
-      self.user == other.user
+    @attributes == other.instance_variable_get(:@attributes)
   end
 
   def set_attribute(attribute, value)
