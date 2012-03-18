@@ -14,12 +14,6 @@ describe Githubris::API::Gist do
       subject.should have_received(:user_gists_path).with(login)
     end
 
-    it 'retrieves the full user' do
-      subject.stub(:get_user)
-      subject.get_public_gists(:user => login)
-      subject.should have_received(:get_user).with(login)
-    end
-
     context 'given a user with 2 gists' do
       it 'returns 2 gists by the given user' do
         user_public_gists = subject.get_public_gists(:user => login)
@@ -61,6 +55,18 @@ describe Githubris::API::Gist do
         subject.should_receive(:get_user_public_gists).with(login)
         subject.get_public_gists(:user => login)
       end
+    end
+  end
+
+  describe '#get_gist' do
+    let(:id) { 1 }
+    it 'uses GET' do
+      subject.should_receive(:get).with(subject.gist_path(id))
+      subject.get_gist(id)
+    end
+
+    it 'is a Githubris::Gist' do
+      subject.get_gist(id).should be_instance_of Githubris::Gist
     end
   end
 end

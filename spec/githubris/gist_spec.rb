@@ -65,4 +65,28 @@ describe Githubris::Gist do
       subject.should_not == stub
     end
   end
+
+  describe '#reload' do
+
+    it 'errors without an id' do
+      lambda do
+        subject.reload
+      end.should raise_error
+    end
+
+    context 'on a gist with an id' do
+      subject { Githubris::Gist.new :id => id }
+      let(:id) { 1 }
+
+      it 'hits the API' do
+        Githubris::API.any_instance.should_receive(:get_gist).with(id)
+        subject.reload
+      end
+
+      it 'returns the same object' do
+        obj_id = subject.object_id
+        subject.reload.object_id.should == obj_id
+      end
+    end
+  end
 end

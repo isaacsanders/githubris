@@ -1,9 +1,17 @@
 class Githubris::Builder
   def build_gists(data)
-    data = [data].flatten
-    data.map do |gist|
-      Githubris::Gist.new build(gist)
+    if data.is_a? Array
+      data = [data].flatten
+      data.map do |gist|
+        build_gist gist
+      end
+    else
+      build_gist data
     end
+  end
+
+  def build_gist(data)
+    Githubris::Gist.new build(data)
   end
 
   def build_user(data)

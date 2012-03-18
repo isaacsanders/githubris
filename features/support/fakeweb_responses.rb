@@ -8,3 +8,5 @@ FakeWeb.register_uri(:get, /users\/([^\/]*)\/gists\z/,
                      :body => File.open("spec/support/user_public_gists.json"){|f| f.read })
 FakeWeb.register_uri(:get, /users\/\w+\z/,
                      :body => File.open("spec/support/user.json"){|f| f.read })
+FakeWeb.register_uri(:get, /gists\/\d+/,
+                     :body => File.open('spec/support/gist.json'){|f| f.read })

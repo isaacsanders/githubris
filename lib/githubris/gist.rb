@@ -1,3 +1,5 @@
+require 'date'
+
 class Githubris::Gist
   autoload :File, 'githubris/gist/file'
 
@@ -24,7 +26,11 @@ class Githubris::Gist
   end
 
   def user
-    @attributes[:user]
+    unless @attributes[:user].instance_of? Githubris::User
+      @attributes[:user] = Githubris::Builder.new.build_user @attributes[:user]
+    else
+      @attributes[:user]
+    end
   end
 
   def created_at
@@ -52,16 +58,16 @@ class Githubris::Gist
   end
 
   def comments
-    arr = []
-    @attributes[:comments].times { arr << Githubris::Comment.new }
-    arr
+    Array.new @attributes[:comments], Githubris::Comment.new
   end
 
   def ==(other)
     @attributes == other.instance_variable_get(:@attributes)
   end
 
-  def set_attribute(attribute, value)
-    @attributes[attribute] = value
+  def reload
+    other = Githubris::API.new.get_gist id
+    instance_variable_set(:@attributes, other.instance_variable_get(:@attributes))
+    self
   end
 end

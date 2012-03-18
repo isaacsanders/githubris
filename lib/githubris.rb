@@ -1,5 +1,4 @@
 $:.push File.expand_path("../../config", __FILE__)
-require_relative "githubris/version"
 
 class Githubris
   autoload :API, 'githubris/api'
@@ -17,6 +16,7 @@ class Githubris
   autoload :Tag, 'githubris/tag'
   autoload :Tree, 'githubris/tree'
   autoload :User, 'githubris/user'
+  autoload :Version, 'githubris/version'
 
   attr_reader :authenticated_user
 
@@ -31,6 +31,10 @@ class Githubris
 
   def find_user(login)
     @api.get_user(login)
+  end
+
+  def find_gist(id)
+    @api.get_gist(id)
   end
 
   def public_gists(options={})

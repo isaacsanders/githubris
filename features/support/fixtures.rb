@@ -11,8 +11,16 @@ module Fixtures
     build_user get_user_data
   end
 
+  def test_gist
+    build_gist get_gist_data
+  end
+
   def build_gists data
     Githubris::Builder.new.build_gists data
+  end
+
+  def build_gist data
+    Githubris::Builder.new.build_gist data
   end
 
   def build_user data
@@ -29,6 +37,10 @@ module Fixtures
 
   def get_user_data
     MultiJson.decode(File.open('spec/support/user.json') {|f| f.read })
+  end
+
+  def get_gist_data
+    MultiJson.decode(File.open('spec/support/gist.json') {|f| f.read })
   end
 end
 
