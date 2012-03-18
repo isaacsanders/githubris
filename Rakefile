@@ -18,13 +18,13 @@ Cucumber::Rake::Task.new :features do |t|
   t.cucumber_opts = '--tags ~@wip --tags ~@backlog'
 end
 
-FlayTask.new do |t|
+FLAY_FLOG_OPTS_BLOCK = lambda do |t|
   t.dirs = ['lib']
+  t.verbose = true
 end
 
-FlogTask.new do |t|
-  t.dirs = ['lib']
-end
+FlayTask.new &FLAY_FLOG_OPTS_BLOCK
+FlogTask.new &FLAY_FLOG_OPTS_BLOCK
 
 task :all => [:spec, :features, :flay, :flog]
 task :default => :spec
