@@ -1,5 +1,3 @@
-require 'githubris/builder/gist'
-
 module Githubris::API::Gist
   PUBLIC_GISTS_PATH = '/gists/public'
 

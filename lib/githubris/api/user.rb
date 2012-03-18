@@ -1,5 +1,3 @@
-require 'githubris/builder/user'
-
 module Githubris::API::User
   USERS_PATH = '/users'
 

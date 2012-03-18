@@ -3,9 +3,9 @@ class Githubris::Gist
 
   def self.default_attributes
     {
-      files: [],
-      created_at: DateTime.now,
-      updated_at: DateTime.now
+      files: {},
+      created_at: DateTime.now.to_s,
+      updated_at: DateTime.now.to_s,
     }
   end
 
@@ -20,7 +20,7 @@ class Githubris::Gist
   end
 
   def id
-    @attributes[:id]
+    Integer(@attributes[:id])
   end
 
   def user
@@ -28,11 +28,11 @@ class Githubris::Gist
   end
 
   def created_at
-    @attributes[:created_at]
+    DateTime.parse @attributes[:created_at]
   end
 
   def updated_at
-    @attributes[:updated_at]
+    DateTime.parse @attributes[:updated_at]
   end
 
   def description
@@ -40,11 +40,11 @@ class Githubris::Gist
   end
 
   def files
-    @attributes[:files]
+    @attributes[:files].values
   end
 
   def url
-    @attributes[:url]
+    URI.parse @attributes[:url]
   end
 
   def public?
@@ -52,7 +52,9 @@ class Githubris::Gist
   end
 
   def comments
-    @attributes[:comments]
+    arr = []
+    @attributes[:comments].times { arr << Githubris::Comment.new }
+    arr
   end
 
   def ==(other)
