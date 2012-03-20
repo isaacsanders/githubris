@@ -15,6 +15,26 @@ module Fixtures
     build_gist get_gist_data
   end
 
+  def test_username
+    test_credentials[:username]
+  end
+
+  def test_password
+    test_credentials[:password]
+  end
+
+  def test_client_id
+    test_credentials[:client_id]
+  end
+
+  def test_client_secret
+    test_credentials[:client_secret]
+  end
+
+  def test_credentials
+    MultiJson.decode(File.open('spec/support/credentials.json'){|f| f.read})
+  end
+
   def build_gists data
     Githubris::Builder.new.build_gists data
   end
