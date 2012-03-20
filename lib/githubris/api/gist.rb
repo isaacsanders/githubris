@@ -1,26 +1,22 @@
 module Githubris::API::Gist
 
   def get_user_public_gists(login)
-    get user_gists_path(login)
+    build_gists_from user_gists_path(login)
   end
 
   def get_public_gists(options={})
     login = options.delete(:user)
     return get_user_public_gists(login) if login
 
-    get public_gists_path, options
+    build_gists_from public_gists_path, options
   end
 
   def get_gist(id)
-    get gist_path(id)
+    build_gists_from gist_path(id)
   end
 
-  def get(path, options={})
-    @builder.build_gists attributes_from(path, options)
-  end
-
-  def gist_data_from(path, options={})
-    self.class.get(path, :query => options)
+  def build_gists_from(path, options={})
+    @builder.build_gists get_data_from(path, options)
   end
 
   def public_gists_path

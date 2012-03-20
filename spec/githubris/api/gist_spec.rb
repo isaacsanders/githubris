@@ -39,32 +39,10 @@ describe Githubris::API::Gist do
         subject.get_public_gists({:foo => 'bar'})
       end.should_not raise_error
     end
-
-    context 'given a page option' do
-      it 'returns an array of 30 gists from that page' do
-        page_one_gists = subject.get_public_gists(:page => 1)
-        page_two_gists = subject.get_public_gists(:page => 2)
-        page_one_gists.should have(30).items
-        page_two_gists.should have(30).items
-      end
-    end
-
-    context 'given a user option' do
-      it 'delegates to #get_user_public_gists' do
-        login = 'GithubrisTestUser'
-        subject.should_receive(:get_user_public_gists).with(login)
-        subject.get_public_gists(:user => login)
-      end
-    end
   end
 
   describe '#get_gist' do
     let(:id) { 1 }
-    it 'uses GET' do
-      subject.should_receive(:get).with(subject.gist_path(id))
-      subject.get_gist(id)
-    end
-
     it 'is a Githubris::Gist' do
       subject.get_gist(id).should be_instance_of Githubris::Gist
     end

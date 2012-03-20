@@ -1,6 +1,7 @@
 $:.push File.expand_path("../../config", __FILE__)
 
 class Githubris
+
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
   autoload :Builder, 'githubris/builder'
