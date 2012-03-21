@@ -4,11 +4,9 @@ This is the best github API wrapper ever.
 
 ##Contributing
 
-Before you contribute you need to take the following steps:
+Before you contribute you need to:
 
 1. `bundle install`
-2. Put your credentials in a `spec/support/credentials.json` (check
-  `spec/support/credentials.json.example` for format)
 
 There are a couple of ways that you can contribute to Githubris. For example:
 

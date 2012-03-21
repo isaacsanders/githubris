@@ -4,4 +4,3 @@ tags
 Gemfile.lock
 pkg/*
 coverage/*
-spec/support/credentials.json
