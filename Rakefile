@@ -26,5 +26,6 @@ end
 FlayTask.new &FLAY_FLOG_OPTS_BLOCK
 FlogTask.new &FLAY_FLOG_OPTS_BLOCK
 
-task :all => [:spec, :features, :flay, :flog]
+task :ci => [:spec, :features]
+task :all => [:ci, :flay, :flog]
 task :default => :spec
