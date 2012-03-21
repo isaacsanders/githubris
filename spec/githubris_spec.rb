@@ -1,18 +1,43 @@
 require 'spec_helper'
 
 describe Githubris do
-  describe '#authenticate' do
-    before do
-      Githubris::API.stub(:basic_auth => Githubris::User.new)
-      subject.authenticate('username', 'password')
-    end
+  describe '#basic_auth' do
+    let(:password) { 'password' }
 
-    it 'authenticates via Basic Auth' do
-      Githubris::API.should have_received(:basic_auth).with('username', 'password')
+    context 'with valid credentials' do
+      let(:username) { 'GithubrisTestUser' }
+
+      it 'authenticates via the API' do
+        Githubris::API.any_instance.should_receive(:basic_auth).with(username, password)
+        subject.basic_auth(username, password)
+      end
+
+      it 'sets the authenticated user' do
+        subject.basic_auth(username, password)
+        subject.authenticated_user.should_not be_nil
+      end
+    end
+  end
+
+  describe '#oauth' do
+    let(:client_id) { 'client_id' }
+    let(:client_secret) { 'client_secret' }
+
+    it 'authenticates via the API' do
+      Githubris::API.any_instance.should_receive(:oauth).with(client_id, client_secret, {})
+      subject.oauth(client_id, client_secret)
     end
 
     it 'sets the authenticated user' do
-      subject.authenticated_user.should_not be_nil
+      subject.oauth(client_id, client_secret)
+      subject.authenticated_user.should be_instance_of Githubris::User
+    end
+  end
+
+  describe '#authenticated?' do
+    it 'delegates to the API' do
+      Githubris::API.any_instance.should_receive :authenticated?
+      subject.authenticated?
     end
   end
 

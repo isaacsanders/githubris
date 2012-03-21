@@ -16,19 +16,23 @@ module Fixtures
   end
 
   def test_username
-    test_credentials[:username]
+    test_credentials['username']
+  end
+
+  def test_fake_username
+    "GithubrisTestFakeUser"
   end
 
   def test_password
-    test_credentials[:password]
+    test_credentials['password']
   end
 
   def test_client_id
-    test_credentials[:client_id]
+    test_credentials['client_id']
   end
 
   def test_client_secret
-    test_credentials[:client_secret]
+    test_credentials['client_secret']
   end
 
   def test_credentials

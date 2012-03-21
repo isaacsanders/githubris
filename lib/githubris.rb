@@ -1,6 +1,15 @@
 $:.push File.expand_path("../../config", __FILE__)
 
 class Githubris
+  class Githubris::Error < StandardError
+    def initialize attributes={:message => self.class.to_s}
+      @attributes = attributes
+    end
+
+    def message
+      @attributes[:message]
+    end
+  end
 
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
@@ -10,6 +19,7 @@ class Githubris
   autoload :Event, 'githubris/event'
   autoload :Gist, 'githubris/gist'
   autoload :Issue, 'githubris/issue'
+  autoload :OAuth, 'githubris/oauth'
   autoload :Organization, 'githubris/organization'
   autoload :PullRequest, 'githubris/pull_request'
   autoload :Reference, 'githubris/reference'
@@ -19,15 +29,24 @@ class Githubris
   autoload :User, 'githubris/user'
   autoload :Version, 'githubris/version'
 
-  attr_reader :authenticated_user
-
   def initialize
     @api = Githubris::API.new
   end
 
-  def authenticate(login, password)
-    @api.authenticate! :login => login, :password => password
-    @authenticated_user = Githubris::User.new
+  def basic_auth(login, password)
+    @api.basic_auth login, password
+  end
+
+  def oauth(client_id, client_secret, options={})
+    @api.oauth client_id, client_secret, options
+  end
+
+  def authenticated_user
+    @api.get_authenticated_user
+  end
+
+  def authenticated?
+    @api.authenticated?
   end
 
   def find_user(login)

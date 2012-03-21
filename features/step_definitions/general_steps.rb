@@ -16,6 +16,11 @@ Given /^I have a username and password$/ do
   @password = test_password
 end
 
+Given /^I have a fake username and password$/ do
+  @username = test_fake_username
+  @password = test_password
+end
+
 When /^I access "([^"]*)"$/ do |api_code|
   @actual = binding.eval api_code
 end
@@ -26,8 +31,8 @@ end
 
 When /^I authenticate using OAuth$/ do
   @githubris.oauth @client_id, @client_secret
-end
 
+end
 Then /^I have the default number of gists$/ do
   @actual.count.should eql 30
 end
@@ -49,5 +54,9 @@ Then /^I have the newest version of the gist$/ do
 end
 
 Then /^I should be authenticated$/ do
-  @githubris.authenticated?
+  @githubris.should be_authenticated
+end
+
+Then /^I should not be authenticated$/ do
+  @githubris.should_not be_authenticated
 end
