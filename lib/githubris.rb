@@ -37,8 +37,8 @@ class Githubris
     @api.basic_auth login, password
   end
 
-  def oauth(client_id, client_secret, options={})
-    @api.oauth client_id, client_secret, options
+  def oauth(client_id, client_secret)
+    @api.oauth client_id, client_secret
   end
 
   def authenticated_user

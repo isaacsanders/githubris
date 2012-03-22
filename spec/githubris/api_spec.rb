@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Githubris::API do
   let(:api) { Githubris::API.new }
 
+  after do
+    Githubris::API.default_options.delete(:basic_auth)
+    Githubris::API.default_options.delete(:default_params)
+  end
+
   describe '#authenticated?' do
     after :each do
       Githubris::API.default_options.delete(:basic_auth)
@@ -44,16 +49,15 @@ describe Githubris::API do
     it 'returns a Githubris::OAuth initialized with the client id and secret' do
       client_id = 'client_id'
       client_secret = 'client_secret'
-      Githubris::OAuth.should_receive(:new).with(client_id, client_secret, {})
+      Githubris::OAuth.should_receive(:new).with(client_id, client_secret)
       subject.oauth(client_id, client_secret)
     end
 
     it 'can take options' do
       client_id = 'client_id'
       client_secret = 'client_secret'
-      options = {:redirect_uri => 'https://google.com'}
-      Githubris::OAuth.should_receive(:new).with(client_id, client_secret, options)
-      subject.oauth(client_id, client_secret, options)
+      Githubris::OAuth.should_receive(:new).with(client_id, client_secret)
+      subject.oauth(client_id, client_secret)
     end
   end
 end

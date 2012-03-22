@@ -5,6 +5,12 @@ describe Githubris::API::Gist do
     Githubris::API.new
   end
 
+  after do
+    Githubris::API.default_options.delete(:basic_auth)
+    Githubris::API.default_options.delete(:default_params)
+    Githubris::API.default_options.delete(:query)
+  end
+
   describe '#get_user_public_gists' do
     let(:login) {'GithubrisTestUser'}
 

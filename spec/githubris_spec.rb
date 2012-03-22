@@ -4,17 +4,17 @@ describe Githubris do
   describe '#basic_auth' do
     let(:password) { 'password' }
 
+    after do
+      Githubris::API.default_options.delete(:basic_auth)
+      Githubris::API.default_options.delete(:default_params)
+    end
+
     context 'with valid credentials' do
       let(:username) { 'GithubrisTestUser' }
 
       it 'authenticates via the API' do
         Githubris::API.any_instance.should_receive(:basic_auth).with(username, password)
         subject.basic_auth(username, password)
-      end
-
-      it 'sets the authenticated user' do
-        subject.basic_auth(username, password)
-        subject.authenticated_user.should_not be_nil
       end
     end
   end
@@ -23,14 +23,8 @@ describe Githubris do
     let(:client_id) { 'client_id' }
     let(:client_secret) { 'client_secret' }
 
-    it 'authenticates via the API' do
-      Githubris::API.any_instance.should_receive(:oauth).with(client_id, client_secret, {})
-      subject.oauth(client_id, client_secret)
-    end
-
-    it 'sets the authenticated user' do
-      subject.oauth(client_id, client_secret)
-      subject.authenticated_user.should be_instance_of Githubris::User
+    it 'creates an Githubris::OAuth object' do
+      subject.oauth(client_id, client_secret).should be_instance_of Githubris::OAuth
     end
   end
 
@@ -43,13 +37,13 @@ describe Githubris do
 
   describe '#find_user' do
     it 'requests gets user from githubris api' do
-      user = Githubris::User.new(:login => "frank")
+      user = Githubris::User.new(:login => 'GithubrisTestUser')
       Githubris::API.any_instance.stub(:get_user).and_return(user)
-      subject.find_user("frank").should == user
+      subject.find_user('GithubrisTestUser').should == user
     end
 
     it 'returns a user' do
-      subject.find_user('frank').should be_instance_of Githubris::User
+      subject.find_user('GithubrisTestUser').should be_instance_of Githubris::User
     end
   end
 

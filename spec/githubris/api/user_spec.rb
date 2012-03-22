@@ -4,6 +4,11 @@ describe Githubris::API::User do
   let(:api) { Githubris::API.new }
   subject { api }
 
+  after do
+    Githubris::API.default_options.delete(:basic_auth)
+    Githubris::API.default_options.delete(:default_params)
+  end
+
   describe '#get_authenticated_user' do
 
     context 'without credentials' do

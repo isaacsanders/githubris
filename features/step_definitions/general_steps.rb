@@ -2,9 +2,10 @@ Given /^@user is GithubrisTestUser$/ do
   @user = @githubris.find_user('GithubrisTestUser')
 end
 
-Given /^I have a client_id and a client_secret$/ do
+Given /^I have a client_id, a client_secret, and a code$/ do
   @client_id = test_client_id
   @client_secret = test_client_secret
+  @code = 'code'
 end
 
 Given /^@gist is a stale copy of the first gist$/ do
@@ -30,8 +31,8 @@ When /^I authenticate using Basic Auth$/ do
 end
 
 When /^I authenticate using OAuth$/ do
-  @githubris.oauth @client_id, @client_secret
-
+  oauth = @githubris.oauth @client_id, @client_secret
+  oauth.access_token(@code)
 end
 Then /^I have the default number of gists$/ do
   @actual.count.should eql 30
