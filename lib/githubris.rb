@@ -2,7 +2,7 @@ $:.push File.expand_path("../../config", __FILE__)
 
 class Githubris
   class Githubris::Error < StandardError
-    def initialize attributes={:message => self.class.to_s}
+    def initialize attributes
       @attributes = attributes
     end
 

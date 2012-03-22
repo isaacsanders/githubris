@@ -13,6 +13,10 @@ class Githubris::API
 
   def initialize
     @builder = Githubris::Builder.new
+    empty_default_params
+  end
+
+  def empty_default_params
     self.class.default_params {}
   end
 
@@ -32,25 +36,31 @@ class Githubris::API
 
   def get_data_from(path, options={})
     data = self.class.get(path, :query => options)
-    unless data.is_a? Array
-      if data['message']
-        raise @builder.build_error data
-      else
-        data
-      end
+    if data.is_a? Hash and data['message']
+      raise @builder.build_error data
     else
       data
     end
   end
 
   def post_oauth_access_token(params)
-    self.class.default_params self.class.post("https://github.com/login/oauth/access_token",:query => params, :parser => access_token_parser)
+    set_default_params self.class.post(oauth_access_token_url,
+                                      :query => params,
+                                      :parser => access_token_parser)
+  end
+
+  def set_default_params(params)
+    self.class.default_params params
+  end
+
+  def oauth_access_token_url
+    "https://github.com/login/oauth/access_token"
   end
 
   def access_token_parser
     lambda do |uri, format|
       pairs = uri.split('&')
-      pairs.inject({ }) do |params, pair|
+      pairs.inject({}) do |params, pair|
         pair = pair.split('=')
         key = pair[0].to_sym
         value = pair[1]
