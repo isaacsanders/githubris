@@ -3,10 +3,6 @@ class Githubris::User
     @attributes = attributes
   end
 
-  def public_gists
-    Githubris::API.new.get_user_public_gists(@attributes[:login])
-  end
-
   def login
     @attributes[:login]
   end
@@ -25,6 +21,10 @@ class Githubris::User
 
   def gravatar_id
     @attributes[:gravatar_id]
+  end
+
+  def gists
+    Githubris::API.new.get_user_gists(@attributes[:login])
   end
 
   def == other

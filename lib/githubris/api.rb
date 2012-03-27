@@ -13,11 +13,6 @@ class Githubris::API
 
   def initialize
     @builder = Githubris::Builder.new
-    empty_default_params
-  end
-
-  def empty_default_params
-    self.class.default_params {}
   end
 
   def basic_auth login, password

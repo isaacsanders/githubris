@@ -22,6 +22,15 @@ Given /^I have a fake username and password$/ do
   @password = test_password
 end
 
+Given /^there is no authenticated user$/ do
+  Githubris::API.default_params({})
+  Githubris::API.basic_auth(nil, nil)
+end
+
+Given /^there is an authenticated user$/ do
+  @githubris.basic_auth test_username, test_password
+end
+
 When /^I access "([^"]*)"$/ do |api_code|
   @actual = binding.eval api_code
 end
@@ -60,4 +69,9 @@ end
 
 Then /^I should not be authenticated$/ do
   @githubris.should_not be_authenticated
+end
+
+Then /^I should have some private and public gists$/ do
+  @actual.all?(:public?).should be_false
+  @actual.any?(:public?).should be_true
 end
