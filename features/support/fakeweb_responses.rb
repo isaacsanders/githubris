@@ -7,15 +7,15 @@ end
 FakeWeb.allow_net_connect = false
 
 path_file_hash = {
-  /gists\/public/                                  => "spec/support/public_gists.json",
-  /users\/\w+[^\/]+/                                => "spec/support/user.json",
-  /gists\/\d+/                                     => 'spec/support/gist.json',
-  /[^@]api\.github\.com\/user[^s?]/                => 'spec/support/requires_authentication.json',
-  'https://api.github.com/user?'                   => 'spec/support/requires_authentication.json',
-  'https://api.github.com/users/GithubrisTestUser/gists' =>  "spec/support/user_public_gists.json",
-  /GithubrisTestUser:password.*user\??[^s\/]*/ => "spec/support/user.json",
-  /user\?[^a]*access_token/                        => 'spec/support/user.json',
-  /GithubrisTestFakeUser:password/                => "spec/support/bad_credentials.json",
+  /gists\/public/                                        => "spec/support/public_gists.json",
+  /users\/\w+\z/                                         => "spec/support/user.json",
+  /api\.github\.com\/gists\/\d+\z/                       => 'spec/support/gist.json',
+  /[^@]api\.github\.com\/user[^s?]/                      => 'spec/support/requires_authentication.json',
+  'https://api.github.com/user?'                         => 'spec/support/requires_authentication.json',
+  'https://api.github.com/users/GithubrisTestUser/gists' => "spec/support/user_gists.json",
+  /GithubrisTestUser:password.*user\??[^s\/]*/           => "spec/support/user.json",
+  /user\?.*access_token/                                 => 'spec/support/user.json',
+  /GithubrisTestFakeUser:password/                       => "spec/support/bad_credentials.json",
 }
 
 path_file_hash.each do |path, file|
@@ -41,6 +41,3 @@ RESPONSE
 
 FakeWeb.register_uri(:post, /github.com\/login\/oauth\/access_token/, :response => access_token_response)
   /https:\/\/github.com\/login\/oauth\/authorize/
-
-
-

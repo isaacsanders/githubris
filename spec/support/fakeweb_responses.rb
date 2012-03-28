@@ -12,7 +12,7 @@ path_file_hash = {
   /gists\/\d+/                                     => 'spec/support/gist.json',
   /[^@]api\.github\.com\/user[^s?]/                => 'spec/support/requires_authentication.json',
   'https://api.github.com/user?'                   => 'spec/support/requires_authentication.json',
-  'https://api.github.com/users/GithubrisTestUser/gists' =>  "spec/support/user_public_gists.json",
+  'https://api.github.com/users/GithubrisTestUser/gists' =>  "spec/support/user_gists.json",
   /GithubrisTestUser:password.*user\??[^s\/]*/ => "spec/support/user.json",
   /user\?[^a]*access_token/                        => 'spec/support/user.json',
   /GithubrisTestFakeUser:password/                => "spec/support/bad_credentials.json",
@@ -41,6 +41,3 @@ RESPONSE
 
 FakeWeb.register_uri(:post, /github.com\/login\/oauth\/access_token/, :response => access_token_response)
   /https:\/\/github.com\/login\/oauth\/authorize/
-
-
-

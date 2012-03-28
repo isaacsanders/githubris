@@ -72,6 +72,6 @@ Then /^I should not be authenticated$/ do
 end
 
 Then /^I should have some private and public gists$/ do
-  @actual.all?(:public?).should be_false
-  @actual.any?(:public?).should be_true
+  @actual.all?(&:public?).should be_false
+  @actual.any?(&:public?).should be_true
 end

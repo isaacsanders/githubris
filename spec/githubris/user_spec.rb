@@ -13,4 +13,12 @@ describe Githubris::User do
       user1.should == user2
     end
   end
+
+  describe '#gists' do
+    it 'gets a list of gists' do
+      described_class.new(:login => 'GithubrisTestUser').gists.each do |gist|
+        gist.should be_instance_of Githubris::Gist
+      end
+    end
+  end
 end

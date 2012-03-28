@@ -1,11 +1,11 @@
 module Githubris::API::Gist
 
-  def get_user_gists(login)
-    build_gists_from user_gists_path(login)
+  def get_user_gists(login, options={})
+    build_gists_from(user_gists_path(login), options)
   end
 
   def get_public_gists(options={})
-    build_gists_from public_gists_path, options
+    build_gists_from(public_gists_path, options)
   end
 
   def get_gist(id)
