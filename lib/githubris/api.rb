@@ -49,7 +49,7 @@ class Githubris::API
   end
 
   def oauth_access_token_url
-    "https://github.com/login/oauth/access_token"
+    'https://github.com/login/oauth/access_token'
   end
 
   def access_token_parser
