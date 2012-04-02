@@ -15,6 +15,8 @@ describe Githubris::User do
   end
 
   describe '#gists' do
+    use_vcr_cassette
+
     it 'gets a list of gists' do
       gists = described_class.new(:login => 'GithubrisTestUser').gists
       gists.each do |gist|

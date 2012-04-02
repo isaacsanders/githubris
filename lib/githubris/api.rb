@@ -46,7 +46,6 @@ class Githubris::API
   def get(path, options={})
     @target.path = path
     @target.query_values = options
-    require 'pry'; binding.pry
     self.class.get(@target.to_s)
   end
 

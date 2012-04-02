@@ -8,6 +8,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'flog'
   gem 'flay'
+  gem 'pry'
+  gem 'vcr'
 end
 
 gem 'jruby-openssl', platform: 'jruby'

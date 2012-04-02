@@ -22,11 +22,6 @@ Given /^I have a fake username and password$/ do
   @password = test_password
 end
 
-Given /^there is no authenticated user$/ do
-  Githubris::API.default_params({})
-  Githubris::API.basic_auth(nil, nil)
-end
-
 Given /^there is an authenticated user$/ do
   @githubris.basic_auth test_username, test_password
 end
