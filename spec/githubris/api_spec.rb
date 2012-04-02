@@ -3,16 +3,7 @@ require 'spec_helper'
 describe Githubris::API do
   let(:api) { Githubris::API.new }
 
-  after do
-    Githubris::API.default_options.delete(:basic_auth)
-    Githubris::API.default_options.delete(:default_params)
-  end
-
   describe '#authenticated?' do
-    after :each do
-      Githubris::API.default_options.delete(:basic_auth)
-    end
-
     it 'checks for an authenticated user' do
       subject.should_receive(:get_authenticated_user)
       subject.authenticated?
@@ -64,6 +55,17 @@ describe Githubris::API do
       client_secret = 'client_secret'
       Githubris::OAuth.should_receive(:new).with(client_id, client_secret)
       subject.oauth(client_id, client_secret)
+    end
+  end
+
+  describe '#post_oauth_access_token' do
+    it 'takes params' do
+      lambda do
+        subject.post_oauth_access_token({})
+      end.should_not raise_error
+    end
+    it 'returns a string' do
+      subject.post_oauth_access_token({}).should be_instance_of String
     end
   end
 end

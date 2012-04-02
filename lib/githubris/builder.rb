@@ -18,7 +18,12 @@ class Githubris::Builder
   end
 
   def build_error(data)
-    Githubris::Error.new build(data)
+    words = data['message'].split(' ')
+    words.map! do |word|
+      word.capitalize
+    end
+    error_class_name = words.join
+    Githubris::Error.const_get(error_class_name)
   end
 
   def build(data)

@@ -5,22 +5,21 @@ class Githubris::OAuth
   end
 
   def request_access_url(options={})
-    query_params = ["client_id=#{@client_id}"]
+    url = Addressable::URI.parse "https://github.com/login/oauth/authorize"
+    query_values = { :client_id => @client_id }
+    url.query_values = query_values
 
-    if options[:scopes]
-      scopes = options[:scopes].join(',')
-      query_params << "scopes=#{scopes}"
+    redirect_uri = options.delete(:redirect_uri)
+    if redirect_uri
+      url.query << "&redirect_uri=#{redirect_uri}"
     end
 
-    if options[:redirect_uri]
-      redirect_uri = URI.encode options[:redirect_uri]
-      query_params << "redirect_uri=#{redirect_uri}"
+    scopes = options.delete :scopes
+    if scopes
+      scopes = scopes.join ','
+      url.query << "&scopes=#{scopes}"
     end
 
-    query = query_params.join('&')
-
-    url = URI.parse "https://github.com/login/oauth/authorize"
-    url.query = query
     url.to_s
   end
 
@@ -30,6 +29,6 @@ class Githubris::OAuth
       :client_secret => @client_secret,
       :code => code
     }
-    Githubris::API.new.post_oauth_access_token(access_token_params)[:access_token]
+    Githubris::API.new.post_oauth_access_token(access_token_params)
   end
 end

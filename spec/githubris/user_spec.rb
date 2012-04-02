@@ -16,7 +16,8 @@ describe Githubris::User do
 
   describe '#gists' do
     it 'gets a list of gists' do
-      described_class.new(:login => 'GithubrisTestUser').gists.each do |gist|
+      gists = described_class.new(:login => 'GithubrisTestUser').gists
+      gists.each do |gist|
         gist.should be_instance_of Githubris::Gist
       end
     end

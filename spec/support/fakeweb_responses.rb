@@ -4,19 +4,15 @@ def stub_get_path_with_file(path, file)
   FakeWeb.register_uri(:get, path, :body => File.open(file){|f| f.read })
 end
 
-FakeWeb.allow_net_connect = false
+# FakeWeb.allow_net_connect = false
 
 path_file_hash = {
-  /gists\/public/                                  => "spec/support/public_gists.json",
-  /users\/\w+[^\/]+/                                => "spec/support/user.json",
-  /gists\/\d+/                                     => 'spec/support/gist.json',
-  /[^@]api\.github\.com\/user[^s?]/                => 'spec/support/requires_authentication.json',
-  'https://api.github.com/user?'                   => 'spec/support/requires_authentication.json',
-  'https://api.github.com/users/GithubrisTestUser/gists' =>  "spec/support/user_gists.json",
-  /GithubrisTestUser:password.*user\??[^s\/]*/ => "spec/support/user.json",
-  /user\?[^a]*access_token/                        => 'spec/support/user.json',
-  /GithubrisTestFakeUser:password/                => "spec/support/bad_credentials.json",
+  'https://GithubrisTestUser:password@api.github.com/user?' => "spec/support/user.json",
+  # /user\\?[^a]*access_token/                        => 'spec/support/user.json',
+  # /GithubrisTestFakeUser:password/                => "spec/support/bad_credentials.json",
 }
+
+FakeWeb.register_uri(:get, 'https://GithubrisTestUser:password@api.github.com/user?', :body => File.open("spec/support/user.json"){|f| f.read })
 
 path_file_hash.each do |path, file|
   stub_get_path_with_file(path, file)

@@ -9,7 +9,6 @@ module Githubris::API::User
     @builder.build_user get_data_from(authenticated_user_path)
   end
 
-  private
   def user_path(login)
     "#{USERS_PATH}/#{login}"
   end
