@@ -43,6 +43,7 @@ When /^I authenticate using OAuth$/ do
   oauth = @githubris.oauth @client_id, @client_secret
   oauth.access_token(@code)
 end
+
 Then /^I have the default number of gists$/ do
   @actual.count.should eql 30
 end
