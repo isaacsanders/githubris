@@ -75,6 +75,8 @@ describe Githubris::Gist do
     end
 
     context 'on a gist with an id' do
+      use_vcr_cassette
+
       subject { Githubris::Gist.new :id => id }
       let(:id) { 1 }
 

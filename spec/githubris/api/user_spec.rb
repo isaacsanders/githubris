@@ -5,8 +5,9 @@ describe Githubris::API::User do
   subject { api }
 
   describe '#get_authenticated_user' do
-
     context 'without credentials' do
+      use_vcr_cassette
+
       it 'raises a Githubris::Error::RequiresAuthentication' do
         lambda do
           subject.get_authenticated_user
@@ -16,6 +17,8 @@ describe Githubris::API::User do
   end
 
   describe '#get_user' do
+    use_vcr_cassette
+
     subject { api.get_user('GithubrisTestUser') }
     it 'takes a login' do
       lambda do
