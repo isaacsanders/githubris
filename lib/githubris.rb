@@ -1,21 +1,10 @@
-$:.push File.expand_path("../../config", __FILE__)
-
 class Githubris
-  class Githubris::Error < StandardError
-    def initialize attributes
-      @attributes = attributes
-    end
-
-    def message
-      @attributes[:message]
-    end
-  end
-
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
   autoload :Builder, 'githubris/builder'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
+  autoload :Error, 'githubris/error'
   autoload :Event, 'githubris/event'
   autoload :Gist, 'githubris/gist'
   autoload :Issue, 'githubris/issue'
