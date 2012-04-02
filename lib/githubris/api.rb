@@ -1,4 +1,5 @@
 require 'httparty'
+require 'addressable/uri'
 
 class Githubris::API
   include HTTParty
@@ -8,15 +9,21 @@ class Githubris::API
   require_relative 'api/user'
   include Githubris::API::User
 
-  base_uri 'https://api.github.com'
-  format :json
-
   def initialize
     @builder = Githubris::Builder.new
+    @target = Addressable::URI.new default_uri_options
+  end
+
+  def default_uri_options
+    {
+      :scheme => 'https',
+      :host => 'api.github.com',
+    }
   end
 
   def basic_auth login, password
-    self.class.basic_auth login, password
+    @target.user = login
+    @target.password = password
   end
 
   def oauth(client_id, client_secret)
@@ -24,44 +31,40 @@ class Githubris::API
   end
 
   def authenticated?
-    true if get_authenticated_user
-  rescue Githubris::Error => e
-    false
+    get_authenticated_user
+  rescue Githubris::Error::RequiresAuthentication
+    nil
   end
 
   def get_data_from(path, options={})
-    data = self.class.get(path, :query => options)
-    if data.is_a? Hash and data['message']
-      raise @builder.build_error data
-    else
-      data
-    end
+    data = get(path, options)
+    data = MultiJson.decode data if data.is_a? String
+    raise @builder.build_error data if error_data?(data)
+    data
+  end
+
+  def get(path, options={})
+    @target.path = path
+    @target.query_values = options
+    self.class.get(@target.to_s)
+  end
+
+  def error_data?(data)
+    data.is_a?(Hash) and data['message']
   end
 
   def post_oauth_access_token(params)
-    set_default_params self.class.post(oauth_access_token_url,
-                                      :query => params,
-                                      :parser => access_token_parser)
+    @target.query ||= ''
+    @target.query += post(oauth_access_token_url, :query => params)
+    @target.query_values['access_token']
   end
 
-  def set_default_params(params)
-    self.class.default_params params
+  def post(path, options={})
+    @target.path = path
+    self.class.post(@target.to_s, options)
   end
 
   def oauth_access_token_url
-    "https://github.com/login/oauth/access_token"
-  end
-
-  def access_token_parser
-    lambda do |uri, format|
-      pairs = uri.split('&')
-      pairs.inject({}) do |params, pair|
-        pair = pair.split('=')
-        key = pair[0].to_sym
-        value = pair[1]
-        params[key] = value
-        params
-      end
-    end
+    'https://github.com/login/oauth/access_token'
   end
 end

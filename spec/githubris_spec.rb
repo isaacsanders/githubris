@@ -4,11 +4,6 @@ describe Githubris do
   describe '#basic_auth' do
     let(:password) { 'password' }
 
-    after do
-      Githubris::API.default_options.delete(:basic_auth)
-      Githubris::API.default_options.delete(:default_params)
-    end
-
     context 'with valid credentials' do
       let(:username) { 'GithubrisTestUser' }
 
@@ -36,6 +31,8 @@ describe Githubris do
   end
 
   describe '#find_user' do
+    use_vcr_cassette
+
     it 'requests gets user from githubris api' do
       user = Githubris::User.new(:login => 'GithubrisTestUser')
       Githubris::API.any_instance.stub(:get_user).and_return(user)
@@ -48,14 +45,12 @@ describe Githubris do
   end
 
   describe '#public_gists' do
+    use_vcr_cassette
+
     it 'should contain only gists' do
       subject.public_gists.each do |gist|
         gist.should be_instance_of Githubris::Gist
       end
-    end
-
-    it 'can take an options hash' do
-      lambda { subject.public_gists(:foo => 'bar') }.should_not raise_error
     end
 
     it 'delegates and passes the options hash to the API' do
@@ -66,6 +61,8 @@ describe Githubris do
   end
 
   describe '#find_gist' do
+    use_vcr_cassette
+
     let(:id) { 1 }
 
     it 'takes a gist\'s id' do

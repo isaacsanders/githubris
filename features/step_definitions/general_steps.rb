@@ -22,11 +22,6 @@ Given /^I have a fake username and password$/ do
   @password = test_password
 end
 
-Given /^there is no authenticated user$/ do
-  Githubris::API.default_params({})
-  Githubris::API.basic_auth(nil, nil)
-end
-
 Given /^there is an authenticated user$/ do
   @githubris.basic_auth test_username, test_password
 end
@@ -43,6 +38,7 @@ When /^I authenticate using OAuth$/ do
   oauth = @githubris.oauth @client_id, @client_secret
   oauth.access_token(@code)
 end
+
 Then /^I have the default number of gists$/ do
   @actual.count.should eql 30
 end
