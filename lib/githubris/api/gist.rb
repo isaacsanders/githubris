@@ -9,11 +9,16 @@ module Githubris::API::Gist
   end
 
   def get_gist(id)
-    build_gists_from gist_path(id)
+    build_gist_from(gist_path(id))
   end
 
+  private
   def build_gists_from(path, options={})
     @builder.build_gists get_data_from(path, options)
+  end
+
+  def build_gist_from(path, options={})
+    @builder.build_gist get_data_from(path)
   end
 
   def public_gists_path

@@ -1,12 +1,6 @@
 class Githubris::Builder
   def build_gists(data)
-    if data.is_a? Array
-      data.map do |gist|
-        build_gist gist
-      end
-    else
-      build_gist data
-    end
+    data.map {|gist| build_gist gist}
   end
 
   def build_gist(data)
@@ -19,13 +13,11 @@ class Githubris::Builder
 
   def build_error(data)
     words = data['message'].split(' ')
-    words.map! do |word|
-      word.capitalize
-    end
-    error_class_name = words.join
+    error_class_name = words.map {|word| word.capitalize}.join
     Githubris::Error.const_get(error_class_name)
   end
 
+  private
   def build(data)
     attributes = {}
     data.each_pair do |key, value|

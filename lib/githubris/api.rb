@@ -1,9 +1,9 @@
-require 'httparty'
 require 'addressable/uri'
 
 class Githubris::API
-  include HTTParty
 
+  require_relative 'api/http'
+  include Githubris::API::HTTP
   require_relative 'api/gist'
   include Githubris::API::Gist
   require_relative 'api/user'
@@ -46,7 +46,7 @@ class Githubris::API
   def get(path, options={})
     @target.path = path
     @target.query_values = options
-    self.class.get(@target.to_s)
+    _get(@target.to_s)
   end
 
   def error_data?(data)
@@ -61,7 +61,7 @@ class Githubris::API
 
   def post(path, options={})
     @target.path = path
-    self.class.post(@target.to_s, options)
+    _post(@target.to_s, options)
   end
 
   def oauth_access_token_url

@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Githubris::Gist do
 
   context 'when passed a specific gist' do
-    subject { Githubris::Gist.new gist_attributes }
-    let(:gist_attributes) { Githubris::Builder.new.build gist_data }
+    subject { Githubris::Builder.new.build_gist gist_data }
     let(:gist_data) { Githubris::SpecHelper.gist_data }
 
 
