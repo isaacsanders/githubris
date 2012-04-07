@@ -13,7 +13,7 @@ group :development, :test do
   gem 'vcr'
 end
 
-gem 'jruby-openssl', platform: 'jruby'
+gem 'jruby-openssl', :platform => 'jruby'
 
 gem 'rake'
 gemspec
