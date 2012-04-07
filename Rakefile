@@ -7,6 +7,10 @@ RSpec::Core::RakeTask.new :spec do |t|
   t.rspec_opts = '--color --format=documentation'
 end
 
+task :cov do
+  ENV['COVERAGE'] = 'true'
+end
+
 FLAY_FLOG_OPTS_BLOCK = lambda do |t|
   t.dirs = ['lib']
   t.verbose = true
@@ -16,5 +20,5 @@ FlayTask.new &FLAY_FLOG_OPTS_BLOCK
 FlogTask.new &FLAY_FLOG_OPTS_BLOCK
 
 task :ci => [:spec]
-task :all => [:ci, :flay, :flog]
-task :default => :spec
+task :all => [:cov, :spec, :flay, :flog]
+task :default => [:cov, :spec]
