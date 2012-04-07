@@ -4,6 +4,10 @@ module Githubris::API::Gist
     build_gists_from(user_gists_path(login), options)
   end
 
+  def get_user_starred_gists(options={})
+    build_gists_from(user_starred_gists_path, options)
+  end
+
   def get_public_gists(options={})
     build_gists_from(public_gists_path, options)
   end
@@ -17,7 +21,7 @@ module Githubris::API::Gist
     @builder.build_gists get_data_from(path, options)
   end
 
-  def build_gist_from(path, options={})
+  def build_gist_from(path)
     @builder.build_gist get_data_from(path)
   end
 
@@ -27,6 +31,10 @@ module Githubris::API::Gist
 
   def user_gists_path(login)
     "/users/#{login}/gists"
+  end
+
+  def user_starred_gists_path
+    '/gists/starred'
   end
 
   def gist_path(id)

@@ -12,6 +12,7 @@ class Githubris::API
   def initialize
     @builder = Githubris::Builder.new
     @target = Addressable::URI.new default_uri_options
+    @options = {}
   end
 
   def default_uri_options
@@ -22,8 +23,10 @@ class Githubris::API
   end
 
   def basic_auth login, password
-    @target.user = login
-    @target.password = password
+    @options[:basic_auth] = {
+      :username => login,
+      :password => password
+    }
   end
 
   def oauth(client_id, client_secret)
@@ -32,14 +35,22 @@ class Githubris::API
 
   def authenticated?
     get_authenticated_user
-  rescue Githubris::Error::RequiresAuthentication
+  rescue Githubris::Error::RequiresAuthentication, Githubris::Error::BadCredentials
     nil
   end
 
   def get_data_from(path, options={})
+    this = self
     data = get(path, options)
     data = MultiJson.decode data if data.is_a? String
     raise @builder.build_error data if error_data?(data)
+
+    if data.is_a? Array
+      data.each {|data_el| data_el[:_api] = this }
+    else
+      data[:_api] = this
+    end
+
     data
   end
 

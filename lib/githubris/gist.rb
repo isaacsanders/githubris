@@ -3,21 +3,7 @@ require 'date'
 class Githubris::Gist
   autoload :File, 'githubris/gist/file'
 
-  def self.default_attributes
-    {
-      :files => {},
-      :created_at => DateTime.now.to_s,
-      :updated_at => DateTime.now.to_s,
-    }
-  end
-
   def initialize attributes={}
-    attributes.merge! Githubris::Gist.default_attributes do |given_key, given_value|
-      if Githubris::Gist.default_attributes.has_key? given_key
-        given_value
-      end
-    end
-
     @attributes = attributes
   end
 
@@ -46,7 +32,7 @@ class Githubris::Gist
   end
 
   def files
-    @attributes[:files].values
+    @attributes[:files]
   end
 
   def url
@@ -66,7 +52,7 @@ class Githubris::Gist
   end
 
   def reload
-    other = Githubris::API.new.get_gist id
+    other = Githubris::API.new.get_gist @attributes[:id]
     instance_variable_set(:@attributes, other.instance_variable_get(:@attributes))
     self
   end

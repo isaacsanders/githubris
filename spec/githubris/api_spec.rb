@@ -10,14 +10,6 @@ describe Githubris::API do
     end
 
     context 'when authenticated with good credentials' do
-      before do
-        FakeWeb.register_uri(:get, 'https://api.github.com/user?', :body => File.open("spec/support/user.json"){|f| f.read })
-      end
-
-      after do
-        FakeWeb.clean_registry
-      end
-
       subject do
         api.basic_auth('GithubrisTestUser', 'password')
         api.authenticated?

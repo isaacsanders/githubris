@@ -30,24 +30,13 @@ describe Githubris::Gist do
     its(:created_at)  { should be_instance_of DateTime }
     its(:updated_at)  { should be_instance_of DateTime }
     its(:comments)    { should be_instance_of Array }
-    its(:files)       { should be_instance_of Array }
-
-  end
-
-  it 'new gists are created now' do
-    DateTime.stub(:now => DateTime.new(2012))
-    subject.created_at.should eql DateTime.now
+    its(:files)       { should be_instance_of Hash }
   end
 
   context 'Gist owned by Isaac' do
     subject { Githubris::Gist.new :user => user }
     let(:user) { Githubris::User.new }
     its(:user) { should eql user }
-  end
-
-  describe 'a gist without files' do
-    subject { Githubris::Gist.new }
-    its(:files) { should be_empty }
   end
 
   describe 'a gist created with a file' do
@@ -66,13 +55,6 @@ describe Githubris::Gist do
   end
 
   describe '#reload' do
-
-    it 'errors without an id' do
-      lambda do
-        subject.reload
-      end.should raise_error
-    end
-
     context 'on a gist with an id' do
       use_vcr_cassette
 
@@ -89,5 +71,9 @@ describe Githubris::Gist do
         subject.reload.object_id.should == obj_id
       end
     end
+  end
+
+  describe '#create' do
+    
   end
 end
