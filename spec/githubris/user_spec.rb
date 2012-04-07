@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Githubris::User do
   describe '#==' do
     it 'matches based on attributes' do
-      user1 = Githubris::User.new({foo: 'bar'})
-      user2 = Githubris::User.new({foo: 'bar'})
+      user2 = Githubris::User.new({:foo => 'bar'})
+      user1 = Githubris::User.new({:foo => 'bar'})
       user1.should == user2
     end
   end
