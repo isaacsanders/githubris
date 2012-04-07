@@ -5,7 +5,6 @@ require 'githubris'
 require 'pry'
 
 require 'support/fixtures'
-require 'support/fakeweb_responses'
 require 'support/vcr'
 
 SimpleCov.start do
