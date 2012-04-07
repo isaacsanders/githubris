@@ -56,7 +56,7 @@ describe Githubris do
     it 'delegates and passes the options hash to the API' do
       Githubris::API.any_instance.stub(:get_public_gists)
       subject.public_gists({:foo => 'bar'})
-      subject.instance_variable_get(:@api).should have_received(:get_public_gists).with({foo: 'bar'})
+      subject.instance_variable_get(:@api).should have_received(:get_public_gists).with({:foo => 'bar'})
     end
   end
 
