@@ -29,9 +29,25 @@ describe Githubris::Gist do
   describe '#save' do
     use_vcr_cassette
 
-    it 'it must have be public or not, and it must have files' do
+    it 'for a public, anonymous gist' do
       gist = described_class.new :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
       lambda { gist.save }.should_not raise_error
+    end
+
+    context 'when authenticated' do
+      use_vcr_cassette
+
+      let(:api) { Githubris::API.new }
+
+      before do
+        api.basic_auth('GithubrisTestUser', 'password')
+      end
+
+      it 'for a gist by an authenticated user' do
+        gist = described_class.new :_api => api, :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
+        lambda { gist.save }.should_not raise_error
+        gist.user.login.should == 'GithubrisTestUser'
+      end
     end
   end
 end
