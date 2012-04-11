@@ -1,14 +1,6 @@
 require 'spec_helper'
 
 describe Githubris::User do
-  describe '#==' do
-    it 'matches based on attributes' do
-      user2 = Githubris::User.new({:foo => 'bar'})
-      user1 = Githubris::User.new({:foo => 'bar'})
-      user1.should == user2
-    end
-  end
-
   describe '#gists' do
     use_vcr_cassette
 

@@ -1,5 +1,6 @@
 class Githubris
   autoload :API, 'githubris/api'
+  autoload :Base, 'githubris/base'
   autoload :Blob, 'githubris/blob'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
@@ -9,6 +10,7 @@ class Githubris
   autoload :Issue, 'githubris/issue'
   autoload :OAuth, 'githubris/oauth'
   autoload :Organization, 'githubris/organization'
+  autoload :Publicity, 'githubris/publicity'
   autoload :PullRequest, 'githubris/pull_request'
   autoload :Reference, 'githubris/reference'
   autoload :Repository, 'githubris/repository'
