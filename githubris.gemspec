@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency('httparty', '~> 0.8.1')
+  s.add_dependency('multi_json', '~> 1.1.0')
   s.add_dependency('addressable', '~> 2.2.7')
 end
