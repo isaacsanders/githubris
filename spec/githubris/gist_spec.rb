@@ -1,28 +1,13 @@
 require 'spec_helper'
 
 describe Githubris::Gist do
+  context 'any gist' do
+    use_vcr_cassette
 
-  context 'when passed a specific gist' do
-    subject { Githubris::Builder.new.build_gist gist_data }
-    let(:gist_data) { Githubris::SpecHelper.gist_data }
-
-
-    it 'is public' do
-      subject.should be_public
+    subject do
+      gist = Githubris::Gist.new :id => 1
+      gist.reload
     end
-
-    its(:id) { should eql 1 }
-
-    its(:description) { should eql 'the meaning of gist' }
-
-    it 'was created at 6:17:13 on July 15, 2008' do
-      subject.created_at.should eql DateTime.new(2008, 7, 15, 18, 17, 13)
-    end
-
-    it 'was updated at 2:58:22 on Feburary 22, 2011' do
-      subject.updated_at.should eql DateTime.new(2011, 2, 22, 2, 58, 22)
-    end
-
     its(:url)         { should be_kind_of URI }
     its(:id)          { should be_instance_of Fixnum }
     its(:description) { should be_instance_of String }
@@ -33,24 +18,24 @@ describe Githubris::Gist do
     its(:files)       { should be_instance_of Hash }
   end
 
-  context 'Gist owned by Isaac' do
-    subject { Githubris::Gist.new :user => user }
-    let(:user) { Githubris::User.new }
-    its(:user) { should eql user }
-  end
-
-  describe 'a gist created with a file' do
-    subject do
-      Githubris::Gist.new(:files => {:stub => stub})
-    end
-
-    its(:files) { should have(1).items }
-  end
-
   describe '#==' do
     it 'checks the attributes of each object' do
-      subject.should == Githubris::Gist.new
+      subject.should == described_class.new
       subject.should_not == stub
+    end
+  end
+
+  describe '#publicize' do
+    it 'makes the gist public' do
+      subject.publicize
+      subject.should be_public
+    end
+  end
+
+  describe '#privatize' do
+    it 'makes the gist private' do
+      subject.privatize
+      subject.should_not be_public
     end
   end
 
@@ -58,7 +43,7 @@ describe Githubris::Gist do
     context 'on a gist with an id' do
       use_vcr_cassette
 
-      subject { Githubris::Gist.new :id => id }
+      subject { described_class.new :id => id }
       let(:id) { 1 }
 
       it 'hits the API' do
@@ -73,7 +58,12 @@ describe Githubris::Gist do
     end
   end
 
-  describe '#create' do
-    
+  describe '#save' do
+    use_vcr_cassette
+
+    it 'it must have be public or not, and it must have files' do
+      gist = described_class.new :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
+      lambda { gist.save }.should_not raise_error
+    end
   end
 end

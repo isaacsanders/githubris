@@ -1,11 +1,11 @@
 module Githubris::API::User
 
   def get_user(login)
-    @builder.build_user get_data_from(user_path(login))
+    Githubris::User.new get_data_from(user_path(login))
   end
 
   def get_authenticated_user
-    @builder.build_user get_data_from(authenticated_user_path)
+    Githubris::User.new get_data_from(authenticated_user_path)
   end
 
   private

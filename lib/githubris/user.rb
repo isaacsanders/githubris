@@ -37,13 +37,19 @@ class Githubris::User
   end
 
   def reload
-    other = @api.get_user @attributes[:login]
-    instance_variable_set(:@attributes, other.instance_variable_get(:@attributes))
-    self
+    swap_attributes @api.get_user @attributes[:login]
   rescue Githubris::Error => error
     case error
     when Githubris::Error::NotFound
       raise error, "user with login '#{@attributes[:login]}' does not exist"
+    else
+      raise error
     end
+  end
+
+  def swap_attributes(other)
+    instance_variable_set(:@attributes,
+                          other.instance_variable_get(:@attributes))
+    self
   end
 end

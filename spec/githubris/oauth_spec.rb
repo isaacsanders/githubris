@@ -20,7 +20,7 @@ Content-Length: 71
 Cache-Control: private, max-age=0, must-revalidate
 Strict-Transport-Security: max-age=2592000
 
-access_token=1663860ddbbb9137119ff03ef2a9d819bbce4d0e&token_type=bearer
+access_token=ACCESSCODE&token_type=bearer
 RESPONSE
     FakeWeb.register_uri(:post, /github.com\/login\/oauth\/access_token/, :response => access_token_response)
   end

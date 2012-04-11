@@ -1,7 +1,6 @@
 class Githubris
   autoload :API, 'githubris/api'
   autoload :Blob, 'githubris/blob'
-  autoload :Builder, 'githubris/builder'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
   autoload :Error, 'githubris/error'

@@ -1,9 +1,2 @@
-class Githubris
-  class Gist
-    class File
-      def self.build data
-        new
-      end
-    end
-  end
+class Githubris::Gist::File
 end

@@ -4,7 +4,9 @@ class Githubris::Gist
   autoload :File, 'githubris/gist/file'
 
   def initialize attributes={}
+    @api = attributes.delete(:_api) || Githubris::API.new
     @attributes = attributes
+    @attributes[:files] ||= {}
   end
 
   def id
@@ -12,11 +14,8 @@ class Githubris::Gist
   end
 
   def user
-    unless @attributes[:user].instance_of? Githubris::User
-      @attributes[:user] = Githubris::Builder.new.build_user @attributes[:user]
-    else
-      @attributes[:user]
-    end
+    user = Githubris::User.new @attributes[:user]
+    user.reload
   end
 
   def created_at
@@ -31,6 +30,10 @@ class Githubris::Gist
     @attributes[:description]
   end
 
+  def description=(description)
+    @attributes[:description] = description
+  end
+
   def files
     @attributes[:files]
   end
@@ -43,6 +46,14 @@ class Githubris::Gist
     @attributes[:public]
   end
 
+  def publicize
+    @attributes[:public] = true
+  end
+
+  def privatize
+    @attributes[:public] = false
+  end
+
   def comments
     Array.new @attributes[:comments], Githubris::Comment.new
   end
@@ -52,8 +63,22 @@ class Githubris::Gist
   end
 
   def reload
-    other = Githubris::API.new.get_gist @attributes[:id]
-    instance_variable_set(:@attributes, other.instance_variable_get(:@attributes))
+    swap_attributes @api.get_gist @attributes[:id]
+  end
+
+  def save
+    input = {
+      :description => @attributes[:description],
+      :public => @attributes[:public],
+      :files => @attributes[:files],
+    }
+
+    swap_attributes @api.post_gist(input)
+  end
+
+  def swap_attributes(other)
+    instance_variable_set(:@attributes,
+                          other.instance_variable_get(:@attributes))
     self
   end
 end

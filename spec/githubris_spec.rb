@@ -83,12 +83,6 @@ describe Githubris do
         subject.should be_instance_of Githubris::Gist
         subject.id.should == id
       end
-
-      it 'has a user' do
-        lambda do
-          subject.user.should be_instance_of Githubris::User
-        end.should_not raise_error
-      end
     end
   end
 end
