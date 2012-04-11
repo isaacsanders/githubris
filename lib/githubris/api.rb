@@ -56,7 +56,7 @@ class Githubris::API
   def get(path, options={})
     @target.path = path
     @target.query_values = options
-    _get(@target.to_s).to_json
+    MultiJson.encode(_get(@target.to_s))
   end
 
   def error_data?(data)
