@@ -44,13 +44,7 @@ class Githubris::API
     data = MultiJson.decode(data, :symbolize_keys => true)
     raise build_error data if error_data?(data)
 
-    if data.is_a? Array
-      data.each {|data_el| data_el[:_api] = this }
-    else
-      data[:_api] = this
-    end
-
-    data
+    embed_self_in data
   end
 
   def build_error data
@@ -62,7 +56,7 @@ class Githubris::API
   def get(path, options={})
     @target.path = path
     @target.query_values = options
-    _get(@target.to_s)
+    _get(@target.to_s).to_json
   end
 
   def error_data?(data)
@@ -71,16 +65,19 @@ class Githubris::API
 
   def post_oauth_access_token(params)
     @target.query ||= ''
-    @target.query += post(oauth_access_token_url, :query => params)
+    @target.query += _post(oauth_access_token_url, :query => params)
     @target.query_values['access_token']
   end
 
   def post_data_to(path, params)
     data = post(path, MultiJson.encode(params))
     data = MultiJson.decode(data, :symbolize_keys => true) if data.is_a? String
-    puts data
     raise build_error data if error_data?(data)
 
+    embed_self_in data
+  end
+
+  def embed_self_in(data)
     this = self
     if data.is_a? Array
       data.each {|data_el| data_el[:_api] = this }
@@ -94,7 +91,7 @@ class Githubris::API
   def post(path, params)
     @target.path = path
     @options[:body] = params
-    _post(@target.to_s)
+    _post(@target.to_s).to_json
   end
 
   def oauth_access_token_url
