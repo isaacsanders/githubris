@@ -91,7 +91,7 @@ class Githubris::API
   def post(path, params)
     @target.path = path
     @options[:body] = params
-    _post(@target.to_s).to_json
+    MultiJson.encode(_post(@target.to_s))
   end
 
   def oauth_access_token_url
