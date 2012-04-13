@@ -48,20 +48,6 @@ describe Githubris::API do
       client_secret = 'client_secret'
       subject.oauth(client_id, client_secret).should be_instance_of Githubris::OAuth
     end
-
-    it 'returns a Githubris::OAuth initialized with the client id and secret' do
-      client_id = 'client_id'
-      client_secret = 'client_secret'
-      Githubris::OAuth.should_receive(:new).with(client_id, client_secret)
-      subject.oauth(client_id, client_secret)
-    end
-
-    it 'can take options' do
-      client_id = 'client_id'
-      client_secret = 'client_secret'
-      Githubris::OAuth.should_receive(:new).with(client_id, client_secret)
-      subject.oauth(client_id, client_secret)
-    end
   end
 
   describe '#post_oauth_access_token' do

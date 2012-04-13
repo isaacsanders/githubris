@@ -29,7 +29,7 @@ class Githubris::API
   end
 
   def oauth(client_id, client_secret)
-    oauth = Githubris::OAuth.new client_id, client_secret
+    oauth = Githubris::OAuth.new client_id, client_secret, self
   end
 
   def authenticated?
@@ -71,10 +71,14 @@ class Githubris::API
 
   def post_data_to(path, params)
     data = post(path, MultiJson.encode(params))
-    data = MultiJson.decode(data, :symbolize_keys => true) if data.is_a? String
+    data = decode_json(data) if data.is_a? String
     raise build_error data if error_data?(data)
 
     embed_self_in data
+  end
+
+  def decode_json(json)
+    MultiJson.decode(json, :symbolize_keys => true)
   end
 
   def embed_self_in(data)

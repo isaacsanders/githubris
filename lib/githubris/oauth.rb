@@ -1,7 +1,8 @@
 class Githubris::OAuth
   REQUEST_ACCESS_URL = "https://github.com/login/oauth/authorize"
 
-  def initialize(client_id, client_secret)
+  def initialize(client_id, client_secret, api=Githubris::API.new)
+    @api = api
     @client_id = client_id
     @client_secret = client_secret
   end
@@ -31,6 +32,6 @@ class Githubris::OAuth
       :client_secret => @client_secret,
       :code => code
     }
-    Githubris::API.new.post_oauth_access_token(access_token_params)
+    @api.post_oauth_access_token(access_token_params)
   end
 end
