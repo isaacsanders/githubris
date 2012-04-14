@@ -1,0 +1,196 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/GithubrisTestUser/gists?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:37:08 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"bfaad0b1f2c1174f197c36e1c6eb2ac5"'
+      x-ratelimit-remaining:
+      - '4920'
+      content-length:
+      - '7065'
+    body:
+      encoding: US-ASCII
+      string: ! '[{"git_push_url":"git@gist.github.com:2380569.git","created_at":"2012-04-13T22:33:30Z","description":null,"public":true,"url":"https://api.github.com/gists/2380569","files":{"gistfile.txt":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2380569/f6ea0495187600e7b2288c8ac19c5886383a4632/gistfile.txt","size":6,"filename":"gistfile.txt","language":"Text"}},"html_url":"https://gist.github.com/2380569","comments":0,"updated_at":"2012-04-13T22:33:30Z","git_pull_url":"git://gist.github.com/2380569.git","id":"2380569","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:2380564.git","created_at":"2012-04-13T22:31:18Z","description":null,"public":true,"url":"https://api.github.com/gists/2380564","files":{"gistfile.txt":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2380564/f6ea0495187600e7b2288c8ac19c5886383a4632/gistfile.txt","size":6,"filename":"gistfile.txt","language":"Text"}},"html_url":"https://gist.github.com/2380564","comments":0,"updated_at":"2012-04-13T22:31:18Z","git_pull_url":"git://gist.github.com/2380564.git","id":"2380564","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:2373721.git","created_at":"2012-04-13T04:35:01Z","description":"This
+        is a gist with many files","public":true,"url":"https://api.github.com/gists/2373721","files":{"gistfile.txt":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2373721/d4224f4c141ef62fb7dbdb904d624b70b8a3a3ce/gistfile.txt","size":39,"filename":"gistfile.txt","language":"Text"}},"html_url":"https://gist.github.com/2373721","comments":0,"updated_at":"2012-04-13T04:35:01Z","git_pull_url":"git://gist.github.com/2373721.git","id":"2373721","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:2373517.git","created_at":"2012-04-13T03:45:20Z","description":null,"public":true,"url":"https://api.github.com/gists/2373517","files":{"gistfile.txt":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2373517/f6ea0495187600e7b2288c8ac19c5886383a4632/gistfile.txt","size":6,"filename":"gistfile.txt","language":"Text"}},"html_url":"https://gist.github.com/2373517","comments":0,"updated_at":"2012-04-13T03:45:20Z","git_pull_url":"git://gist.github.com/2373517.git","id":"2373517","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:2363568.git","created_at":"2012-04-11T23:54:49Z","description":null,"public":true,"url":"https://api.github.com/gists/2363568","files":{"gistfile.txt":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2363568/f6ea0495187600e7b2288c8ac19c5886383a4632/gistfile.txt","size":6,"filename":"gistfile.txt","language":"Text"}},"html_url":"https://gist.github.com/2363568","comments":0,"updated_at":"2012-04-11T23:54:49Z","git_pull_url":"git://gist.github.com/2363568.git","id":"2363568","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:2283797.git","created_at":"2012-04-02T14:23:23Z","description":"My
+        second public gist","public":true,"url":"https://api.github.com/gists/2283797","files":{"two.gist":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2283797/20a66f262edb50ef7abaac0d248ec91b425b6928/two.gist","size":49,"filename":"two.gist","language":null}},"html_url":"https://gist.github.com/2283797","comments":0,"updated_at":"2012-04-02T14:23:23Z","git_pull_url":"git://gist.github.com/2283797.git","id":"2283797","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:1901849.git","created_at":"2012-02-24T16:20:22Z","description":"This
+        is a test gist","public":true,"url":"https://api.github.com/gists/1901849","files":{"test.rb":{"type":"application/ruby","raw_url":"https://gist.github.com/raw/1901849/618cb237464a83cba15c5c16e913679a2703f3e0/test.rb","size":35,"filename":"test.rb","language":"Ruby"}},"html_url":"https://gist.github.com/1901849","comments":0,"updated_at":"2012-02-24T16:20:22Z","git_pull_url":"git://gist.github.com/1901849.git","id":"1901849","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}},{"git_push_url":"git@gist.github.com:1901843.git","created_at":"2012-02-24T16:19:48Z","description":"This
+        is a gist with many files","public":true,"url":"https://api.github.com/gists/1901843","files":{"slipsum.html":{"type":"text/html","raw_url":"https://gist.github.com/raw/1901843/85d293b0fbc401adb58902fa24711e45e389fc3d/slipsum.html","size":555,"filename":"slipsum.html","language":"HTML"},"example.md":{"type":"text/plain","raw_url":"https://gist.github.com/raw/1901843/d9213baf064e7d4b9619143371172b49d97c29b8/example.md","size":27,"filename":"example.md","language":"Markdown"}},"html_url":"https://gist.github.com/1901843","comments":0,"updated_at":"2012-02-24T16:19:48Z","git_pull_url":"git://gist.github.com/1901843.git","id":"1901843","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392}}]'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:37:08 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/gists/starred?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:37:09 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"72e8dc7f08258d72ed2770010d352a79"'
+      x-ratelimit-remaining:
+      - '4977'
+      content-length:
+      - '2084'
+    body:
+      encoding: US-ASCII
+      string: ! '[{"created_at":"2012-04-07T02:32:38Z","description":"No use of delegates","public":true,"url":"https://api.github.com/gists/2324597","files":{"no_delegate.rb":{"type":"application/ruby","size":208,"filename":"no_delegate.rb","raw_url":"https://gist.github.com/raw/2324597/5f6a891a29772999207c89479c78130c642e5819/no_delegate.rb","language":"Ruby"}},"html_url":"https://gist.github.com/2324597","comments":0,"updated_at":"2012-04-07T02:32:38Z","git_pull_url":"git://gist.github.com/2324597.git","id":"2324597","user":{"url":"https://api.github.com/users/mdobson","login":"mdobson","gravatar_id":"e042fe6b36628f262ad2d27e8f21addf","avatar_url":"https://secure.gravatar.com/avatar/e042fe6b36628f262ad2d27e8f21addf?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":934320},"git_push_url":"git@gist.github.com:2324597.git"},{"created_at":"2012-04-07T02:27:15Z","description":"Demo","public":true,"url":"https://api.github.com/gists/2324571","files":{"file2.js":{"type":"application/javascript","size":25,"filename":"file2.js","raw_url":"https://gist.github.com/raw/2324571/231a76789635186eaa4e0477a2abe0dd64659c19/file2.js","language":"JavaScript"},"demo.xml":{"type":"application/xml","size":46,"filename":"demo.xml","raw_url":"https://gist.github.com/raw/2324571/f408a3aafd94db568c723766be8f6edfecc60532/demo.xml","language":"XML"},"hello.html":{"type":"text/html","size":58,"filename":"hello.html","raw_url":"https://gist.github.com/raw/2324571/911e18eea53ca05057593dbba1b5b18022aa8b13/hello.html","language":"HTML"}},"html_url":"https://gist.github.com/2324571","comments":0,"updated_at":"2012-04-07T02:27:15Z","git_pull_url":"git://gist.github.com/2324571.git","id":"2324571","user":{"url":"https://api.github.com/users/justinspradlin","login":"justinspradlin","gravatar_id":"c4bccd1d6229139154c5571813e353a4","avatar_url":"https://secure.gravatar.com/avatar/c4bccd1d6229139154c5571813e353a4?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":636274},"git_push_url":"git@gist.github.com:2324571.git"}]'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:37:10 GMT
+- request:
+    method: get
+    uri: https://api.github.com/users/GithubrisTestUser?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:37:10 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"199351b94bf106b2c2fa1a43e27c4b25"'
+      x-ratelimit-remaining:
+      - '4919'
+      content-length:
+      - '477'
+    body:
+      encoding: US-ASCII
+      string: ! '{"followers":0,"type":"User","created_at":"2012-02-24T12:23:28Z","url":"https://api.github.com/users/GithubrisTestUser","following":0,"login":"GithubrisTestUser","html_url":"https://github.com/GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","public_repos":1,"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":1469392,"public_gists":8}'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:37:10 GMT
+- request:
+    method: get
+    uri: https://api.github.com/users/?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:37:10 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 404 Not Found
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"e66a7a6c91e2c26803f3f49feb7a883f"'
+      x-ratelimit-remaining:
+      - '4918'
+      content-length:
+      - '23'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Not Found"}'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:37:11 GMT
+- request:
+    method: get
+    uri: https://api.github.com/gists/starred?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 01:09:06 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      x-ratelimit-limit:
+      - '5000'
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"99852aefab6a0988db8f62bf2fb96f49"'
+      x-ratelimit-remaining:
+      - '4999'
+      content-length:
+      - '37'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Requires authentication"}'
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 01:09:06 GMT
+recorded_with: VCR 2.0.1

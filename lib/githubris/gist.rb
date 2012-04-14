@@ -1,5 +1,3 @@
-require 'date'
-
 class Githubris::Gist < Githubris::Base
   autoload :File, 'githubris/gist/file'
 

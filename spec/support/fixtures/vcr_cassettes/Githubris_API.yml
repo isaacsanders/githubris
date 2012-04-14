@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:36:50 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"b18512ec2a79d787ff995d245790bf1a"'
+      x-ratelimit-remaining:
+      - '4979'
+      content-length:
+      - '650'
+    body:
+      encoding: US-ASCII
+      string: ! '{"public_repos":1,"followers":0,"type":"User","created_at":"2012-02-24T12:23:28Z","plan":{"private_repos":0,"space":307200,"collaborators":0,"name":"free"},"url":"https://api.github.com/users/GithubrisTestUser","following":0,"login":"GithubrisTestUser","collaborators":0,"public_gists":8,"html_url":"https://github.com/GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","total_private_repos":0,"private_gists":0,"owned_private_repos":0,"id":1469392,"disk_usage":0}'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:36:50 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestFakeUser:password@api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:36:50 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
+      content-length:
+      - '29'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Bad credentials"}'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:36:50 GMT
+- request:
+    method: get
+    uri: https://api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 13 Apr 2012 22:37:08 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      x-ratelimit-limit:
+      - '5000'
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"99852aefab6a0988db8f62bf2fb96f49"'
+      x-ratelimit-remaining:
+      - '4921'
+      content-length:
+      - '37'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Requires authentication"}'
+    http_version: '1.1'
+  recorded_at: Fri, 13 Apr 2012 22:37:08 GMT
+recorded_with: VCR 2.0.1

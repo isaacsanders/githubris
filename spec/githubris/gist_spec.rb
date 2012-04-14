@@ -35,7 +35,6 @@ describe Githubris::Gist do
     end
 
     context 'when authenticated' do
-      use_vcr_cassette
 
       let(:api) { Githubris::API.new }
 
