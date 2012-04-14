@@ -29,7 +29,7 @@ class Githubris::API
   end
 
   def oauth(client_id, client_secret)
-    oauth = Githubris::OAuth.new client_id, client_secret, self
+    Githubris::OAuth.new client_id, client_secret, self
   end
 
   def authenticated?
@@ -39,28 +39,13 @@ class Githubris::API
   end
 
   def get_data_from(path, options={})
-    this = self
-    data = get(path, options)
-    data = MultiJson.decode(data, :symbolize_keys => true)
-    raise build_error data if error_data?(data)
-
-    embed_self_in data
-  end
-
-  def build_error data
-    words = data[:message].split(' ')
-    error_class_name = words.map {|word| word.capitalize}.join
-    Githubris::Error.const_get(error_class_name)
+    handle_request_data get(path, options)
   end
 
   def get(path, options={})
     @target.path = path
     @target.query_values = options
-    MultiJson.encode(_get(@target.to_s))
-  end
-
-  def error_data?(data)
-    data.is_a?(Hash) and data[:message]
+    MultiJson.encode(_get)
   end
 
   def post_oauth_access_token(params)
@@ -70,11 +55,39 @@ class Githubris::API
   end
 
   def post_data_to(path, params)
-    data = post(path, MultiJson.encode(params))
+    handle_request_data post(path, MultiJson.encode(params))
+  end
+
+  def patch_data_to(path, params)
+    handle_request_data patch(path, MultiJson.encode(params))
+  end
+
+  def patch(path, params)
+    set_request_params(path, params)
+    MultiJson.encode(_patch)
+  end
+
+  def post(path, params)
+    set_request_params(path, params)
+    MultiJson.encode(_post)
+  end
+
+  private
+
+  def handle_request_data(data)
     data = decode_json(data) if data.is_a? String
     raise build_error data if error_data?(data)
-
     embed_self_in data
+  end
+
+  def build_error data
+    words = data[:message].split(' ')
+    error_class_name = words.map {|word| word.capitalize}.join
+    Githubris::Error.const_get(error_class_name)
+  end
+
+  def error_data?(data)
+    data.is_a?(Hash) and data[:message]
   end
 
   def decode_json(json)
@@ -82,20 +95,18 @@ class Githubris::API
   end
 
   def embed_self_in(data)
-    this = self
     if data.is_a? Array
-      data.each {|data_el| data_el[:_api] = this }
+      data.each {|data_el| data_el[:_api] = self }
     else
-      data[:_api] = this
+      data[:_api] = self
     end
 
     data
   end
 
-  def post(path, params)
+  def set_request_params(path, params)
     @target.path = path
     @options[:body] = params
-    MultiJson.encode(_post(@target.to_s))
   end
 
   def oauth_access_token_url

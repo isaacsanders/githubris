@@ -1,11 +1,18 @@
 require 'spec_helper'
 
 describe Githubris::Gist do
-  let(:id) { 1 }
-  subject { described_class.new :id => id }
+  use_vcr_cassette
+
+  describe '#new?' do
+    it 'will be true if there are issues when reloading' do
+      gist_without_id = Githubris::Gist.new
+      gist_without_id.should be_new
+    end
+  end
 
   context 'on a gist with an id' do
-    use_vcr_cassette
+    subject { described_class.new :id => id }
+    let(:id) { 1 }
 
     describe '#reload' do
       it 'returns the same object' do
@@ -13,22 +20,18 @@ describe Githubris::Gist do
         subject.reload.object_id.should == obj_id
       end
     end
-  end
 
-  context 'given a gist full of data' do
-    use_vcr_cassette
-
-    describe '#user' do
-      it 'returns a user' do
-        subject.reload
-        subject.user.should be_instance_of Githubris::User
+    context 'given a gist full of data' do
+      describe '#user' do
+        it 'returns a user' do
+          subject.reload
+          subject.user.should be_instance_of Githubris::User
+        end
       end
     end
   end
 
   describe '#save' do
-    use_vcr_cassette
-
     it 'for a public, anonymous gist' do
       gist = described_class.new :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
       lambda { gist.save }.should_not raise_error
@@ -42,10 +45,30 @@ describe Githubris::Gist do
         api.basic_auth('GithubrisTestUser', 'password')
       end
 
-      it 'for a gist by an authenticated user' do
-        gist = described_class.new :_api => api, :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
-        lambda { gist.save }.should_not raise_error
-        gist.user.login.should == 'GithubrisTestUser'
+      context 'creating a file' do
+        it 'for a gist by an authenticated user' do
+          gist = described_class.new :_api => api, :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
+          lambda { gist.save }.should_not raise_error
+          gist.user.login.should == 'GithubrisTestUser'
+        end
+      end
+
+      context 'editing a file' do
+        xit 'can be used to edit a file' do
+          gist = api.get_authenticated_user.gists.last
+          expected_id = gist.id
+          gist.files['gistfile.txt'] = {}
+          file = gist.files['gistfile.txt']
+          content = <<-EOF
+            lorem ipsum, all the time.
+          EOF
+
+          file[:content] = content
+          lambda { gist.save }.should_not raise_error
+
+          file[:content].should == content
+          gist.id.should == expected_id
+        end
       end
     end
   end

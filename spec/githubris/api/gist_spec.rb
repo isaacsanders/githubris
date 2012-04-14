@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Githubris::API::Gist do
+  use_vcr_cassette
+
   subject do
     Githubris::API.new
   end
 
   describe '#get_user_gists' do
-    use_vcr_cassette
-
     let(:login) {'GithubrisTestUser'}
 
     it 'gets /users/:username/gists' do
@@ -18,8 +18,6 @@ describe Githubris::API::Gist do
   end
 
   describe '#get_public_gists' do
-    use_vcr_cassette
-
     it 'returns an array of gists' do
       subject.get_public_gists.should be_instance_of Array
       subject.get_public_gists.each do |gist|
@@ -29,8 +27,6 @@ describe Githubris::API::Gist do
   end
 
   describe '#get_gist' do
-    use_vcr_cassette
-
     let(:id) { 1 }
     it 'is a Githubris::Gist' do
       subject.get_gist(id).should be_instance_of Githubris::Gist

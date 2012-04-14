@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Githubris::User do
-  describe '#gists' do
-    use_vcr_cassette
+  use_vcr_cassette
 
+  describe '#gists' do
     it 'gets a list of gists' do
       gists = described_class.new(:login => 'GithubrisTestUser').gists
       gists.each do |gist|
@@ -13,7 +13,6 @@ describe Githubris::User do
   end
 
   describe '#starred_gists' do
-
     context 'on an authenticated user' do
 
       subject do
@@ -24,8 +23,6 @@ describe Githubris::User do
         end
       end
 
-      use_vcr_cassette
-
       it 'returns a list of starred gists' do
         subject.starred_gists.each do |gist|
           gist.should be_instance_of Githubris::Gist
@@ -35,10 +32,7 @@ describe Githubris::User do
   end
 
   describe '#reload' do
-
     context 'on a user with a login' do
-      use_vcr_cassette
-
       subject { described_class.new :login => login }
       let(:login) { 'GithubrisTestUser' }
 
@@ -49,8 +43,6 @@ describe Githubris::User do
     end
 
     context 'on a user without a login' do
-      use_vcr_cassette
-
       it 'raises an error' do
         lambda do
           subject.reload

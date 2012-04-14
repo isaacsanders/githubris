@@ -20,6 +20,10 @@ module Githubris::API::Gist
     post_gist_to(gists_path, params)
   end
 
+  def patch_gist(id, params)
+    patch_gist_to(gist_path(id), params)
+  end
+
   private
   def get_gists_from(path, options={})
     get_data_from(path, options).map do |gist_data|
@@ -33,6 +37,10 @@ module Githubris::API::Gist
 
   def post_gist_to(path, params)
     Githubris::Gist.new post_data_to(path, params)
+  end
+
+  def patch_gist_to(path, params)
+    Githubris::Gist.new patch_data_to(path, params)
   end
 
   def public_gists_path

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Githubris::API do
+  use_vcr_cassette
+
   let(:api) { Githubris::API.new }
 
   describe '#authenticated?' do
@@ -15,14 +17,10 @@ describe Githubris::API do
         api.authenticated?
       end
 
-      use_vcr_cassette
-
       it { should be_true }
     end
 
     context 'when authenticated with bad credentials' do
-      use_vcr_cassette
-
       subject do
         api.basic_auth('GithubrisTestFakeUser', 'password')
         api.authenticated?
@@ -32,8 +30,6 @@ describe Githubris::API do
     end
 
     context 'when there are no credentials' do
-      use_vcr_cassette
-
       subject do
         api.authenticated?
       end
@@ -51,8 +47,6 @@ describe Githubris::API do
   end
 
   describe '#post_oauth_access_token' do
-    use_vcr_cassette
-
     before do
       access_token_response =<<-RESPONSE
 HTTP/1.1 200 OK
@@ -82,6 +76,7 @@ RESPONSE
         subject.post_oauth_access_token({})
       end.should_not raise_error
     end
+
     it 'returns a string' do
       subject.post_oauth_access_token({}).should be_instance_of String
     end

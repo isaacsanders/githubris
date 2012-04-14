@@ -17,10 +17,27 @@ class Githubris::Gist < Githubris::Base
   end
 
   def save
-    swap_attributes @api.post_gist(
+    if new?
+      saved_attributes = @api.post_gist(saving_attributes)
+    else
+      saved_attributes = @api.patch_gist(@attributes[:id], saving_attributes)
+    end
+    swap_attributes saved_attributes
+  end
+
+  def saving_attributes
+    {
       :description => @attributes[:description],
       :public => @attributes[:public],
       :files => @attributes[:files]
-    )
+    }
+  end
+
+  def new?
+    reload
+  rescue Githubris::Error
+    true
+  else
+    false
   end
 end

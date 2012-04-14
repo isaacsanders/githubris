@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Githubris do
+  use_vcr_cassette
+
   describe '#basic_auth' do
     let(:password) { 'password' }
 
@@ -31,8 +33,6 @@ describe Githubris do
   end
 
   describe '#find_user' do
-    use_vcr_cassette
-
     it 'requests gets user from githubris api' do
       user = Githubris::User.new(:login => 'GithubrisTestUser')
       Githubris::API.any_instance.stub(:get_user).and_return(user)
@@ -45,8 +45,6 @@ describe Githubris do
   end
 
   describe '#public_gists' do
-    use_vcr_cassette
-
     it 'should contain only gists' do
       subject.public_gists.each do |gist|
         gist.should be_instance_of Githubris::Gist
@@ -63,7 +61,6 @@ describe Githubris do
   describe '#find_gist' do
     let(:id) { 1 }
     subject { Githubris.new.find_gist(id) }
-    use_vcr_cassette
 
     it 'returns a gist' do
       subject.should be_instance_of Githubris::Gist
