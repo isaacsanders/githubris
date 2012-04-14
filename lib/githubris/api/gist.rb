@@ -16,6 +16,16 @@ module Githubris::API::Gist
     get_gist_from(gist_path(id))
   end
 
+  def get_gist_starred_status(id)
+    set_request_path(gist_starred_status_path(id))
+    case _get.code
+    when 204
+      true
+    when 404
+      false
+    end
+  end
+
   def post_gist(params)
     post_gist_to(gists_path, params)
   end
@@ -44,7 +54,7 @@ module Githubris::API::Gist
   end
 
   def public_gists_path
-    "#{gists_path}/public"
+    '/gists/public'
   end
 
   def user_gists_path(login)
@@ -52,11 +62,15 @@ module Githubris::API::Gist
   end
 
   def user_starred_gists_path
-    "#{gists_path}/starred"
+    '/gists/starred'
+  end
+
+  def gist_starred_status_path(id)
+    "/gists/#{id}/star"
   end
 
   def gist_path(id)
-    "#{gists_path}/#{id}"
+    "/gists/#{id}"
   end
 
   def gists_path

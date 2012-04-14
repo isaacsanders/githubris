@@ -328,4 +328,190 @@ http_interactions:
         Header\n\nImportant text","size":27,"filename":"example.md","raw_url":"https://gist.github.com/raw/1901843/d9213baf064e7d4b9619143371172b49d97c29b8/example.md","language":"Markdown"}},"html_url":"https://gist.github.com/1901843","history":[{"version":"a770a657f91551fb29c200a5b29228fab999f9f9","url":"https://api.github.com/gists/1901843/a770a657f91551fb29c200a5b29228fab999f9f9","change_status":{"total":14,"additions":14,"deletions":0},"committed_at":"2012-02-24T16:19:48Z","user":{"url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":1469392}}],"comments":0,"updated_at":"2012-02-24T16:19:48Z","git_pull_url":"git://gist.github.com/1901843.git","forks":[],"id":"1901843","user":{"url":"https://api.github.com/users/GithubrisTestUser","login":"GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":1469392},"git_push_url":"git@gist.github.com:1901843.git"}'
     http_version: '1.1'
   recorded_at: Fri, 13 Apr 2012 22:37:18 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 19:22:29 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"8c796046247a840df550ae0e6e567cd9"'
+      x-ratelimit-remaining:
+      - '4999'
+      content-length:
+      - '650'
+    body:
+      encoding: US-ASCII
+      string: ! '{"followers":0,"type":"User","private_gists":0,"created_at":"2012-02-24T12:23:28Z","plan":{"private_repos":0,"space":307200,"collaborators":0,"name":"free"},"collaborators":0,"url":"https://api.github.com/users/GithubrisTestUser","following":0,"login":"GithubrisTestUser","html_url":"https://github.com/GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","total_private_repos":0,"owned_private_repos":0,"public_repos":1,"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","id":1469392,"disk_usage":0,"public_gists":9}'
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 19:22:29 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/gists/starred?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 19:22:30 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"452f9ef1866505deeb17d3bd167110bc"'
+      x-ratelimit-remaining:
+      - '4998'
+      content-length:
+      - '2084'
+    body:
+      encoding: US-ASCII
+      string: ! '[{"html_url":"https://gist.github.com/2324597","git_pull_url":"git://gist.github.com/2324597.git","created_at":"2012-04-07T02:32:38Z","git_push_url":"git@gist.github.com:2324597.git","description":"No
+        use of delegates","public":true,"url":"https://api.github.com/gists/2324597","files":{"no_delegate.rb":{"raw_url":"https://gist.github.com/raw/2324597/5f6a891a29772999207c89479c78130c642e5819/no_delegate.rb","type":"application/ruby","size":208,"filename":"no_delegate.rb","language":"Ruby"}},"comments":0,"updated_at":"2012-04-07T02:32:38Z","id":"2324597","user":{"url":"https://api.github.com/users/mdobson","avatar_url":"https://secure.gravatar.com/avatar/e042fe6b36628f262ad2d27e8f21addf?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","login":"mdobson","gravatar_id":"e042fe6b36628f262ad2d27e8f21addf","id":934320}},{"html_url":"https://gist.github.com/2324571","git_pull_url":"git://gist.github.com/2324571.git","created_at":"2012-04-07T02:27:15Z","git_push_url":"git@gist.github.com:2324571.git","description":"Demo","public":true,"url":"https://api.github.com/gists/2324571","files":{"file2.js":{"raw_url":"https://gist.github.com/raw/2324571/231a76789635186eaa4e0477a2abe0dd64659c19/file2.js","type":"application/javascript","size":25,"filename":"file2.js","language":"JavaScript"},"demo.xml":{"raw_url":"https://gist.github.com/raw/2324571/f408a3aafd94db568c723766be8f6edfecc60532/demo.xml","type":"application/xml","size":46,"filename":"demo.xml","language":"XML"},"hello.html":{"raw_url":"https://gist.github.com/raw/2324571/911e18eea53ca05057593dbba1b5b18022aa8b13/hello.html","type":"text/html","size":58,"filename":"hello.html","language":"HTML"}},"comments":0,"updated_at":"2012-04-07T02:27:15Z","id":"2324571","user":{"url":"https://api.github.com/users/justinspradlin","avatar_url":"https://secure.gravatar.com/avatar/c4bccd1d6229139154c5571813e353a4?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","login":"justinspradlin","gravatar_id":"c4bccd1d6229139154c5571813e353a4","id":636274}}]'
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 19:22:30 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/gists/2324597/star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6ZWFnbGUwNw==
+      connection:
+      - close
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 19:26:25 GMT
+      connection:
+      - close
+      status:
+      - 204 No Content
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"d41d8cd98f00b204e9800998ecf8427e"'
+      x-ratelimit-remaining:
+      - '4997'
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 19:26:25 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/gists/2324597/star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6ZWFnbGUwNw==
+      connection:
+      - close
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 19:31:46 GMT
+      connection:
+      - close
+      status:
+      - 204 No Content
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"d41d8cd98f00b204e9800998ecf8427e"'
+      x-ratelimit-remaining:
+      - '4996'
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 19:31:46 GMT
+- request:
+    method: get
+    uri: https://api.github.com/gists/1/star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 14 Apr 2012 19:43:37 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 404 Not Found
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"e66a7a6c91e2c26803f3f49feb7a883f"'
+      x-ratelimit-remaining:
+      - '4999'
+      content-length:
+      - '23'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Not Found"}'
+    http_version: '1.1'
+  recorded_at: Sat, 14 Apr 2012 19:43:37 GMT
 recorded_with: VCR 2.0.1

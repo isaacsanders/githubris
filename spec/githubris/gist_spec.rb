@@ -31,6 +31,60 @@ describe Githubris::Gist do
     end
   end
 
+  describe '#starred?' do
+    context 'on an authorized user' do
+      let(:api) { Githubris::API.new }
+      let(:user) { api.get_authenticated_user }
+
+      before do
+        api.basic_auth 'GithubrisTestUser', 'password'
+      end
+
+      context 'on a starred gist' do
+        let(:gist) { user.starred_gists.first }
+
+        it 'is true' do
+          gist.should be_starred
+        end
+      end
+
+      context 'on an unstarred gist' do
+        let(:gist) { Githubris::Gist.new(:id => 1).reload }
+
+        it 'is false' do
+          gist.should_not be_starred
+        end
+      end
+    end
+  end
+
+  describe '#unstarred?' do
+    context 'on an authorized user' do
+      let(:api) { Githubris::API.new }
+      let(:user) { api.get_authenticated_user }
+
+      before do
+        api.basic_auth 'GithubrisTestUser', 'password'
+      end
+
+      context 'on a starred gist' do
+        let(:gist) { user.starred_gists.first }
+
+        it 'is false' do
+          gist.should_not be_unstarred
+        end
+      end
+
+      context 'on an unstarred gist' do
+        let(:gist) { Githubris::Gist.new(:id => 1).reload }
+
+        it 'is false' do
+          gist.should be_unstarred
+        end
+      end
+    end
+  end
+
   describe '#save' do
     it 'for a public, anonymous gist' do
       gist = described_class.new :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}

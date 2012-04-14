@@ -12,6 +12,14 @@ class Githubris::Gist < Githubris::Base
     @user ||= Githubris::User.new(@attributes[:user])
   end
 
+  def starred?
+    @api.get_gist_starred_status(@attributes[:id])
+  end
+
+  def unstarred?
+    !starred?
+  end
+
   def reload
     swap_attributes @api.get_gist @attributes[:id]
   end
