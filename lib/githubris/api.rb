@@ -43,7 +43,7 @@ class Githubris::API
   end
 
   def get(path, options={})
-    @target.path = path
+    set_request_path(path)
     @target.query_values = options
     MultiJson.encode(_get)
   end
@@ -63,12 +63,14 @@ class Githubris::API
   end
 
   def patch(path, params)
-    set_request_params(path, params)
+    set_request_path(path)
+    set_request_params(params)
     MultiJson.encode(_patch)
   end
 
   def post(path, params)
-    set_request_params(path, params)
+    set_request_path(path)
+    set_request_params(params)
     MultiJson.encode(_post)
   end
 
@@ -104,9 +106,12 @@ class Githubris::API
     data
   end
 
-  def set_request_params(path, params)
-    @target.path = path
+  def set_request_params(params)
     @options[:body] = params
+  end
+
+  def set_request_path(path)
+    @target.path = path
   end
 
   def oauth_access_token_url
