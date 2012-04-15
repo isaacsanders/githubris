@@ -16,8 +16,18 @@ module Githubris::API::Gist
     get_gist_from(gist_path(id))
   end
 
+  def put_gist_star(id)
+    set_request_path(gist_star_path(id))
+    _put(@target.to_s, @options.merge(:headers => {'Content-Length' => '0'}))
+  end
+
+  def delete_gist_star(id)
+    set_request_path(gist_star_path(id))
+    _delete
+  end
+
   def get_gist_starred_status(id)
-    set_request_path(gist_starred_status_path(id))
+    set_request_path(gist_star_path(id))
     case _get.code
     when 204
       true
@@ -65,7 +75,7 @@ module Githubris::API::Gist
     '/gists/starred'
   end
 
-  def gist_starred_status_path(id)
+  def gist_star_path(id)
     "/gists/#{id}/star"
   end
 

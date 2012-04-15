@@ -2,15 +2,20 @@ require 'httparty'
 
 module Githubris::API::HTTP
   private
-  def _get(path=@target.to_s, options=@options)
-    HTTParty.get(path, options)
+
+  def self.define_httparty_method(*http_methods)
+    http_methods.each do |http_method|
+      module_eval http_method_string(http_method)
+    end
   end
 
-  def _post(path=@target.to_s, options=@options)
-    HTTParty.post(path, options)
+  def self.http_method_string(http_method)
+    """
+    def _#{http_method}(path=@target.to_s, options=@options)
+      HTTParty.#{http_method}(path, options)
+    end
+    """
   end
 
-  def _patch(path=@target.to_s, options=@options)
-    HTTParty.patch(path, options)
-  end
+  define_httparty_method :get, :post, :put, :delete
 end

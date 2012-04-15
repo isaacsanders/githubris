@@ -58,6 +58,12 @@ class Githubris::API
     handle_request_data post(path, MultiJson.encode(params))
   end
 
+  def post(path, params)
+    set_request_path(path)
+    set_request_params(params)
+    MultiJson.encode(_post)
+  end
+
   def patch_data_to(path, params)
     handle_request_data patch(path, MultiJson.encode(params))
   end
@@ -68,10 +74,9 @@ class Githubris::API
     MultiJson.encode(_patch)
   end
 
-  def post(path, params)
+  def put(path)
     set_request_path(path)
-    set_request_params(params)
-    MultiJson.encode(_post)
+    MultiJson.encode(_put)
   end
 
   private

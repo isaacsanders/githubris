@@ -4,9 +4,14 @@ describe Githubris::Gist do
   use_vcr_cassette
 
   describe '#new?' do
-    it 'will be true if there are issues when reloading' do
+    it 'seems new if there are issues when reloading' do
       gist_without_id = Githubris::Gist.new
       gist_without_id.should be_new
+    end
+
+    it 'seems to not be new if there are no issues' do
+      gist = Githubris::Gist.new :id => 1
+      gist.should_not be_new
     end
   end
 
@@ -31,77 +36,50 @@ describe Githubris::Gist do
     end
   end
 
-  describe '#starred?' do
-    context 'on an authorized user' do
-      let(:api) { Githubris::API.new }
-      let(:user) { api.get_authenticated_user }
-
-      before do
-        api.basic_auth 'GithubrisTestUser', 'password'
-      end
-
-      context 'on a starred gist' do
-        let(:gist) { user.starred_gists.first }
-
-        it 'is true' do
-          gist.should be_starred
-        end
-      end
-
-      context 'on an unstarred gist' do
-        let(:gist) { Githubris::Gist.new(:id => 1).reload }
-
-        it 'is false' do
-          gist.should_not be_starred
-        end
-      end
-    end
-  end
-
-  describe '#unstarred?' do
-    context 'on an authorized user' do
-      let(:api) { Githubris::API.new }
-      let(:user) { api.get_authenticated_user }
-
-      before do
-        api.basic_auth 'GithubrisTestUser', 'password'
-      end
-
-      context 'on a starred gist' do
-        let(:gist) { user.starred_gists.first }
-
-        it 'is false' do
-          gist.should_not be_unstarred
-        end
-      end
-
-      context 'on an unstarred gist' do
-        let(:gist) { Githubris::Gist.new(:id => 1).reload }
-
-        it 'is false' do
-          gist.should be_unstarred
-        end
-      end
-    end
-  end
-
   describe '#save' do
     it 'for a public, anonymous gist' do
       gist = described_class.new :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
       lambda { gist.save }.should_not raise_error
     end
+  end
 
-    context 'when authenticated' do
+  context 'when authenticated' do
+    let(:api) { Githubris::API.new }
+    let(:user) { api.get_authenticated_user }
 
-      let(:api) { Githubris::API.new }
+    before do
+      api.basic_auth 'GithubrisTestUser', 'password'
+      api.should be_authenticated
+    end
 
-      before do
-        api.basic_auth('GithubrisTestUser', 'password')
+    describe '#star!' do
+      let(:gist) { Githubris::Gist.new(:id => 1, :_api => api).reload }
+
+      it 'it stars the gist' do
+        gist.star!
+        gist.should be_starred
       end
+    end
 
+    describe '#unstar!' do
+      let(:gist) { api.get_authenticated_user.starred_gists.first }
+
+      it 'it unstars the gist' do
+        gist.unstar!
+        gist.should be_unstarred
+      end
+    end
+
+    describe '#save' do
       context 'creating a file' do
         it 'for a gist by an authenticated user' do
           gist = described_class.new :_api => api, :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
+          lambda { gist.save }.should_not raise_error
+          gist.user.login.should == 'GithubrisTestUser'
+        end
+
+        it 'for a private gist by an authenticated user' do
+          gist = described_class.new :_api => api, :public => false, :files => {'gistfile.txt' => {:content => 'foobar'}}
           lambda { gist.save }.should_not raise_error
           gist.user.login.should == 'GithubrisTestUser'
         end
