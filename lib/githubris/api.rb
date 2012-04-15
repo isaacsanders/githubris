@@ -18,6 +18,7 @@ class Githubris::API
     {
       :scheme => 'https',
       :host => 'api.github.com',
+      :query => ''
     }
   end
 
@@ -45,41 +46,55 @@ class Githubris::API
   def get(path, options={})
     set_request_path(path)
     @target.query_values = options
-    MultiJson.encode(_get.parsed_response)
+    encode_json(_get.parsed_response)
   end
 
   def post_oauth_access_token(params)
-    @target.query ||= ''
     @target.query += _post(oauth_access_token_url, :query => params)
     @target.query_values['access_token']
   end
 
   def post_data_to(path, params)
-    handle_request_data post(path, MultiJson.encode(params))
+    handle_request_data post(path, encode_json(params))
   end
 
   def post(path, params)
-    set_request_path(path)
-    set_request_params(params)
-    MultiJson.encode(_post.parsed_response)
+    set_request(path, params)
+    encode_json(_post.parsed_response)
   end
 
   def patch_data_to(path, params)
-    handle_request_data patch(path, MultiJson.encode(params))
+    handle_request_data patch(path, encode_json(params))
   end
 
   def patch(path, params)
-    set_request_path(path)
-    set_request_params(params)
-    MultiJson.encode(_patch.parsed_response)
+    set_request(path, params)
+    encode_json(_patch.parsed_response)
   end
 
-  def put(path)
-    set_request_path(path)
-    MultiJson.encode(_put.parsed_response)
+  def put_data_to(path, params)
+    handle_request_data put(path, encode_json(params))
+  end
+
+  def put(path, params)
+    set_request(path, params)
+    encode_json(_put.parsed_response)
   end
 
   private
+
+  def set_request(path, params)
+    set_request_path(path)
+    set_request_params(params)
+  end
+
+  def set_request_params(params)
+    @options[:body] = params
+  end
+
+  def set_request_path(path)
+    @target.path = path
+  end
 
   def handle_request_data(data)
     data = decode_json(data) if data.is_a? String
@@ -101,22 +116,17 @@ class Githubris::API
     MultiJson.decode(json, :symbolize_keys => true)
   end
 
+  def encode_json(json)
+    MultiJson.encode(json)
+  end
+
   def embed_self_in(data)
     if data.is_a? Array
-      data.each {|data_el| data_el[:_api] = self }
+      data.map {|data_el| embed_self_in(data_el) }
     else
       data[:_api] = self
+      data
     end
-
-    data
-  end
-
-  def set_request_params(params)
-    @options[:body] = params
-  end
-
-  def set_request_path(path)
-    @target.path = path
   end
 
   def oauth_access_token_url
