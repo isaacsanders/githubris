@@ -4,6 +4,7 @@ class Githubris
   autoload :Blob, 'githubris/blob'
   autoload :Comment, 'githubris/comment'
   autoload :Commit, 'githubris/commit'
+  autoload :CustomAttributes, 'githubris/custom_attributes'
   autoload :Error, 'githubris/error'
   autoload :Event, 'githubris/event'
   autoload :Gist, 'githubris/gist'
