@@ -15,22 +15,46 @@ describe Githubris::Gist do
     end
   end
 
-  context 'on a gist with an id' do
-    subject { described_class.new :id => id }
-    let(:id) { 1 }
-
-    describe '#reload' do
-      it 'returns the same object' do
-        obj_id = subject.object_id
-        subject.reload.object_id.should == obj_id
-      end
+  describe '#reload' do
+    it 'works with or without an id' do
+      gist = Githubris::Gist.new :url => 'https://api.github.com/gists/1'
+      lambda { gist.reload }.should_not raise_error
+      gist = Githubris::Gist.new :id => 1
+      lambda { gist.reload }.should_not raise_error
     end
+
+    it 'returns the same object' do
+      gist = Githubris::Gist.new :id => 1
+      obj_id = gist.object_id
+      gist.reload.object_id.should == obj_id
+    end
+
+    it 'errors when any indication of identity is absent' do
+      gist = Githubris::Gist.new
+      lambda { gist.reload }.should raise_error Githubris::Error
+    end
+  end
+
+  context 'on a gist with an id' do
+    let(:id) { 1 }
+    subject { described_class.new :id => 1 }
 
     context 'given a gist full of data' do
       describe '#user' do
         it 'returns a user' do
           subject.reload
           subject.user.should be_instance_of Githubris::User
+        end
+      end
+    end
+
+    describe '#history' do
+      context 'on a gist with history' do
+        it 'is an array of gists' do
+          subject.reload
+          subject.history.each do |gist|
+            gist.should be_instance_of Githubris::Gist
+          end
         end
       end
     end

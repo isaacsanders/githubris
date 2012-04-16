@@ -28,8 +28,23 @@ class Githubris::Gist < Githubris::Base
     !starred?
   end
 
+  def history
+    @attributes[:history].map do |gist_data|
+      Githubris::Gist.new(gist_data)
+    end
+  rescue NoMethodError
+    raise Githubris::Error, 'Gist has no history.'
+  end
+
   def reload
-    swap_attributes @api.get_gist @attributes[:id]
+    if @attributes[:id]
+      gist = @api.get_gist @attributes[:id]
+    elsif @attributes[:url]
+      gist = Githubris::Gist.new @api._get @attributes[:url]
+    else
+      raise Githubris::Error, 'Missing a unique identifier, such as an id or a url'
+    end
+    swap_attributes gist
   end
 
   def save
