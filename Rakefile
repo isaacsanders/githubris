@@ -3,8 +3,14 @@ require 'bundler/setup'
 require 'rspec/core/rake_task'
 require 'flay_task'
 require 'flog_task'
+require 'pry'
 
 Bundler.setup
+
+task :console do
+  Bundler.require
+  pry
+end
 
 RSpec::Core::RakeTask.new :spec do |t|
   t.rspec_opts = '--color --format=documentation'
