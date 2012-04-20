@@ -28,7 +28,7 @@ describe Githubris::Base do
     end
 
     describe '::accessible_attribute' do
-      it 'defines an instance method that returns a URI object' do
+      it 'defines an instance method that returns the attribute named by the method' do
         mock_class.class_eval do
           accessible_attribute :foo
         end

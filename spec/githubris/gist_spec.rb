@@ -79,7 +79,7 @@ describe Githubris::Gist do
     describe '#star!' do
       let(:gist) { Githubris::Gist.new(:id => 1, :_api => api).reload }
 
-      it 'it stars the gist' do
+      it 'stars the gist' do
         gist.star!
         gist.should be_starred
       end
@@ -88,21 +88,23 @@ describe Githubris::Gist do
     describe '#unstar!' do
       let(:gist) { api.get_authenticated_user.starred_gists.first }
 
-      it 'it unstars the gist' do
+      it 'unstars the gist' do
         gist.unstar!
         gist.should be_unstarred
       end
     end
 
     describe '#save' do
-      context 'creating a file' do
-        it 'for a gist by an authenticated user' do
+      context "when creating a public gist" do
+        it 'does not raise an error' do
           gist = described_class.new :_api => api, :public => true, :files => {'gistfile.txt' => {:content => 'foobar'}}
           lambda { gist.save }.should_not raise_error
           gist.user.login.should == 'GithubrisTestUser'
         end
+      end
 
-        it 'for a private gist by an authenticated user' do
+      context 'when creating a private gist' do
+        it 'does not raise an error' do
           gist = described_class.new :_api => api, :public => false, :files => {'gistfile.txt' => {:content => 'foobar'}}
           lambda { gist.save }.should_not raise_error
           gist.user.login.should == 'GithubrisTestUser'
