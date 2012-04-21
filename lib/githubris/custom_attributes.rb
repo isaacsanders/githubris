@@ -1,4 +1,6 @@
 module Githubris::CustomAttributes
+  private
+
   def accessible_attribute(*attr_names)
     readable_attribute(*attr_names)
     writable_attribute(*attr_names)

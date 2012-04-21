@@ -6,16 +6,16 @@ describe Githubris::Publicity do
 
   it                { should be_public }
 
-  describe '#publicize' do
+  describe '#publicize!' do
     it 'makes the gist public' do
-      subject.publicize
+      subject.publicize!
       subject.should be_public
     end
   end
 
-  describe '#privatize' do
+  describe '#privatize!' do
     it 'makes the gist private' do
-      subject.privatize
+      subject.privatize!
       subject.should_not be_public
     end
   end

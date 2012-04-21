@@ -3,11 +3,11 @@ module Githubris::Publicity
     @attributes[:public]
   end
 
-  def publicize
+  def publicize!
     @attributes[:public] = true
   end
 
-  def privatize
+  def privatize!
     @attributes[:public] = false
   end
 end
