@@ -1,1 +1,0 @@
-class Githubris::Comment; end
