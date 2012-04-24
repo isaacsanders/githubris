@@ -17,5 +17,5 @@ module Githubris::API::HTTP
     """
   end
 
-  define_httparty_method :get, :post, :put, :delete
+  define_httparty_method :get, :post, :patch, :put, :delete
 end

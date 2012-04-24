@@ -112,7 +112,7 @@ describe Githubris::Gist do
       end
 
       context 'editing a file' do
-        xit 'can be used to edit a file' do
+        it 'can be used to edit a file' do
           gist = api.get_authenticated_user.gists.last
           expected_id = gist.id
           gist.files['gistfile.txt'] = {}
