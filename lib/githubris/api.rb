@@ -2,11 +2,11 @@ require 'addressable/uri'
 
 class Githubris::API
 
-  autoload :HTTP, 'githubris/api/http'
+  require 'githubris/api/http'
   include Githubris::API::HTTP
-  autoload :Gist, 'githubris/api/gist'
+  require 'githubris/api/gist'
   include Githubris::API::Gist
-  autoload :User, 'githubris/api/user'
+  require 'githubris/api/user'
   include Githubris::API::User
 
   def initialize

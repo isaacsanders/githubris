@@ -1,6 +1,4 @@
 class Githubris::Gist < Githubris::Base
-  autoload :File, 'githubris/gist/file'
-
   include Githubris::Publicity
 
   datetime_attribute :created_at, :updated_at
