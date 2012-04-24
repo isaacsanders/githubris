@@ -26,7 +26,12 @@ module Githubris::API::Gist
     _delete
   end
 
-  def get_gist_starred_status(id)
+  def delete_gist(id)
+    set_request_path(gist_path(id))
+    _delete
+  end
+
+  def get_gist_starred?(id)
     set_request_path(gist_star_path(id))
     case _get.code
     when 204

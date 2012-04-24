@@ -19,19 +19,21 @@ class Githubris::Gist < Githubris::Base
   end
 
   def starred?
-    @api.get_gist_starred_status(@attributes[:id])
+    @api.get_gist_starred?(@attributes[:id])
   end
 
   def unstarred?
     !starred?
   end
 
+  def delete!
+    @api.delete_gist(@attributes[:id])
+  end
+
   def history
     @attributes[:history].map do |gist_data|
       Githubris::Gist.new(gist_data)
     end
-  rescue NoMethodError
-    raise Githubris::Error, 'Gist has no history.'
   end
 
   def reload

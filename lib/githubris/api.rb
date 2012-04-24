@@ -72,15 +72,6 @@ class Githubris::API
     encode_json(_patch.parsed_response)
   end
 
-  def put_data_to(path, params)
-    handle_request_data put(path, encode_json(params))
-  end
-
-  def put(path, params)
-    set_request(path, params)
-    encode_json(_put.parsed_response)
-  end
-
   private
 
   def set_request(path, params)

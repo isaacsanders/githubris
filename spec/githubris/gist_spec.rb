@@ -76,6 +76,17 @@ describe Githubris::Gist do
       api.should be_authenticated
     end
 
+    describe '#delete!' do
+      let(:gist) { api.get_authenticated_user.gists.first }
+
+      it 'deletes the gist' do
+        gist.delete!
+        lambda do
+          gist.reload
+        end.should raise_error
+      end
+    end
+
     describe '#star!' do
       let(:gist) { Githubris::Gist.new(:id => 1, :_api => api).reload }
 
