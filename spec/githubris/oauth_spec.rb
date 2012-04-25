@@ -53,6 +53,18 @@ RESPONSE
       url.should match /scopes=user,public_repo,repo,gist/
       url.should match /redirect_uri=#{URI.encode(redirect_uri)}/
     end
+
+    it 'does not include a redirect_uri when none is given' do
+      url = oauth.request_access_url
+
+      url.should_not match /redirect_uri=/
+    end
+
+    it 'does not include scopes when none are given' do
+      url = oauth.request_access_url
+
+      url.should_not match /scopes=/
+    end
   end
 
   describe '#access_token' do

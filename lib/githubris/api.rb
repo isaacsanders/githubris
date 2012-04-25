@@ -53,7 +53,8 @@ class Githubris::API
 
   def post_oauth_access_token(params)
     @target.query += _post(oauth_access_token_url, :query => params)
-    @target.query_values['access_token']
+    @options[:default_params] ||= {}
+    @options[:default_params][:access_token] = @target.query_values['access_token']
   end
 
   def post_data_to(path, params)
