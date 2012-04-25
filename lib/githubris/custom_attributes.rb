@@ -9,7 +9,7 @@ module Githubris::CustomAttributes
   def uri_attribute(*attr_names)
     attr_names.each do |name|
       define_method name do
-        URI.parse @attributes[name]
+        Addressable::URI.parse @attributes[name]
       end
     end
   end

@@ -23,7 +23,7 @@ describe Githubris::Base do
         end
 
         object = mock_class.new(:foo => 'http://google.com')
-        object.foo.should be_kind_of URI
+        object.foo.should be_instance_of Addressable::URI
       end
     end
 
