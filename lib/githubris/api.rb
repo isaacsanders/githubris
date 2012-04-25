@@ -1,11 +1,13 @@
 require 'addressable/uri'
+require 'yajl'
 
 class Githubris::API
-
-  require 'githubris/api/http'
-  include Githubris::API::HTTP
   require 'githubris/api/gist'
   include Githubris::API::Gist
+  require 'githubris/api/http'
+  include Githubris::API::HTTP
+  require 'githubris/api/json'
+  include Githubris::API::JSON
   require 'githubris/api/user'
   include Githubris::API::User
 
@@ -46,7 +48,7 @@ class Githubris::API
   def get(path, options={})
     set_request_path(path)
     @target.query_values = options
-    encode_json(_get.parsed_response)
+    dump_json(_get.parsed_response)
   end
 
   def post_oauth_access_token(params)
@@ -55,21 +57,21 @@ class Githubris::API
   end
 
   def post_data_to(path, params)
-    handle_request_data post(path, encode_json(params))
+    handle_request_data post(path, dump_json(params))
   end
 
   def post(path, params)
     set_request(path, params)
-    encode_json(_post.parsed_response)
+    dump_json(_post.parsed_response)
   end
 
   def patch_data_to(path, params)
-    handle_request_data patch(path, encode_json(params))
+    handle_request_data patch(path, dump_json(params))
   end
 
   def patch(path, params)
     set_request(path, params)
-    encode_json(_patch.parsed_response)
+    dump_json(_patch.parsed_response)
   end
 
   private
@@ -88,7 +90,7 @@ class Githubris::API
   end
 
   def handle_request_data(data)
-    data = decode_json(data) if data.is_a? String
+    data = load_json(data) if data.is_a? String
     raise build_error data if error_data?(data)
     embed_self_in data
   end
@@ -101,14 +103,6 @@ class Githubris::API
 
   def error_data?(data)
     data.is_a?(Hash) and data[:message]
-  end
-
-  def decode_json(json)
-    MultiJson.decode(json, :symbolize_keys => true)
-  end
-
-  def encode_json(json)
-    MultiJson.encode(json)
   end
 
   def embed_self_in(data)
