@@ -8,6 +8,8 @@ class Githubris::API
   include Githubris::API::HTTP
   require 'githubris/api/json'
   include Githubris::API::JSON
+  require 'githubris/api/oauth'
+  include Githubris::API::OAuth
   require 'githubris/api/user'
   include Githubris::API::User
 
@@ -49,12 +51,6 @@ class Githubris::API
     set_request_path(path)
     @target.query_values = options
     dump_json(_get.parsed_response)
-  end
-
-  def post_oauth_access_token(params)
-    @target.query += _post(oauth_access_token_url, :query => params)
-    @options[:default_params] ||= {}
-    @options[:default_params][:access_token] = @target.query_values['access_token']
   end
 
   def post_data_to(path, params)
@@ -115,9 +111,5 @@ class Githubris::API
       data[:_api] = self
       data
     end
-  end
-
-  def oauth_access_token_url
-    'https://github.com/login/oauth/access_token'
   end
 end
