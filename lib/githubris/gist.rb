@@ -59,10 +59,6 @@ class Githubris::Gist < Githubris::Base
   end
 
   def new?
-    reload
-  rescue Githubris::Error
-    true
-  else
-    false
+    @attributes[:id].nil?
   end
 end
