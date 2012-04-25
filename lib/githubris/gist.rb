@@ -37,14 +37,8 @@ class Githubris::Gist < Githubris::Base
   end
 
   def reload
-    if @attributes[:id]
-      gist = @api.get_gist @attributes[:id]
-    elsif @attributes[:url]
-      gist = Githubris::Gist.new @api._get @attributes[:url]
-    else
-      raise Githubris::Error, 'Missing a unique identifier, such as an id or a url'
-    end
-    swap_attributes gist
+    gist = @api.get_gist @attributes[:id]
+    swap_attributes! gist
   end
 
   def save
@@ -53,7 +47,7 @@ class Githubris::Gist < Githubris::Base
     else
       saved_attributes = @api.patch_gist(@attributes[:id], saving_attributes)
     end
-    swap_attributes saved_attributes
+    swap_attributes! saved_attributes
   end
 
   def saving_attributes

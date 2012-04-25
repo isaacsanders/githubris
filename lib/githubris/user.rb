@@ -11,11 +11,6 @@ class Githubris::User < Githubris::Base
   end
 
   def reload
-    swap_attributes @api.get_user @attributes[:login]
-  rescue Githubris::Error => error
-    case error
-    when Githubris::Error::NotFound
-      raise
-    end
+    swap_attributes! @api.get_user @attributes[:login]
   end
 end

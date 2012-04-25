@@ -10,9 +10,10 @@ class Githubris::Base
     @attributes == other.instance_variable_get(:@attributes)
   end
 
-  def swap_attributes(other)
-    instance_variable_set(:@attributes,
-                          other.instance_variable_get(:@attributes))
+  private
+
+  def swap_attributes!(other)
+    @attributes = other.instance_variable_get(:@attributes)
     self
   end
 end

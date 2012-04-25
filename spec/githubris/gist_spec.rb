@@ -16,11 +16,14 @@ describe Githubris::Gist do
   end
 
   describe '#reload' do
-    it 'works with or without an id' do
-      gist = Githubris::Gist.new :url => 'https://api.github.com/gists/1'
-      lambda { gist.reload }.should_not raise_error
+    it 'works with an id' do
       gist = Githubris::Gist.new :id => 1
       lambda { gist.reload }.should_not raise_error
+    end
+
+    it 'does not work without an id' do
+      gist = Githubris::Gist.new
+      lambda { gist.reload }.should raise_error
     end
 
     it 'returns the same object' do
