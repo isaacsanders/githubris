@@ -92,18 +92,20 @@ class Githubris::API
 
   def handle_request_data(data)
     data = load_json(data) if data.is_a? String
-    raise build_error data if error_data?(data)
+    raise error_from data if error_data?(data)
     embed_self_in data
   end
 
-  def build_error data
-    words = data[:message].split(' ')
-    error_class_name = words.map {|word| word.capitalize}.join
-    Githubris::Error.const_get(error_class_name)
+  def error_from data
+    Githubris::Error.const_get(class_name_from_string(data[:message]))
+  end
+
+  def class_name_from_string(string)
+    string.split(' ').map(&:capitalize).join
   end
 
   def error_data?(data)
-    data.is_a?(Hash) and data[:message]
+    data.is_a?(Hash) and data.has_key?(:message)
   end
 
   def embed_self_in(data)
