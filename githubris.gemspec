@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency('httparty', '>= 0.8.3')
   s.add_dependency('multi_json')
-  s.add_dependency('yajl-ruby')
+  s.add_dependency('json_pure')
   s.add_dependency('addressable', '~> 2.2.7')
 end

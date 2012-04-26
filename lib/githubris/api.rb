@@ -1,5 +1,4 @@
 require 'addressable/uri'
-require 'yajl'
 
 class Githubris::API
   require 'githubris/api/gist'

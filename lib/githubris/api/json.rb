@@ -1,8 +1,8 @@
 require 'multi_json'
-require 'yajl'
+require 'json/pure'
 
 module Githubris::API::JSON
-  MultiJson.use :yajl
+  MultiJson.use :json_pure
 
   private
 
