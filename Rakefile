@@ -28,6 +28,6 @@ end
 FlayTask.new &FLAY_FLOG_OPTS_BLOCK
 FlogTask.new &FLAY_FLOG_OPTS_BLOCK
 
-task :ci => [:spec]
+task :ci => [:spec_no_cov]
 task :spec => [:cov, :spec_no_cov]
 task :default => [:cov, :spec, :flay, :flog]
