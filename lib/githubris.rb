@@ -5,7 +5,6 @@ class Githubris
   autoload :Error, 'githubris/error'
   autoload :Gist, 'githubris/gist'
   autoload :OAuth, 'githubris/oauth'
-  autoload :Publicity, 'githubris/publicity'
   autoload :User, 'githubris/user'
   autoload :Version, 'githubris/version'
 

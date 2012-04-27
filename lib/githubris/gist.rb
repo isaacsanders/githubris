@@ -1,10 +1,9 @@
 class Githubris::Gist < Githubris::Base
-  include Githubris::Publicity
-
   datetime_attribute :created_at, :updated_at
-  accessible_attribute :description
-  readable_attribute :id, :files
+  accessible_attribute :description, :files
+  readable_attribute :id
   uri_attribute :url
+  boolean_attribute :public
 
   def user
     @user ||= Githubris::User.new(@attributes[:user])

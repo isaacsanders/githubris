@@ -19,7 +19,12 @@ module Githubris::API::User
     Githubris::User.new get_data_from(authenticated_user_path)
   end
 
+  def patch_user(params)
+    Githubris::User.new patch_data_to(authenticated_user_path, params)
+  end
+
   private
+
   def user_path(login)
     "/users/#{login}"
   end

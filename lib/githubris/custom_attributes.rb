@@ -22,6 +22,22 @@ module Githubris::CustomAttributes
     end
   end
 
+  def boolean_attribute(*attr_names)
+    attr_names.each do |name|
+      define_method "#{name}?" do
+        @attributes[name]
+      end
+
+      define_method "#{name}!" do
+        @attributes[name] = true
+      end
+
+      define_method "not_#{name}!" do
+        @attributes[name] = false
+      end
+    end
+  end
+
   def readable_attribute(*attr_names)
     attr_names.each do |name|
       define_method name do
