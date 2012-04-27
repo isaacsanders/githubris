@@ -12,7 +12,7 @@ task :console do
   pry
 end
 
-RSpec::Core::RakeTask.new :spec do |t|
+RSpec::Core::RakeTask.new :spec_no_cov do |t|
   t.rspec_opts = '--color --format=documentation'
 end
 
@@ -29,5 +29,5 @@ FlayTask.new &FLAY_FLOG_OPTS_BLOCK
 FlogTask.new &FLAY_FLOG_OPTS_BLOCK
 
 task :ci => [:spec]
-task :specs => :spec
+task :spec => [:cov, :spec_no_cov]
 task :default => [:cov, :spec, :flay, :flog]
