@@ -1,11 +1,6 @@
+require 'githubris/api'
+
 class Githubris
-  autoload :API, 'githubris/api'
-  autoload :Base, 'githubris/base'
-  autoload :CustomAttributes, 'githubris/custom_attributes'
-  autoload :Error, 'githubris/error'
-  autoload :Gist, 'githubris/gist'
-  autoload :OAuth, 'githubris/oauth'
-  autoload :User, 'githubris/user'
   autoload :Version, 'githubris/version'
 
   def initialize

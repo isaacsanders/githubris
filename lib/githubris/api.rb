@@ -1,4 +1,5 @@
 require 'addressable/uri'
+require 'githubris/error'
 
 class Githubris::API
   require 'githubris/api/gist'

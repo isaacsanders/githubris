@@ -1,3 +1,5 @@
+require 'githubris/base'
+
 class Githubris::Gist < Githubris::Base
   datetime_attribute :created_at, :updated_at
   accessible_attribute :description, :files

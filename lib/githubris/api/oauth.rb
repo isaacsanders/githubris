@@ -1,3 +1,5 @@
+require 'githubris/oauth'
+
 module Githubris::API::OAuth
   OAUTH_ACCESS_TOKEN_URL = Addressable::URI.parse 'https://github.com/login/oauth/access_token'
 

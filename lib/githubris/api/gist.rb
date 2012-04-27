@@ -1,3 +1,5 @@
+require 'githubris/gist'
+
 module Githubris::API::Gist
 
   def get_user_gists(login, options={})

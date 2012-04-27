@@ -1,3 +1,5 @@
+require 'githubris/user'
+
 module Githubris::API::User
   NOT_AUTHENTICATED_ERRORS = [
     Githubris::Error::RequiresAuthentication,

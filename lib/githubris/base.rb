@@ -1,3 +1,5 @@
+require 'githubris/custom_attributes'
+
 class Githubris::Base
   extend Githubris::CustomAttributes
 

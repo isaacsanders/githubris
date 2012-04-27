@@ -1,3 +1,5 @@
+require 'githubris/base'
+
 class Githubris::User < Githubris::Base
   uri_attribute :avatar_url, :url, :blog
   readable_attribute :login, :id, :gravatar_id
