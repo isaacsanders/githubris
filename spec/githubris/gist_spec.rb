@@ -3,6 +3,17 @@ require 'spec_helper'
 describe Githubris::Gist do
   use_vcr_cassette
 
+  describe '#fork' do
+    it 'returns a new gist object that is a fork of the parent' do
+      gist = Githubris::Gist.new :id => 2511126
+
+      gist_fork = gist.fork
+      gist_fork.should be_instance_of Githubris::Gist
+      gist_fork.should_not == gist
+      gist.should == gist
+    end
+  end
+
   describe '#new?' do
     it 'seems new if there are issues when reloading' do
       gist_without_id = Githubris::Gist.new
@@ -80,13 +91,12 @@ describe Githubris::Gist do
     end
 
     describe '#fork' do
-      it 'returns a new gist object that is a fork of the parent' do
-        gist = Githubris::Gist.new :id => 2511126
+      it 'returns a gist with the same user login as the authenticated user' do
+        gist = Githubris::Gist.new :id => 2511126, :_api => api
 
         gist_fork = gist.fork
-        gist_fork.should be_instance_of Githubris::Gist
-        gist_fork.should_not == gist
-        gist.should == gist
+
+        gist_fork.user.login.should == user.login
       end
     end
 

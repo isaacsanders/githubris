@@ -1007,156 +1007,6 @@ http_interactions:
     http_version: '1.1'
   recorded_at: Tue, 24 Apr 2012 12:45:02 GMT
 - request:
-    method: get
-    uri: https://GithubrisTestUser:password@api.github.com/users//gists?
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      authorization:
-      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
-      connection:
-      - close
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      server:
-      - nginx/1.0.13
-      date:
-      - Fri, 27 Apr 2012 13:10:45 GMT
-      content-type:
-      - application/json; charset=utf-8
-      connection:
-      - close
-      status:
-      - 401 Unauthorized
-      www-authenticate:
-      - Basic realm="GitHub"
-      etag:
-      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
-      content-length:
-      - '29'
-    body:
-      encoding: US-ASCII
-      string: ! '{"message":"Bad credentials"}'
-    http_version: '1.1'
-  recorded_at: Fri, 27 Apr 2012 13:11:05 GMT
-- request:
-    method: put
-    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      content-length:
-      - '0'
-      authorization:
-      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
-      connection:
-      - close
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      server:
-      - nginx/1.0.13
-      date:
-      - Fri, 27 Apr 2012 13:10:45 GMT
-      content-type:
-      - application/json; charset=utf-8
-      connection:
-      - close
-      status:
-      - 401 Unauthorized
-      www-authenticate:
-      - Basic realm="GitHub"
-      etag:
-      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
-      content-length:
-      - '29'
-    body:
-      encoding: US-ASCII
-      string: ! '{"message":"Bad credentials"}'
-    http_version: '1.1'
-  recorded_at: Fri, 27 Apr 2012 13:11:06 GMT
-- request:
-    method: get
-    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      authorization:
-      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
-      connection:
-      - close
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      server:
-      - nginx/1.0.13
-      date:
-      - Fri, 27 Apr 2012 13:10:46 GMT
-      content-type:
-      - application/json; charset=utf-8
-      connection:
-      - close
-      status:
-      - 401 Unauthorized
-      www-authenticate:
-      - Basic realm="GitHub"
-      etag:
-      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
-      content-length:
-      - '29'
-    body:
-      encoding: US-ASCII
-      string: ! '{"message":"Bad credentials"}'
-    http_version: '1.1'
-  recorded_at: Fri, 27 Apr 2012 13:11:06 GMT
-- request:
-    method: delete
-    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      authorization:
-      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
-      connection:
-      - close
-  response:
-    status:
-      code: 401
-      message: Unauthorized
-    headers:
-      server:
-      - nginx/1.0.13
-      date:
-      - Fri, 27 Apr 2012 13:10:46 GMT
-      content-type:
-      - application/json; charset=utf-8
-      connection:
-      - close
-      status:
-      - 401 Unauthorized
-      www-authenticate:
-      - Basic realm="GitHub"
-      etag:
-      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
-      content-length:
-      - '29'
-    body:
-      encoding: US-ASCII
-      string: ! '{"message":"Bad credentials"}'
-    http_version: '1.1'
-  recorded_at: Fri, 27 Apr 2012 13:11:07 GMT
-- request:
     method: post
     uri: https://api.github.com/gists/2511126/fork?
     body:
@@ -1198,4 +1048,129 @@ http_interactions:
         hide address bar for iOS & Android on page load and orientation change"}'
     http_version: '1.1'
   recorded_at: Fri, 27 Apr 2012 18:16:29 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 18:27:38 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"7dd241413ab11413d0b1b17b247410e7"'
+      x-ratelimit-remaining:
+      - '4999'
+      content-length:
+      - '752'
+    body:
+      encoding: US-ASCII
+      string: ! '{"followers":0,"type":"User","avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","bio":null,"plan":{"private_repos":0,"space":307200,"name":"free","collaborators":0},"html_url":"https://github.com/GithubrisTestUser","created_at":"2012-02-24T12:23:28Z","public_repos":1,"blog":"","url":"https://api.github.com/users/GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","public_gists":12,"following":0,"company":"Acme,
+        Inc.","total_private_repos":0,"disk_usage":0,"name":null,"private_gists":0,"collaborators":0,"location":null,"id":1469392,"owned_private_repos":0,"email":null,"hireable":null,"login":"GithubrisTestUser"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 18:27:38 GMT
+- request:
+    method: post
+    uri: https://GithubrisTestUser:password@api.github.com/gists/2511126/fork?
+    body:
+      encoding: US-ASCII
+      string: ! '{}'
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 18:27:39 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 201 Created
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"38634b77d8bdab0f1f2fba9a12e5a94d"'
+      location:
+      - https://api.github.com/gists/2511566
+      x-ratelimit-remaining:
+      - '4998'
+      content-length:
+      - '971'
+    body:
+      encoding: US-ASCII
+      string: ! '{"git_push_url":"git@gist.github.com:2511566.git","public":true,"files":{"Hide
+        Mobile Browser Chrome":{"type":"text/plain","raw_url":"https://gist.github.com/raw/2511566/d01fbd56ac54e062810e70b93a268796b92309fe/Hide
+        Mobile Browser Chrome","language":null,"size":1310,"filename":"Hide Mobile
+        Browser Chrome"}},"created_at":"2012-04-27T18:27:38Z","html_url":"https://gist.github.com/2511566","user":{"avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","url":"https://api.github.com/users/GithubrisTestUser","gravatar_id":"20de3fd01e285d14de84067c34ab74d2","id":1469392,"login":"GithubrisTestUser"},"url":"https://api.github.com/gists/2511566","comments":0,"updated_at":"2012-04-27T18:27:38Z","git_pull_url":"git://gist.github.com/2511566.git","id":"2511566","description":"Normalized
+        hide address bar for iOS & Android on page load and orientation change"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 18:27:39 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/user?
+    body:
+      encoding: US-ASCII
+      string: ! '{}'
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 18:27:39 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"0fcc4b6b8082d145f297a8b507212076"'
+      x-ratelimit-remaining:
+      - '4997'
+      content-length:
+      - '752'
+    body:
+      encoding: US-ASCII
+      string: ! '{"type":"User","url":"https://api.github.com/users/GithubrisTestUser","hireable":null,"gravatar_id":"20de3fd01e285d14de84067c34ab74d2","avatar_url":"https://secure.gravatar.com/avatar/20de3fd01e285d14de84067c34ab74d2?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","plan":{"collaborators":0,"private_repos":0,"name":"free","space":307200},"following":0,"created_at":"2012-02-24T12:23:28Z","company":"Acme,
+        Inc.","disk_usage":0,"email":null,"bio":null,"location":null,"login":"GithubrisTestUser","total_private_repos":0,"collaborators":0,"owned_private_repos":0,"html_url":"https://github.com/GithubrisTestUser","public_gists":13,"followers":0,"name":null,"blog":"","id":1469392,"private_gists":0,"public_repos":1}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 18:27:39 GMT
 recorded_with: VCR 2.1.0
