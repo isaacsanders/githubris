@@ -25,10 +25,10 @@ class Githubris::OAuth
   end
 
   def query_values(query)
-    query_values = { :client_id => @client_id }
-    query_values[:scopes] = query[:scopes].join(',') if query[:scopes]
-    query_values[:redirect_uri] = query[:redirect_uri] if query[:redirect_uri]
-    query_values
+    { :client_id => @client_id }.tap do |query_values|
+      query_values[:scopes] = query[:scopes].join(',') if query[:scopes]
+      query_values[:redirect_uri] = query[:redirect_uri] if query[:redirect_uri]
+    end
   end
 
   def access_token_params(code)

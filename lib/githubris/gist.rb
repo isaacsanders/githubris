@@ -11,15 +11,15 @@ class Githubris::Gist < Githubris::Base
   end
 
   def star!
-    @api.put_gist_star(@attributes[:id])
+    @api.put_gist_star(id)
   end
 
   def unstar!
-    @api.delete_gist_star(@attributes[:id])
+    @api.delete_gist_star(id)
   end
 
   def starred?
-    @api.get_gist_starred?(@attributes[:id])
+    @api.get_gist_starred?(id)
   end
 
   def unstarred?
@@ -27,7 +27,7 @@ class Githubris::Gist < Githubris::Base
   end
 
   def delete!
-    @api.delete_gist(@attributes[:id])
+    @api.delete_gist(id)
   end
 
   def history
@@ -37,7 +37,7 @@ class Githubris::Gist < Githubris::Base
   end
 
   def reload
-    gist = @api.get_gist @attributes[:id]
+    gist = @api.get_gist(id)
     swap_attributes! gist
   end
 
@@ -45,20 +45,20 @@ class Githubris::Gist < Githubris::Base
     if new?
       saved_attributes = @api.post_gist(saving_attributes)
     else
-      saved_attributes = @api.patch_gist(@attributes[:id], saving_attributes)
+      saved_attributes = @api.patch_gist(id, saving_attributes)
     end
     swap_attributes! saved_attributes
   end
 
   def saving_attributes
     {
-      :description => @attributes[:description],
-      :public => @attributes[:public],
-      :files => @attributes[:files]
+      :description => description,
+      :public => public?,
+      :files => files
     }
   end
 
   def new?
-    @attributes[:id].nil?
+    id.nil?
   end
 end

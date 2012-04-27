@@ -1,4 +1,15 @@
 module Githubris::API::User
+  NOT_AUTHENTICATED_ERRORS = [
+    Githubris::Error::RequiresAuthentication,
+    Githubris::Error::BadCredentials,
+    Githubris::Error::MaxNumberOfLoginAttemptExceeded
+  ]
+
+  def authenticated?
+    get_authenticated_user
+  rescue *NOT_AUTHENTICATED_ERRORS
+    nil
+  end
 
   def get_user(login)
     Githubris::User.new get_data_from(user_path(login))

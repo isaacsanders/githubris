@@ -4,8 +4,8 @@ module Githubris::API::Gist
     get_gists_from(user_gists_path(login), options)
   end
 
-  def get_user_starred_gists(options={})
-    get_gists_from(user_starred_gists_path, options)
+  def get_starred_gists(options={})
+    get_gists_from(starred_gists_path, options)
   end
 
   def get_public_gists(options={})
@@ -18,22 +18,22 @@ module Githubris::API::Gist
 
   def put_gist_star(id)
     set_request_path(gist_star_path(id))
-    _put(@target.to_s, @options.merge(:headers => {'Content-Length' => '0'}))
+    raw_put(@target, @options.merge(:headers => {'Content-Length' => '0'}))
   end
 
   def delete_gist_star(id)
     set_request_path(gist_star_path(id))
-    _delete
+    raw_delete
   end
 
   def delete_gist(id)
     set_request_path(gist_path(id))
-    _delete
+    raw_delete
   end
 
   def get_gist_starred?(id)
     set_request_path(gist_star_path(id))
-    case _get.code
+    case raw_get.code
     when 204
       true
     when 404
@@ -76,7 +76,7 @@ module Githubris::API::Gist
     "/users/#{login}/gists"
   end
 
-  def user_starred_gists_path
+  def starred_gists_path
     '/gists/starred'
   end
 
