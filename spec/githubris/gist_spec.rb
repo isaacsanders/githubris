@@ -79,6 +79,17 @@ describe Githubris::Gist do
       api.should be_authenticated
     end
 
+    describe '#fork' do
+      it 'returns a new gist object that is a fork of the parent' do
+        gist = Githubris::Gist.new :id => 2511126
+
+        gist_fork = gist.fork
+        gist_fork.should be_instance_of Githubris::Gist
+        gist_fork.should_not == gist
+        gist.should == gist
+      end
+    end
+
     describe '#delete!' do
       let(:gist) { api.get_authenticated_user.gists.first }
 

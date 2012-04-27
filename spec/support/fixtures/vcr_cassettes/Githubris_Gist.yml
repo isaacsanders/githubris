@@ -1156,4 +1156,46 @@ http_interactions:
       string: ! '{"message":"Bad credentials"}'
     http_version: '1.1'
   recorded_at: Fri, 27 Apr 2012 13:11:07 GMT
+- request:
+    method: post
+    uri: https://api.github.com/gists/2511126/fork?
+    body:
+      encoding: US-ASCII
+      string: ! '{}'
+    headers:
+      connection:
+      - close
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 18:16:29 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 201 Created
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"43f1a455a133e215b6fb997576c454e4"'
+      location:
+      - https://api.github.com/gists/2511497
+      x-ratelimit-remaining:
+      - '4997'
+      content-length:
+      - '660'
+    body:
+      encoding: US-ASCII
+      string: ! '{"user":null,"comments":0,"url":"https://api.github.com/gists/2511497","created_at":"2012-04-27T18:16:28Z","public":true,"updated_at":"2012-04-27T18:16:28Z","git_pull_url":"git://gist.github.com/2511497.git","html_url":"https://gist.github.com/2511497","files":{"Hide
+        Mobile Browser Chrome":{"language":null,"type":"text/plain","raw_url":"https://gist.github.com/raw/2511497/d01fbd56ac54e062810e70b93a268796b92309fe/Hide
+        Mobile Browser Chrome","size":1310,"filename":"Hide Mobile Browser Chrome"}},"git_push_url":"git@gist.github.com:2511497.git","id":"2511497","description":"Normalized
+        hide address bar for iOS & Android on page load and orientation change"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 18:16:29 GMT
 recorded_with: VCR 2.1.0

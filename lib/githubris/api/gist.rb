@@ -45,6 +45,10 @@ module Githubris::API::Gist
     post_gist_to(gists_path, params)
   end
 
+  def post_fork(id)
+    post_gist_to(gist_fork_path(id))
+  end
+
   def patch_gist(id, params)
     patch_gist_to(gist_path(id), params)
   end
@@ -60,7 +64,7 @@ module Githubris::API::Gist
     Githubris::Gist.new get_data_from(path)
   end
 
-  def post_gist_to(path, params)
+  def post_gist_to(path, params={})
     Githubris::Gist.new post_data_to(path, params)
   end
 
@@ -82,6 +86,10 @@ module Githubris::API::Gist
 
   def gist_star_path(id)
     "/gists/#{id}/star"
+  end
+
+  def gist_fork_path(id)
+    "/gists/#{id}/fork"
   end
 
   def gist_path(id)

@@ -25,6 +25,10 @@ class Githubris::Gist < Githubris::Base
     !starred?
   end
 
+  def fork
+    @api.post_fork(id)
+  end
+
   def delete!
     @api.delete_gist(id)
   end
