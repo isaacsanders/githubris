@@ -23,7 +23,18 @@ module Githubris::API::User
     Githubris::User.new patch_data_to(authenticated_user_path, params)
   end
 
+  def get_emails
+    set_request_path emails_path
+    data = load_json(dump_json(raw_get.parsed_response))
+    raise_if_error(data)
+    data
+  end
+
   private
+
+  def emails_path
+    '/user/emails'
+  end
 
   def user_path(login)
     "/users/#{login}"

@@ -1006,4 +1006,154 @@ http_interactions:
       string: ! '{"message":"Not Found"}'
     http_version: '1.1'
   recorded_at: Tue, 24 Apr 2012 12:45:02 GMT
-recorded_with: VCR 2.0.1
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/users//gists?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 13:10:45 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
+      content-length:
+      - '29'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Bad credentials"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 13:11:05 GMT
+- request:
+    method: put
+    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      content-length:
+      - '0'
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 13:10:45 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
+      content-length:
+      - '29'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Bad credentials"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 13:11:06 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 13:10:46 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
+      content-length:
+      - '29'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Bad credentials"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 13:11:06 GMT
+- request:
+    method: delete
+    uri: https://GithubrisTestUser:password@api.github.com/gists//star?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic R2l0aHVicmlzVGVzdFVzZXI6cGFzc3dvcmQ=
+      connection:
+      - close
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Fri, 27 Apr 2012 13:10:46 GMT
+      content-type:
+      - application/json; charset=utf-8
+      connection:
+      - close
+      status:
+      - 401 Unauthorized
+      www-authenticate:
+      - Basic realm="GitHub"
+      etag:
+      - ! '"ca6a3702f840b6bff0bb1bca6be0337c"'
+      content-length:
+      - '29'
+    body:
+      encoding: US-ASCII
+      string: ! '{"message":"Bad credentials"}'
+    http_version: '1.1'
+  recorded_at: Fri, 27 Apr 2012 13:11:07 GMT
+recorded_with: VCR 2.1.0

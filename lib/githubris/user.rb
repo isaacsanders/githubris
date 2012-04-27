@@ -5,6 +5,10 @@ class Githubris::User < Githubris::Base
   writable_attribute :blog
   boolean_attribute :hireable
 
+  def emails
+    @api.get_emails
+  end
+
   def gists(options={})
     @api.get_user_gists(login)
   end
