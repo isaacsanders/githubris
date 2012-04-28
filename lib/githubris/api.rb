@@ -70,7 +70,7 @@ class Githubris::API
       data.map {|data_el| embed_self_in(data_el) }
     else
       data[:_api] = self
-      data
     end
+    data
   end
 end
