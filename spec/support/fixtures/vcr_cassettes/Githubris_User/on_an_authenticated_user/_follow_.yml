@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://GithubrisTestUser:password@api.github.com/user/following/dhh?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      content-length:
+      - '0'
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 28 Apr 2012 01:35:28 GMT
+      connection:
+      - close
+      status:
+      - 204 No Content
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"d41d8cd98f00b204e9800998ecf8427e"'
+      x-ratelimit-remaining:
+      - '4983'
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 28 Apr 2012 01:35:29 GMT
+- request:
+    method: get
+    uri: https://GithubrisTestUser:password@api.github.com/user/following/dhh?
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      authorization:
+      - Basic BasicAuthCrap
+      connection:
+      - close
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      server:
+      - nginx/1.0.13
+      date:
+      - Sat, 28 Apr 2012 01:35:29 GMT
+      connection:
+      - close
+      status:
+      - 204 No Content
+      x-ratelimit-limit:
+      - '5000'
+      etag:
+      - ! '"d41d8cd98f00b204e9800998ecf8427e"'
+      x-ratelimit-remaining:
+      - '4982'
+    body:
+      encoding: US-ASCII
+      string: ''
+    http_version: '1.1'
+  recorded_at: Sat, 28 Apr 2012 01:35:30 GMT
+recorded_with: VCR 2.1.0

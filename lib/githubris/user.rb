@@ -9,6 +9,26 @@ class Githubris::User < Githubris::Base
     @api.get_emails
   end
 
+  def followers
+    @api.get_user_followers(login)
+  end
+
+  def following
+    @api.get_user_following(login)
+  end
+
+  def following?(other_login)
+    @api.get_user_following?(other_login)
+  end
+
+  def follow!(other_login)
+    @api.put_follow_user(other_login)
+  end
+
+  def unfollow!(other_login)
+    @api.delete_follow_user(other_login)
+  end
+
   def gists(options={})
     @api.get_user_gists(login)
   end
