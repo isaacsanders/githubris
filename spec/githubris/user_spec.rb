@@ -3,6 +3,25 @@ require 'spec_helper'
 describe Githubris::User do
   use_vcr_cassette
 
+  describe '#following' do
+    it 'is the list of people the user follows' do
+      user = described_class.new :login => 'tenderlove'
+      user.following.each do |followed|
+        followed.should be_instance_of Githubris::User
+      end
+    end
+  end
+
+  describe '#followers' do
+    it 'is the list of people following the user' do
+      user = described_class.new :login => 'tenderlove'
+      user.followers.each do |follower|
+        follower.should be_instance_of Githubris::User
+      end
+    end
+  end
+
+
   describe '#emails' do
     it 'raises an error when not authenticated' do
       lambda do
@@ -45,6 +64,30 @@ describe Githubris::User do
       ghr = Githubris.new
       ghr.basic_auth 'GithubrisTestUser', 'password'
       ghr.authenticated_user
+    end
+
+    describe '#following?' do
+      it 'checks if the user is following the user with the given login' do
+        subject.should be_following('matz')
+      end
+    end
+
+    describe '#follow!' do
+      use_vcr_cassette
+
+      it 'follows the user' do
+        subject.follow!('dhh')
+        subject.should be_following('dhh')
+      end
+    end
+
+    describe '#unfollow!' do
+      use_vcr_cassette
+
+      it 'unfollows the user' do
+        subject.unfollow!('dhh')
+        subject.should_not be_following('dhh')
+      end
     end
 
     describe '#starred_gists' do
