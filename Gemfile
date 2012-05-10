@@ -5,7 +5,7 @@ group :development, :test do
   gem 'rspec-spies'
   gem 'pry'
 
-  gem 'simplecov'
+  gem 'simplecov', :require => false
   gem 'flog'
   gem 'flay'
 
