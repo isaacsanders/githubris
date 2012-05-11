@@ -11,9 +11,8 @@ describe Githubris::API::Gist do
     let(:login) {'GithubrisTestUser'}
 
     it 'gets /users/:username/gists' do
-      subject.stub(:user_gists_path => '/users/GithubrisTestUser/gists')
+      subject.should_receive(:user_gists_path).with(login).and_return('/users/GithubrisTestUser/gists')
       user_public_gists = subject.get_user_gists(login)
-      subject.should have_received(:user_gists_path).with(login)
     end
   end
 

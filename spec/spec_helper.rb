@@ -6,7 +6,6 @@ SimpleCov.start do
   add_filter '/coverage/'
 end if ENV['COVERAGE']
 
-require 'rspec-spies'
 require 'githubris'
 require 'fakeweb'
 require 'pry'
