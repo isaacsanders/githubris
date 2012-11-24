@@ -23,6 +23,7 @@ end
 FLAY_FLOG_OPTS_BLOCK = lambda do |t|
   t.dirs = ['lib']
   t.verbose = true
+  t.threshold = 1000
 end
 
 FlayTask.new &FLAY_FLOG_OPTS_BLOCK
